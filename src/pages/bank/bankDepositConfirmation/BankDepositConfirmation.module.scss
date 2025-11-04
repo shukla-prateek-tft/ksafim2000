@@ -1,0 +1,27 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  @include theme-font;
+  box-sizing: border-box;
+  gap: theme-gap('md');
+
+  .fieldSet {
+    @include theme-fieldset;
+  }
+  .bottomDetail {
+    @include flex-row;
+    justify-content: flex-end;
+    .aligner {
+      @include flex-row;
+      gap: theme-gap('md');
+    }
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+  margin-top: theme-margin('md');
+}
