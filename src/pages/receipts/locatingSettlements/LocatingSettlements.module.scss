@@ -1,0 +1,24 @@
+
+@use '../../ui/Styles/theme.scss' as *;
+.mainComponent{
+    width: 80vw;
+    height: 80vh;
+    .inputFields{
+        box-sizing: border-box;
+        @include flex-row;
+        align-items: center;
+        padding: 10px 30px;
+        gap: 45px;
+    }
+
+    .bottomBar{
+        width: 100%;
+        padding: 10px
+    }
+}
+
+.actionItem{
+    @include flex-row;
+    gap: 10px;
+    padding: 2px
+}

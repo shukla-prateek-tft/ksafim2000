@@ -1,0 +1,25 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.inputItems {
+  @include flex-column;
+  margin-bottom: theme-margin('md');
+  .firstInputItem {
+    @include grid-columns(3);
+    align-items: center;
+  }
+  .nextInputItem {
+    @include grid-columns(4);
+    align-items: center;
+    margin-top: theme-margin('md');
+    > div {
+      @include flex-row;
+      width: 100%;
+    }
+  }
+}

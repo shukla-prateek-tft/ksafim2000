@@ -1,0 +1,24 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  gap: theme-gap('md');
+
+  .itemsContainer {
+    @include flex-row;
+    align-items: center;
+    gap: theme-gap('huge');
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.textContents {
+  @include flex-row;
+  gap: theme-gap('md');
+}

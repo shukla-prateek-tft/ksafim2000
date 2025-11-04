@@ -1,0 +1,69 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .fieldSet {
+    @include theme-fieldset; 
+    margin-bottom: theme-margin('md'); 
+    border-radius: theme-radius('sm'); 
+    .legend {
+      color: $secondary;
+      font-weight: 700;
+      font-size: theme-font-size(4px);
+    }
+  }
+  .mainContainer { 
+    min-height: 20vh;
+    box-sizing: border-box;
+    padding: theme-spacing(1.25);
+    .itemsContainer {
+      @include flex-row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .groupContainer {
+      @include flex-center;
+    }
+  }
+
+  .radioBox {
+    @include flex-row;
+  }
+
+
+}
+
+.innerContainer {
+  p {
+    margin: 0;
+    color: $theme_primary;
+    font-weight:  600;
+    font-size: 14px;
+  }
+}
+
+.actionItems {
+  @include theme-action-items; 
+}
+
+.flex {
+  @include flex-row;
+}
+.rowReverse {
+  @include flex-row;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  }
+
+.bordered {
+  border: 1px solid $secondary;
+}
+
+.group {
+  gap: 0 !important;
+}

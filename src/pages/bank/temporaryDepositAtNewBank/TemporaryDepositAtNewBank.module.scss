@@ -1,0 +1,25 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tableCell {
+  @include flex-row;
+  justify-content: center;
+}
+
+.actionContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+  padding: theme-padding('md');
+}
+
+.conatiner {
+  @include flex-row;
+  align-items: center;
+  justify-content: space-between;
+}

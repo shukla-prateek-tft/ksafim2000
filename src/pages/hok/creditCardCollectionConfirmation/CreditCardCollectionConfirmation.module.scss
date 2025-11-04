@@ -1,0 +1,31 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+  .innerContainer {
+    .nameContainer {
+      @include flex-row;
+      gap: theme-gap('md');
+    }
+  }
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  gap: theme-gap('md');
+  margin-top: theme-margin('lg');
+}
+
+.bottomInputs {
+  @include flex-row;
+  gap: theme-gap('md');
+  margin-bottom: theme-margin('huge');
+}
+
+.textContainer {
+  margin-bottom: theme-margin('huge');
+}

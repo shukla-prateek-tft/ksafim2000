@@ -1,0 +1,18 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.container {
+  width: 35vw;
+  fieldset {
+    @include theme-fieldset;
+    legend {
+      text-align: center;
+    }
+  }
+  .bottomToolBar {
+    @include flex-row;
+    margin-top: theme-margin('sm');
+  }
+  .actionItems {
+    @include theme-action-items;
+  }
+}
