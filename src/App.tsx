@@ -3,7 +3,6 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Pages from './pages';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GlobalLoader } from '@/components';
 import { useAuth } from './hooks';
 import ErrorBoundary from './components/errorBoundary';
 import { MetroPolinateIcon } from './assets';
@@ -11,6 +10,7 @@ import { useAuthBroadcast } from './hooks/useAuthBroadCast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PaymentSuppliersList } from './pages/suppliers';
+import { GlobalLoader } from './components/loader';
 
 const ToastStyles = createGlobalStyle`
   .Toastify__toast {

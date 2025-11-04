@@ -5,7 +5,6 @@ import { adminServices } from '@/services';
 import { useEffect, useState, ChangeEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { debounce } from '@/utils/commonHelper';
-import { defaultPaymentSupplierListFilterValues } from '@/pages/suppliers/paymentSuppliersList/PaymentSuppliersList.controller';
 import { InputSizes } from '@/types/ui/input';
 import { SupplierSelection } from '@/pages/suppliers/supplierSelection';
 import { ServiceFn } from '@/pages/type';

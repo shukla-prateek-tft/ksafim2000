@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Spacer } from './styles';
 import { attachMultipleClasses, getFormatedDate, isFutureDate } from '@/utils/commonHelper';
 import { Footer } from '@/ui/Footer';
 import { ScreenLayout } from '@/ui/Layout';
@@ -119,7 +118,7 @@ const PaymentSuppliersUiList: React.FC<PaymentSupplierListUIProps> = ({
         return (
           <span className={classes.supplierNumberCell}>
             {row?.phone_Num1}
-            <Spacer />
+               
             {row?.phone_Prefix1}
           </span>
         );

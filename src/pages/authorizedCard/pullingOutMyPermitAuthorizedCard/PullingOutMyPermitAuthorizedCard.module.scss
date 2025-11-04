@@ -1,0 +1,21 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.actionItems {
+  @include flex-row;
+  gap: 20px;
+  align-items: center;
+  margin: 12px 0px;
+
+  .buttonContainer {
+    @include flex-row;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.flexContainer {
+  @include flex-row;
+}
+
+

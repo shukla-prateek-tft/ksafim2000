@@ -1,0 +1,27 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap("md");
+}
+
+.tableContainer {
+  @include flex-row;
+  gap: theme-gap("sm");
+}
+
+.tableHeaderContainer {
+  @include flex-column;
+  gap: theme-gap("sm");
+}
+
+.tableHeading {
+  text-align: center;
+}

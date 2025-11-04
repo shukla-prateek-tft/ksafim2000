@@ -11,7 +11,6 @@ import store from './store';
 import { ThemeProvider as OldThemeProvider } from 'styled-components';
 import theme from './utils/theme';
 import { ThemeProvider } from './store/contexts/ThemeContext';
-import NoAutoCompleteWrapper from './components/ui/nonAutoCompleteWrapper/nonAutoCompleteWrapper';
 import GlobalComponentsContextWrapper from './store/contexts/GlobalComponentsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,9 +24,7 @@ root.render(
             <OldThemeProvider theme={theme}>
               <GlobalComponentsContextWrapper>
                 <AuthContextWrapper>
-                  <NoAutoCompleteWrapper>
                     <App />
-                  </NoAutoCompleteWrapper>
                 </AuthContextWrapper>
                 </GlobalComponentsContextWrapper>
             </OldThemeProvider>
