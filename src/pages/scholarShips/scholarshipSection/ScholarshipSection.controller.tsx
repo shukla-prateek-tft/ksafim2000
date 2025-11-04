@@ -1,6 +1,6 @@
 //MCFW-0639
+import { GlobalLoader } from '@/components/loader';
 import ScholarshipSectionUI from './ScholarshipSection.render';
-import { GlobalLoader } from '@/components';
 
 const ScholarshipSection = () => {
   return (

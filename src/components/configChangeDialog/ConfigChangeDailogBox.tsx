@@ -10,11 +10,11 @@ import { STORAGE_KEY } from '@/constants/appConstant';
 import { getInputPattern, getLengthPattern } from '@/utils/commonHelper';
 import secureLocalStorage from 'react-secure-storage';
 import { FaInfo } from 'react-icons/fa';
-import { DialogBox } from '@/ui/DialogBox';
 import { BackToPageButton, SaveButton } from '@/components/commonButtons';
 import { Input } from '@/ui/Input';
 import { Select } from '@/ui/Select';
 import { BottomToolBar } from '@/ui/BottomToolBar';
+import { DialogBox } from '@/ui/DialogBox';
 interface ConfigChangeDialogProps {
   isOpen: boolean;
   onClose: () => void;

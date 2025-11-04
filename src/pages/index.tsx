@@ -1,9 +1,9 @@
 import React, { Suspense, useEffect } from 'react';
 import { useAuth } from '../hooks';
 import 'react-toastify/dist/ReactToastify.css';
-import { GlobalLoader } from '@/components';
 import ChooseDatabase from './chooseDb/ChooseDatabase';
 import { routes } from './routes';
+import { GlobalLoader } from '@/components/loader';
 const Pages = React.memo(() => {
   const { user, flags, toggleFlags, refreshUserDetails, handleLogout } = useAuth();
   const token = user?.token;

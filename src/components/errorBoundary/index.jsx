@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Button } from '../ui/buttons';
+import { Button } from '../../ui/Button';
 import { ErrorAnimation } from '@/assets/animations';
-import { AnimationCard } from '../ui';
+import { AnimationCard } from '../animationCard';
 
 const Container = styled.div`
   height: 100%;
