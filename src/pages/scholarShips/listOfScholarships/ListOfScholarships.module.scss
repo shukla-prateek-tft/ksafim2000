@@ -1,0 +1,43 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  @include theme-font;
+  box-sizing: border-box;
+
+  .fieldSet {
+    @include theme-fieldset; 
+    justify-content: space-between;
+
+    .topContainer {
+      @include flex-row;
+      gap: theme-gap('md'); 
+      
+      .sectionContainer {
+        @include flex-column;
+        flex: 1;
+      }
+    }
+
+
+    .legend {
+      color: $secondary;
+      font-weight: 700;
+      font-size: theme-font-size(5px);
+    }
+  }
+
+  .bottomDetail {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    .aligner {
+      @include flex-row;
+    }
+  }
+}
+
+.actionItems {
+  @include theme-action-items;
+}

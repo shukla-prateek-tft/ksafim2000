@@ -1,0 +1,12 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.headerInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: theme-gap('sm');
+}
+.actionsItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
