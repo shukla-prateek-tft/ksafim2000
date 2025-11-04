@@ -1,0 +1,8 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+  margin-top: theme-margin('huge');
+}

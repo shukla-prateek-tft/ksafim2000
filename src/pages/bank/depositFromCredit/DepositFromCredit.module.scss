@@ -1,0 +1,43 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.topHeaderContainer {
+  display: flex;
+  gap: 10px;
+  flex-direction: row-reverse;
+  margin-top: 10px;
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.bottomContainer {
+  display: flex;
+  margin-top: 5px;
+  justify-content: end;
+}
+
+.disabledBox {
+  width: 200px;
+  background-color: #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.flex {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}

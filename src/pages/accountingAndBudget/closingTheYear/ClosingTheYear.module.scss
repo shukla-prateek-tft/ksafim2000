@@ -1,0 +1,94 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .fieldSet {
+    @include theme-fieldset; 
+    margin-bottom: theme-margin("md"); 
+    border-radius: theme-radius('sm');
+    .legend {
+      color: $secondary;
+      font-weight: 700;
+      font-size: theme-font-size(4px);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .textCenter {
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .centerAlign {
+      align-self: center;
+    }
+
+    .innerContainer {
+      height: 30vh;
+      padding: theme-spacing(2.5);
+      @include flex-row;
+      gap: theme-gap('md'); 
+      .innerBox {
+        flex: 1;
+        @include flex-column;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: theme-radius('sm'); 
+        border: 0.5px solid lightgray;
+        padding: theme-spacing(2.5);
+        .inputContainer {
+          height: 20%;
+        }
+        .boxContainer {
+          @include flex-row;
+          justify-content: space-around;
+          width: 100%;
+          height: 20%;
+        }
+
+       
+      }
+
+      .bigBox {
+        flex: 2;
+      }
+    }
+  }
+}
+
+.actionItems {
+  @include theme-action-items; 
+}
+.topContent{
+@include flex-column;
+  align-items: center;
+  gap: theme-gap('huge');
+}
+.topContentBottom{
+   width: 50vw;
+  @include flex-row;
+  justify-content: space-evenly;
+}
+ .aligner {
+          @include flex-row;
+          align-self: flex-start;
+          gap: theme-gap('huge');
+        }
+
+        .itemView {
+          @include flex-row;
+          align-self: flex-start;
+          gap: theme-gap('md');
+
+          .itemTitle {
+            min-width: 120px;
+            font-weight: 600;
+          }
+
+        }

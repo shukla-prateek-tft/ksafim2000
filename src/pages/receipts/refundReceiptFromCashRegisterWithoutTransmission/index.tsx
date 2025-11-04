@@ -1,0 +1,2 @@
+import RefundReceiptFromCashRegisterWithoutTransmission from './RefundReceiptFromCashRegisterWithoutTransmission.controller';
+export { RefundReceiptFromCashRegisterWithoutTransmission };

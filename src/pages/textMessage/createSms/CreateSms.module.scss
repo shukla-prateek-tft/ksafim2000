@@ -1,0 +1,28 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.fieldSet {
+  @include flex-column;
+  width: 95%;
+  .legend {
+    color: $danger;
+    font-size: theme-font-size(4px);
+  }
+  .center {
+    text-align: center;
+    margin-bottom: theme-margin('md');
+    color: $danger;
+  }
+
+  .itemContainer {
+    @include flex-row;
+    align-items: center;
+    gap: theme-gap('huge');
+    margin-bottom: theme-margin('huge');
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('huge');
+}

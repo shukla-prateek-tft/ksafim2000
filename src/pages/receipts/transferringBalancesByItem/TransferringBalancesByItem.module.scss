@@ -1,0 +1,83 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-around;
+  gap: theme-gap('huge');
+  .innerContainer {
+    width: 30%;
+  }
+  .innerContainerLast {
+    @include flex-column;
+    align-items: center;
+    width: 24%;
+  }
+
+  .rangeItem {
+    @include flex-row;
+    align-items: center;
+  }
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  flex-wrap: wrap;
+  gap: theme-gap('lg');
+  flex-direction: row-reverse;
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    @include flex-row;
+    justify-content: center;
+    gap: theme-gap('sm');
+  }
+}
+.secondContainer {
+  @include flex-row;
+  justify-content: space-around;
+  gap: theme-gap('huge');
+  align-items: flex-end;
+}
+
+.bottomContainer {
+  @include flex-row;
+  margin-top: theme-margin('md');
+  gap: theme-gap('huge');
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex {
+  @include flex-row;
+  gap: 1px;
+  justify-content: space-around;
+}
+
+.flexEnd {
+  @include flex-row;
+  align-items: flex-end;
+}
+
+.bottomFlex {
+  width: 65%;
+  @include flex-row;
+  gap: theme-gap('sm');
+  justify-content: space-around;
+}
+.itemsContainer {
+  align-items: center;
+  @include flex-row;
+  gap: theme-gap('lg');
+}
+
+.ListofGefenCell2 {
+  @include flex-row;
+  gap: theme-gap('sm');
+}

@@ -1,0 +1,63 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  .fieldSet {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: theme-gap('sm');
+    width: 100%;
+    margin-bottom: theme-margin('md');
+    align-self: center;
+    border: 0.5px solid lightgray;
+    .legend {
+      color: $secondary;
+      font-weight: theme-font-weight('semiBold');
+      text-align: center;
+      font-size: theme-font-size(4px);
+    }
+    gap: theme-gap('md');
+  }
+  .inputContainer {
+    @include flex-row;
+    gap: theme-gap('huge');
+    .inputContainerAlign {
+      flex: 1;
+      display: flex;
+      @include flex-column;
+    }
+  }
+
+  .flex {
+    @include flex-row;
+  }
+  .totalContainer {
+    .total {
+      @include flex-row;
+      margin-left: 150px;
+      flex-direction: row-reverse;
+      .totalInput {
+        width: 150px;
+      }
+      .totalLabel {
+        max-width: 60px;
+        min-width: 60px;
+      }
+    }
+  }
+  .remarks {
+    @include flex-row;
+    justify-content: space-between;
+    > div {
+      margin-left: 270px;
+    }
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('sm');
+}

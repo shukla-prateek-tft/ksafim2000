@@ -1,0 +1,10 @@
+@use '../../ui/Styles/theme.scss' as *;
+.mainContainer {
+  width: 35vw;
+  .fieldSet {
+    @include theme-fieldset;
+  }
+  .actionItems {
+    @include theme-action-items;
+  }
+}

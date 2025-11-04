@@ -1,0 +1,36 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  .mainContainer {
+    min-height: 20vh;
+    box-sizing: border-box;
+    padding: theme-padding('md');
+  }
+}
+.innerContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+  p {
+    margin: 0;
+    color: $theme_primary;
+    font-weight: theme-font-weight('semibold');
+    font-size: theme-font-size(2px);
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+.flex {
+  @include flex-row;
+}
+
+.groupContainer {
+  div {
+    width: 100% !important;
+  }
+}

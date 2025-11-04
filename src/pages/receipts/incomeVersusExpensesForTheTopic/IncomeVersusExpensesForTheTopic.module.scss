@@ -1,0 +1,38 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .fieldSet {
+    @include theme-fieldset; 
+      margin-bottom: theme-margin('huge');
+      gap: theme-gap('md'); 
+      border: 0.5px solid lightgray;
+
+    .legend {
+      color: $secondary;
+       font-weight: 700;
+      font-size: theme-font-size(4px);
+    }
+  }
+
+  .selectContainer {
+    @include flex-row;
+    gap: theme-gap('huge');
+    .selectContainerAlign {
+      flex: 1;
+      @include flex-column;
+    }
+  }
+
+  .selectorAlign {
+    @include flex-row;
+    gap: theme-gap('huge'); 
+  }
+}
+
+.actionItems {
+  @include theme-action-items; 
+}

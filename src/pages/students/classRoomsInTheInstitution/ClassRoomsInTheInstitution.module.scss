@@ -1,0 +1,14 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  width: 60vw;
+}
+.actionItems {
+  @include theme-action-items; 
+}
+.checkboxContainerTable {
+ @include flex-center;
+  align-items: center;
+}

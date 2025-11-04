@@ -1,0 +1,31 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: theme-gap('huge');
+  .innerContainer {
+    width: 25%;
+  }
+}
+
+.button {
+  background-color: green;
+}
+
+.flex {
+  display: flex;
+  gap: theme-gap('sm');
+  width: 100%;
+}
+.flexCenter {
+  display: flex;
+  gap: theme-gap('sm');
+  align-items: center;
+  justify-content: center;
+}
+.actionItems {
+  display: flex;
+  gap: theme-gap('1px');
+}

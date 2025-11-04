@@ -1,0 +1,36 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  border: 1px solid $gray;
+  margin: theme-margin('huge');
+  border-radius: theme-radius('md');
+  .fieldSet {
+    margin-bottom: theme-margin('huge');
+    padding: theme-padding('huge');
+    .legend {
+      color: $danger;
+      font-weight: theme-font-weight('semiBold');
+      font-size: theme-font-size(4px);
+    }
+    .container {
+      @include flex-row;
+      gap: theme-gap('huge');
+      align-items: center;
+    }
+    .selectWithInput {
+      @include flex-row;
+      .greenBtn {
+        background-color: $green;
+        height: 20px;
+        width: 20px;
+        margin: theme-margin('md');
+        border-radius: theme-gap('sm');
+      }
+    }
+  }
+  .actionItems {
+    @include flex-row;
+    gap: theme-gap('sm');
+  }
+}

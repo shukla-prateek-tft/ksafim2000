@@ -1,0 +1,55 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.container {
+  @include flex-column;
+  fieldset {
+    font-size: theme-font-size(5px);
+    margin-bottom: theme-margin('md');
+  }
+
+  .summary {
+    @include flex-row;
+    justify-content: space-between;
+    .summarySection {
+      @include flex-row;
+      gap: theme-gap('huge');
+
+      .total {
+        @include flex-row;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        margin: 0;
+        p {
+          @include flex-row;
+          text-align: right;
+          align-items: center;
+          .label {
+            margin-left: theme-margin('md');
+          }
+          span {
+            min-width: 90px;
+            display: block;
+            background-color: $background;
+            border: 0.5px solid $black;
+            padding: theme-padding('md');
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('huge');
+  margin-top: theme-margin('huge');
+}
+.bottomContainer {
+  @include flex-row;
+  gap: theme-gap('huge');
+  margin-top: theme-margin('huge');
+  .inputField {
+    @include flex-row;
+  }
+}

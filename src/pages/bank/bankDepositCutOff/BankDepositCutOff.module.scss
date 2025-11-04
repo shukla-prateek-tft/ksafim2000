@@ -1,0 +1,27 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .itemsContainer {
+    @include flex-row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: theme-radius('md');
+    gap: theme-gap('huge');
+  }
+
+  .groupContainer {
+    div {
+      width: 100% !important;
+    }
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
