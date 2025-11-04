@@ -1,0 +1,17 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.flex {
+  @include flex-row;
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.supplierInputs {
+  @include flex-row;
+  width: 100%;
+  gap: theme-gap('sm');
+}

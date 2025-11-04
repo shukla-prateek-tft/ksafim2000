@@ -1,0 +1,13 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.actionItems{
+    @include flex-row;
+    gap: theme-gap("huge");
+}
+
+.reportCenter{
+    @include flex-column;
+    text-align: left;
+    gap: theme-gap("md");
+}

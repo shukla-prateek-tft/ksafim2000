@@ -1,0 +1,32 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+
+.InvoiceTable {
+  .ListofGefenCell {
+    @include flex-row;
+    justify-content: center;
+  }
+}
+
+.bottomContainer {
+  margin-top: theme-margin('sm');
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.columnContainer {
+  @include flex-column;
+}
+
+.rowContainer {
+  @include flex-row;
+}
+
+.messContainer {
+  width: 50%;
+  margin-right: theme-margin('md');
+}

@@ -1,0 +1,17 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.section {
+  .range {
+    @include flex-row;
+    gap: theme-gap('md');
+  }
+  .flex {
+    @include flex-row;
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}

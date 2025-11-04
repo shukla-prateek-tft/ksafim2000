@@ -1,3 +1,7 @@
+import { ClosingTheYear } from './closingTheYear';
+import { ManagerInterface } from './managerInterface';
+import { TheGuessMovementQuery } from './theGuessMovementQuery';
+import { StandingOrderDetailSection } from '../receipts/standingOrderDetailSection';
 import { CutCard } from './cutCard';
 import { DulpicateCancelExistingPortion } from './duplicateCancelExistingPortion';
 import { DepositJournalSection } from './depositJournalSection';
@@ -13,10 +17,6 @@ import { IncomeExpenseRportSection } from './incomeExpenseReportSection';
 import { LogCommand } from './logCommandSection';
 
 export {
-  CutoutInsertingDoseNumber,
-  GoneForAYear,
-  IncomeExpenseRportSection,
-  LogCommand,
   CutCard,
   DulpicateCancelExistingPortion,
   DepositJournalSection,
@@ -25,5 +25,13 @@ export {
   BookkeepingCard,
   LogCommands,
   OpeningBalances,
-  ChangeOfCreditCardDetails
+  ChangeOfCreditCardDetails,
+  ClosingTheYear,
+  ManagerInterface,
+  TheGuessMovementQuery,
+  StandingOrderDetailSection,
+  CutoutInsertingDoseNumber,
+  GoneForAYear,
+  IncomeExpenseRportSection,
+  LogCommand
 };

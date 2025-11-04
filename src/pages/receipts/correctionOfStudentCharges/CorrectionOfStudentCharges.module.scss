@@ -1,0 +1,39 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-around;
+  gap: theme-gap('sm');
+  .innerContainer {
+    width: 24%;
+  }
+
+  .rangeItem {
+    @include flex-row;
+    align-items: center;
+  }
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  gap: theme-gap('sm');
+  flex-direction: row-reverse;
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    @include flex-row;
+    justify-content: center;
+  }
+}
+
+.bottomContainer {
+  @include flex-row;
+  margin-top: theme-margin('sm');
+}

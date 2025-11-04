@@ -1,0 +1,41 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  width: 70vw;
+}
+
+.container {
+  .inputSection {
+    @include flex-row;
+    gap: theme-gap('huge');
+    align-items: center;
+    > div:first-of-type {
+      @include flex-row;
+    }
+    .checkboxInput {
+      flex-direction: row-reverse;
+    }
+  }
+  .cardsTableContainer {
+    flex: 1;
+    .tableHeader {
+      background-color: $theme_primary;
+      height: fit-content;
+      div {
+        font-weight: 600;
+        font-size: 12px;
+        color: white;
+        text-align: center;
+      }
+    }
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('sm');
+}
+.flexBetween {
+  @include flex-row;
+  justify-content: space-between;
+}

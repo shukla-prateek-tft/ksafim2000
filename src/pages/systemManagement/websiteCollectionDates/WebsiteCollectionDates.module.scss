@@ -1,0 +1,33 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-column;
+  align-items: center;
+  gap: 3px;
+}
+
+.topHeaderContainer {
+  display: flex;
+  gap: 10px;
+  flex-direction: row-reverse;
+  margin-top: 10px;
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.bottomContainer {
+  display: flex;
+  margin-top: 5px;
+  gap: 20px;
+}

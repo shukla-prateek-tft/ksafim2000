@@ -1,3 +1,4 @@
+import { BankTransferFormReport } from './bankTransferFormReport';
 import { CreatingIncomeTaxFile } from './creatingIncomeTaxFile';
 import { FlashSystemFileReception } from './flashSystemFileReception';
 import { GoodSupplierReport } from './goodSupplierReport';
@@ -18,14 +19,6 @@ import { CancelingAPaymentOrder } from './cancelingAPaymentOrder';
 import { PrintPreviewEnteredInvoice } from './printPreviewEnteredInvoice';
 
 export {
-  ListOfSuppliers,
-  PaymentVoucherPrint,
-  ExpenseVoucherWithItems,
-  PaymentInformationQuery,
-  PaymentVoucher,
-  PaymentVoucherCancellationSection,
-  CancelingAPaymentOrder,
-  PrintPreviewEnteredInvoice,
   WrongSuppliersFromFlashSystem,
   OpenInvoicesReport,
   IncomeTaxSuppliersReport,
@@ -35,5 +28,14 @@ export {
   SupplierUpdate,
   ListOfPaymentInstructionsFilters,
   CreatingIncomeTaxFile,
-  Reference
+  Reference,
+  BankTransferFormReport,
+  ListOfSuppliers,
+  PaymentVoucherPrint,
+  ExpenseVoucherWithItems,
+  PaymentInformationQuery,
+  PaymentVoucher,
+  PaymentVoucherCancellationSection,
+  CancelingAPaymentOrder,
+  PrintPreviewEnteredInvoice
 };

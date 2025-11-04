@@ -1,0 +1,59 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+  gap:  theme-gap(0.5);
+  .innerContainer {
+    width: 24%;
+    .radioCheckBox {
+      @include flex-row;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  }
+  .innerContainerLast {
+    @include flex-column;
+    align-items: center;
+    width: 24%;
+  }
+
+  .rowDirection {
+    flex-direction: row;
+  }
+
+  .rangeItem {
+    @include flex-row;
+    align-items: center;
+    gap: theme-gap("sm")
+  }
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  flex-direction: row-reverse;
+  gap: theme-gap('sm'); 
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    @include flex-center; 
+  }
+}
+
+.bottomContainer {
+  @include flex-row;
+  gap: theme-gap('sm'); 
+  margin-top: theme-margin(1.25);
+}
+
+.blankSpace {
+  width: theme-size(20); 
+  height: theme-size(7); 
+}

@@ -1,0 +1,35 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.container {
+  @include theme-font;
+
+  fieldset {
+    @include theme-fieldset;
+    .inputRow {
+      @include flex-row;
+      width: 100%;
+      gap: theme-gap('huge');
+    }
+  }
+  .lastRow {
+    justify-content: flex-end;
+  }
+  .bottomToolBar {
+    @include flex-row;
+    margin-top: 5px;
+  }
+  .innerContainer {
+    @include flex-row;
+    gap: theme-gap('huge');
+    margin: 10px 0;
+    p {
+      margin: 0;
+      color: $theme_primary;
+      font-weight: 600;
+    }
+  }
+  .actionItems {
+    @include theme-action-items;
+  }
+}

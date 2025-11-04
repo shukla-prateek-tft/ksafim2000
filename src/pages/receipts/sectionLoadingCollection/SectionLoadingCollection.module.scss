@@ -1,0 +1,35 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .mainContainer {
+    min-height: 20vh;
+    box-sizing: border-box;
+    padding: theme-padding('md');
+    .itemsContainer {
+      @include flex-row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+.innerContainer {
+  p {
+    margin: 0;
+    color: $theme-primary;
+    font-weight: theme-font-weight('semiBold');
+    font-size: theme-font(14px);
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+.flex {
+  @include flex-row;
+  gap: theme-gap('sm');
+}

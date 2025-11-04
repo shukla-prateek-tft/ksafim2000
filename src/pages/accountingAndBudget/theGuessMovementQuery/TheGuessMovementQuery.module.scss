@@ -1,0 +1,25 @@
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  width: 60vw;
+
+  .footer {
+    margin-top: theme-margin('huge');
+  }
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: theme-gap('huge');
+    gap: theme-gap('sm');
+  }
+  .haflWidth {
+    grid-column: span 1;
+  }
+  .fullWidth {
+    grid-column: span 2;
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}

@@ -1,0 +1,34 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.mainContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content:space-between;
+}
+ .legend {
+      color: $theme_primary;
+      font-weight: 700;
+    }
+.actionItem{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.bottomBar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.inputContainer{
+    display: flex;
+    gap: 1px;
+}
+.bottomBarContent{
+    display: flex;
+    gap: 20px;
+}
+.lastLable{
+    margin-right: 3.5rem;
+}
