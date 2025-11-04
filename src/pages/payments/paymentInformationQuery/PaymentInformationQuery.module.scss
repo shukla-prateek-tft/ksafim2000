@@ -1,0 +1,20 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.doubleInput{
+    @include flex-row;
+    
+}
+.inputField {
+  @include flex-row;
+  justify-content: space-between;
+  align-items: center;
+  .checkboxWithInput {
+    @include flex-row;
+  }
+}

@@ -1,0 +1,121 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.header1 {
+  width: 100%;
+  margin-top: theme-margin('md','2px');
+  @include flex-row;
+}
+
+.header2 {
+  width: 100%;
+  @include flex-row;
+}
+
+.header3 {
+  width: 100%;
+  margin-top: theme-margin('md','2px');
+  @include flex-row;
+  .part1Header3 {
+    width: 20%;
+  }
+  .part2Header3 {
+    width: 40%;
+  }
+  .part3Header3 {
+    width: 20%;
+  }
+  .part4Header3 {
+    width: 20%;
+  }
+}
+
+.header4 {
+  width: 100%;
+  margin-top: theme-margin('md','2px');
+  @include flex-row;
+  align-items: center;
+
+  .leftHeader4{
+    width: 40%;
+    @include flex-column;
+    align-items:center;
+  }
+  .rightHeader4{
+    width: 60%;
+    }
+}
+
+.header5 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+
+  .leftHeader5{
+    width: 40%;
+  }
+
+  .rightHeader5{
+    width: 40%;
+    @include flex-row;
+  }
+}
+.total{
+  width: 20%;
+  margin-block: theme-margin('md', '2px');
+}
+
+.bottom1 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+  margin-top: theme-margin('md','2px');
+
+  .leftBottom1{
+  @include flex-column;
+    width: 40%;
+  }
+
+  .rightBottom1{
+    width: 40%;
+  }
+}
+
+
+.textContent{
+    width: 100%;
+    text-align: center;
+    margin-top: theme-margin('md','2px');
+    @include flex-row;
+    .leftTextContent{
+        width:60%;
+    }
+
+    .rightTextContent{
+        width:40%;
+    }
+}
+
+.bottom2{
+    width: 100%;
+    margin-top: theme-margin('md','2px');
+    @include flex-row;
+    .leftTextContent2{
+        width:60%;
+    }
+
+    .rightTextContent2{
+        width:40%;
+    }
+}
+
+.lastContent{
+    width: 100%;
+    @include flex-row;
+    justify-content: space-between;
+    .leftTextContent3{
+    @include flex-row;
+    gap: theme-gap('md');
+    }
+   
+}

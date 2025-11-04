@@ -1,0 +1,28 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+  gap: theme-gap('sm');
+  .innerContainer {
+    width: 20%;
+  }
+  .innerContainerLeft {
+    width: 30%;
+  }
+  .marginRight {
+    margin-right: 8px;
+  }
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('sm');
+}
+
+.topHeaderContainer{
+  @include flex-row;
+  gap: theme-gap('md');
+  justify-content: end;
+}

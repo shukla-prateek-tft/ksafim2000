@@ -1,0 +1,19 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .mainContainer {
+    min-height: 10vh;
+    box-sizing: border-box;
+    padding: theme-padding('md');
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}

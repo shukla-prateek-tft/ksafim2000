@@ -1,0 +1,31 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.dialogBox {
+  width: 50vw;
+}
+.container {
+  fieldset {
+    @include theme-fieldset;
+    .formGroup {
+      @include flex-column;
+      gap: theme-gap('md');
+      .section {
+        @include flex-row;
+        justify-content: space-between;
+        gap: theme-gap('lg');
+      }
+    }
+  }
+  .bottomContainer {
+    @include flex-row;
+    border: 0.5px solid $gray-medium;
+    margin-bottom: theme-margin('md');
+    border-radius: theme-radius('md');
+    padding: theme-padding('md');
+    gap: theme-gap('lg');
+  }
+}
+.actionItems {
+  @include theme-action-items;
+}

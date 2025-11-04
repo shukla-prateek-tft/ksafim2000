@@ -1,0 +1,234 @@
+$solidblack: solid black;
+$black: rgb(0, 0, 0);
+
+.header {
+  padding: 10px 10px 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  border-top: 1px $solidblack;
+
+  .headerContent {
+    display: flex;
+    width: fit-content;
+    gap: 50px;
+  }
+
+  .contactSection {
+    display: flex;
+    width: fit-content;
+    gap: 40px;
+
+    .contactBlock {
+      display: flex;
+      width: fit-content;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .contactColumn {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contactColumnFit {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: fit-content;
+    }
+  }
+}
+
+.VoucherSection {
+  border: 1px $solidblack;
+  display: flex;
+  min-height: 30px;
+  padding: 10px 10px 10px 100px;
+  justify-content: space-between;
+
+  span {
+    display: inline;
+    word-wrap: no-wrap;
+  }
+
+  .expenseVoucherText {
+    font-weight: 500;
+    font-size: 28px;
+    margin-left: 40px;
+  }
+
+  .voucherActNo {
+    font-size: 29px;
+  }
+
+  .voucherLeft {
+    display: flex;
+    width: fit-content;
+    gap: 20px;
+
+    .voucherColumn {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .voucherColumnFit {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: fit-content;
+    }
+  }
+
+  .voucherCenter {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .voucherRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: fit-content;
+
+    .voucherRightText {
+      font-size: 24px;
+      padding-left: 70px;
+    }
+  }
+}
+
+.Container {
+  width: 100%;
+  margin: 20px auto;
+  padding: 20px 0;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+
+  @media print {
+    height: fit-content !important;
+    margin: 0 !important;
+  }
+
+  .reference {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .reference-desc-aut {
+    margin-top: 10px;
+    width: 400px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .referenceRow {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.printContainer {
+  display: flex;
+  margin-bottom: 20px;
+
+  @media print {
+    display: none;
+  }
+}
+
+.Detail {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 40%;
+  border-bottom: 1px $solidblack;
+  min-height: 30px;
+
+  span {
+    white-space: nowrap;
+  }
+
+  .detailRight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.Summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 70px;
+  gap: 10px;
+  border: 1px $solidblack;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.Signature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 15px;
+  font-size: 15px;
+}
+
+.footerContainer {
+  width: 100%;
+  display: flex;
+  .totalEmptyContainer {
+    width: 80%;
+  }
+  .totalContainer {
+    width: 26.5%;
+    height: 35px;
+    border: 1px $solidblack;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    @media print {
+      border-top: none;
+    }
+  }
+}
+
+.footerContainer2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .rightContainer {
+    width: 25%;
+  }
+  .leftContainer {
+    width: 25%;
+
+    .left1 {
+      width: 100%;
+      height: 65px;
+      border: 1px $solidblack;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .left2 {
+      width: 100%;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
+}

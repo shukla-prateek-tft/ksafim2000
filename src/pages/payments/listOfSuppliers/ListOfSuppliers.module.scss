@@ -1,0 +1,29 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.description {
+  @include flex-row;
+  text-align: center;
+  font-weight: 600;
+  font-size: theme-font-size(2px);
+  gap: theme-gap('lg');
+}
+.column-third {
+  @include flex-row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.actionItems {
+  @include theme-action-items;
+}
+
+.greenBtn {
+  background-color: $success;
+  height: 20px;
+  width: 20px;
+}
+.acc{
+  display: flex;
+  align-items: center;
+  gap:theme-gap('sm');
+}

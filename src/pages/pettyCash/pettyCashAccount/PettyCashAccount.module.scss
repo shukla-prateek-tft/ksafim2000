@@ -1,0 +1,35 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.InvoiceTable {
+  .ListofGefenCell {
+    @include flex-row;
+    justify-content: center;
+  }
+}
+
+.bottomContainer {
+  @include flex-row;
+  margin-top: theme-margin('md', 1);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex {
+  @include flex-row;
+  justify-content: space-between;
+  gap: theme-gap('md');
+}
+.flexOnly {
+  @include flex-row;
+}
+
+.renderActionItems {
+  @include theme-action-items;
+  flex-direction: row-reverse;
+}

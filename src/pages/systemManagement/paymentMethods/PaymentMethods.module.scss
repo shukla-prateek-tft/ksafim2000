@@ -1,0 +1,67 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  position: relative;
+  padding: theme-padding('md');
+  box-sizing: border-box;
+
+  .fieldSet {
+    @include theme-fieldset;
+    height: 100%;
+    padding: theme-padding('md');
+    margin-bottom: theme-margin('md');
+
+    .topContainer {
+      @include flex-row;
+      align-items: center;
+      width: 100%;
+      height: 5vh;
+      border: 0.5px solid lightgray;
+      margin-bottom: 1px;
+      border-radius: 2px;
+
+      .leftInnerContainer {
+        width: 60%;
+        height: 100%;
+        @include flex-center;
+        border-left: 0.5px solid lightgray;
+        justify-content: flex-start;
+        padding: 0px theme-padding('md');
+        box-sizing: border-box;
+        color: red;
+        font-weight: theme-font-weight('semiBold');
+      }
+
+      .rightInnerContainer {
+        width: 40%;
+        height: 100%;
+        @include flex-center;
+        color: $theme_primary;
+        font-weight: theme-font-weight('semiBold');
+      }
+    }
+  }
+
+  .detailText {
+    color: $theme_primary;
+    margin: theme-margin('lg') 0px theme-margin('sm') 0px;
+    font-weight: theme-font-weight('semiBold');
+  }
+
+  .checkBox {
+    justify-content: center;
+  }
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  gap: theme-gap('sm');
+  flex-direction: row-reverse;
+}
+
+.rowContainer {
+  @include flex-row;
+}

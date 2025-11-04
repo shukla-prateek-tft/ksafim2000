@@ -1,0 +1,25 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.container {
+  .titleContainer{
+    @include flex-center;
+    padding:theme-padding('lg');
+    font-weight: theme-font-weight('bold');
+  }
+  .horizontalInputContainer {
+    @include flex-row;
+    gap: 15px;
+  }
+  .bottomContainer {
+    @include flex-row;
+    gap: 15px;
+    .bottomInnerLeftContainer {
+      @include flex-column;
+      flex: 1;
+    justify-content:  flex-end;
+    }
+    .bottomInnerRightContainer {
+      flex: 1;
+    }
+  }
+}

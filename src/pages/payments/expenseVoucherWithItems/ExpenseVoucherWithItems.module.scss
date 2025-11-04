@@ -1,0 +1,76 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.header1 {
+  width: 100%;
+  margin-top: theme-margin('lg');
+  @include flex-row;
+}
+
+.header2 {
+  width: 100%;
+  @include flex-row;
+  .left{
+    width: 50%;
+
+  }
+  .right{
+    width: 50%;
+    @include flex-row
+  }
+}
+
+.header3 {
+  width: 100%;
+  margin-top: theme-margin('lg');
+  @include flex-row;
+  .left {
+    width: 20%;
+  }
+  .leftCenter {
+    width: 30%;
+  }
+  .rightCenter {
+    width: 30%;
+  }
+  .right {
+    width: 20%;
+  }
+}
+
+.header4 {
+  width: 100%;
+  margin-top: theme-margin('lg');
+  .left{
+    width: 100%;
+    @include flex-row;
+  }
+}
+
+ .header5{
+    width: 100%;
+  margin-top: theme-margin('lg');
+
+    margin-bottom: theme-margin('lg');
+    @include flex-row;
+  }
+
+.center{
+  margin-top: theme-margin('huge',"10px");
+
+}
+
+.bottom1{
+  width: 100%;
+  margin-top: theme-margin('huge',"10px");
+  margin-bottom: theme-margin('huge',"10px");
+  @include flex-row;
+
+  .left{
+    width:50%;
+  }
+
+  .right{
+    width: 50%;
+  }
+}

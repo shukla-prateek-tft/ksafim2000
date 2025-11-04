@@ -1,0 +1,39 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  width: 70vw;
+  box-sizing: border-box;
+  .fieldSet {
+    padding: theme-padding('huge');
+    margin-bottom: theme-margin('huge');
+    .flex {
+      @include flex-row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .legend {
+      color: $danger;
+      font-weight: theme-font-weight('semiBold');
+      font-size: theme-font-size(4px);
+    }
+  }
+
+  .innerContainer {
+    @include flex-row;
+    gap: theme-gap('huge');
+    margin-top: theme-margin('huge');
+    margin-bottom: theme-margin('huge');
+    p {
+      margin: 0;
+      color: $theme_primary;
+    }
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('huge');
+}
