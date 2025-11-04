@@ -1,0 +1,23 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('huge');
+}
+
+.container {
+  @include flex-row;
+  gap: theme-gap('huge');
+  align-items: center;
+}
+
+.warning {
+  color: $danger;
+  border: 1px solid $danger;
+  padding: theme-padding("md");
+}
+.showEnd{
+  @include flex-row;
+  justify-content: end;
+}

@@ -1,0 +1,74 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+  .childDiv {
+    @include flex-column;
+  }
+  .firstDivChildWidth {
+    width: 60%;
+  }
+  .secondDivChildWidth {
+    width: 30%;
+  }
+  .flexLeft {
+    @include flex-column;
+    align-items: end;
+  }
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  gap: theme-gap('sm');
+}
+
+.ListofGefenCell {
+  @include flex-row;
+}
+.bottomContainer {
+  @include flex-row;
+  margin-top: theme-margin('md');
+}
+
+.flex {
+  @include flex-row;
+  align-items: center;
+  gap: theme-gap('md');
+}
+.spaceBetween {
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.disabledBox {
+  width: 200px;
+  background-color: #d3d3d3;
+  @include flex-row;
+  align-items: center;
+  justify-content: center;
+  border-radius: theme-radius('sm');
+  height: 30px;
+}
+
+.multipleSelector {
+  height: 120px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  .multipleSelectorItem {
+    padding: theme-padding('md');
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+
+    background-color: #fff;
+    color: #000;
+
+    &.selected {
+      background-color: $theme_primary;
+      color: #fff;
+    }
+  }
+}

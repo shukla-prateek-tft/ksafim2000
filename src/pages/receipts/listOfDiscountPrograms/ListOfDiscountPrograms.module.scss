@@ -1,0 +1,23 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  width: 70vw;
+  .legend {
+    color: $theme_primary;
+  }
+  .flex {
+    @include flex-row;
+    align-items: center
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+  margin-top: theme-margin('huge');
+}
+
+.remark{
+  margin-top: theme-margin("huge");
+}

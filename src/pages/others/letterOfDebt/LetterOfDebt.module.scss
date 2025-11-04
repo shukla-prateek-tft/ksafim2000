@@ -1,0 +1,30 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.mainContainer {
+  @include flex-center;
+  flex: 1;
+  position: relative;
+
+  .fieldSet {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    align-self: center;
+    border: 0.5px solid lightgray;
+
+    .legend {
+      color: $theme_primary;
+      font-weight: 700;
+    }
+  }
+}
+.flex {
+  display: flex;
+  gap: theme-gap('huge');
+}
+.justify {
+  display: flex;
+  gap: theme-gap('huge');
+  justify-content: space-between;
+  width: 90%;
+}

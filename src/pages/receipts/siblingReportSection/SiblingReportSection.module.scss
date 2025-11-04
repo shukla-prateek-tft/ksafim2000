@@ -1,0 +1,56 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.dialogBox {
+  width: fit-content;
+}
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  .fieldSet {
+    @include flex-column;
+    box-sizing: border-box;
+    border-radius: theme-gap('sm');
+    width: 100%;
+    margin-bottom: theme-margin('huge');
+    align-self: center;
+    border: 0.5px solid $gray-light;
+    .legend {
+      color: $secondary;
+      font-weight: theme-font-weight('semiBold');
+      font-size: theme-font-size(4px);
+    }
+  }
+  .mainContainer {
+    min-height: 20vh;
+    box-sizing: border-box;
+    padding: 5px;
+    .itemsContainer {
+      align-items: center;
+      @include flex-row;
+      justify-content: space-between;
+    }
+  }
+
+  .inputDisabled {
+    width: 130px;
+  }
+}
+.innerContainer {
+  p {
+    margin: 0;
+    color: $theme_primary;
+    font-weight: theme-font-weight('semiBold');
+    font-size: theme-font-size(3px);
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-radius('md');
+}
+.flex {
+  @include flex-row;
+}
+.radioInput {
+  min-width: 150px;
+}

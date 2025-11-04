@@ -1,0 +1,54 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  .innerContainer {
+    width: 30%;
+  }
+}
+
+.topHeaderContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: theme-gap('md');
+  flex-direction: row-reverse;
+  margin-top: theme-margin('sm');
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .tableHeader {
+    div {
+      text-align: center !important;
+    }
+  }
+  .ListofGefenCell {
+    display: flex;
+    justify-content: center;
+    gap: theme-gap('sm');
+  }
+}
+
+.bottomContainer {
+  @include flex-row;
+  justify-content: space-between;
+  margin-top: theme-margin("sm");
+}
+.rangeItem {
+  @include flex-row;
+  align-items: center;
+}
+
+.rowContainer {
+  @include flex-row;
+}
+
+.columnContainer {
+  @include flex-column;
+}

@@ -1,0 +1,29 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.container {
+  @include flex-column;
+}
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+  margin-top: theme-margin('huge');
+}

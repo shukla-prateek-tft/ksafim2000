@@ -1,0 +1,43 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.container {
+  .firstSection {
+    .range {
+      @include flex-row;
+      justify-content: space-between;
+      gap: theme-gap('md');
+
+      .rangeItem {
+        @include flex-row;
+        align-items: center;
+      }
+    }
+
+    .flex {
+      @include flex-row;
+
+      .disabledBox {
+        @include flex-row;
+        width: 200px;
+        margin-top: theme-margin('sm');
+        background-color: $disabled;
+        align-items: center;
+        justify-content: center;
+        border-radius: theme-radius('sm');
+        height: 32px;
+      }
+    }
+  }
+
+  .secondSection {
+    @include flex-row;
+    align-items: center;
+    gap: 5%;
+  }
+
+  .actionItems {
+    @include flex-row;
+    gap: theme-gap('md');
+  }
+}

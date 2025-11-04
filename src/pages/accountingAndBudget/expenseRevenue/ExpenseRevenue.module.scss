@@ -1,0 +1,8 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.actionsItems {
+  @include flex-row;
+  gap: theme-gap("md");
+
+}

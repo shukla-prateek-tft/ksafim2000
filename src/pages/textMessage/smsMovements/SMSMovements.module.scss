@@ -1,0 +1,51 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.mainContainer {
+  @include flex-column;
+  @include theme-font;
+  box-sizing: border-box;
+  .fieldSet {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5px;
+    align-self: center;
+    border: 0.5px solid lightgray;
+    justify-content: space-between;
+    .legend {
+      color: $secondary;
+      font-weight: 700;
+      font-size: theme-font-size(5px);
+    }
+  }
+  .aligner {
+    @include flex-row;
+    align-items: center;
+    margin: 5px 0;
+    gap: 50px;
+    justify-content: space-between;
+    width: 40%;
+    .inputAlign {
+      @include flex-row;
+      align-items: center;
+    }
+  }
+  .bottomAligner {
+    justify-content: space-between;
+    width: 50%;
+  }
+  .greenBtn {
+    background-color: green;
+    height: 30px;
+    width: 30px;
+    margin: 0 3px;
+    border-radius: 5px;
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: 10px;
+  margin-top: 10px;
+}

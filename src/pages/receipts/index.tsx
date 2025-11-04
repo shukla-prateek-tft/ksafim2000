@@ -18,8 +18,21 @@ import { CancellingABankTransfer } from './cancellingABankTransfer';
 import { PermanentTransactionFilter } from './permanentTransactionFilter';
 import { AdditionalPaymentReport } from './additionalPaymentReport';
 import { CompanyDetails } from './companyDetails';
-
+import { ReceivingBills } from './receivingBills';
+import { ReceivingReceipts } from './receivingReceipts';
+import { ReceivingReceiptsFromPlachard } from './receivingReceiptsFromPlachard';
+import { RegularReceiptAReturnedCheckFromABank } from './regularReceiptAReturnedCheckFromABank';
+import { ReturningPartialReciptCashRegister } from './returningPartialReceiptCashRegister';
+import { ReturningReceiptFromCashRegisterScreen } from './returningReceiptFromCashRegisterScreen';
+import { StudentFeeAndDiscount } from './studentFeeAndDiscount';
 export {
+  ReceivingBills,
+  ReceivingReceiptsFromPlachard,
+  ReturningPartialReciptCashRegister,
+  ReturningReceiptFromCashRegisterScreen,
+  StudentFeeAndDiscount,
+  RegularReceiptAReturnedCheckFromABank,
+  ReceivingReceipts,
   ExpandingFinancialData,
   CreditPaymentSection,
   CollectionPlans,

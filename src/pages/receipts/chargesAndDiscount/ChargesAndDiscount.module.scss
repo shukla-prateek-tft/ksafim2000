@@ -1,0 +1,22 @@
+@use '../../ui/Styles/theme.scss' as *;
+
+.rowContainer {
+    @include flex-row;
+    gap: theme-gap('md');
+    justify-content: space-between
+}
+
+.actionItems {
+    @include flex-row;
+    gap: theme-gap('md');
+    margin-top: theme-margin('huge');
+}
+
+.invoiceContainer {
+    gap: 50px;
+}
+
+.mainContainer {
+    @include flex-column;
+    gap: theme-gap('md');
+}

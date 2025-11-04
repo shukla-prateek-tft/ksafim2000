@@ -1,0 +1,1 @@
+export  { ReceiptCashRegisterStudentsColumns, ReceiptCashRegisterPaymentColumns } from "./Columns";

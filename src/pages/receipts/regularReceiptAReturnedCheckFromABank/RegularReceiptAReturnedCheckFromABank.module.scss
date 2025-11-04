@@ -1,0 +1,194 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.header1 {
+  width: 100%;
+  margin-top: theme-margin('lg');
+  @include flex-row;
+}
+
+.header2 {
+  width: 100%;
+  @include flex-row;
+}
+
+.header3 {
+  width: 100%;
+  margin-top: theme-margin('lg');
+  @include flex-row;
+  .part1Header3 {
+    width: 20%;
+  }
+  .part2Header3 {
+    width: 40%;
+  }
+  .part3Header3 {
+    width: 20%;
+  }
+  .part4Header3 {
+    width: 20%;
+  }
+}
+
+.header4 {
+  width: 100%;
+  margin-top: theme-margin('lg');
+  @include flex-row;
+
+  .leftHeader4{
+    width: 60%;
+    @include flex-row;
+  }
+
+  .rightHeader4{
+    width: 40%;
+    }
+}
+
+.header5 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+
+  .leftHeader5{
+    width: 40%;
+  }
+
+  .rightHeader5{
+    width: 40%;
+    @include flex-row;
+  }
+}
+
+.header6 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+  margin-bottom: theme-margin('lg');
+
+  .leftHeader6{
+    width: 40%;
+  }
+
+  .rightHeader6{
+    width: 40%;
+  }
+}
+
+.center1 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+  margin-top: theme-margin('lg');
+
+  .leftCenter1{
+    width: 40%;
+  }
+
+  .rightCenter1{
+    width: 40%;
+  }
+}
+
+.center2 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+  margin-bottom: theme-margin('lg');
+
+  .leftCenter2{
+    width: 40%;
+  }
+
+  .rightCenter2{
+    width: 40%;
+  }
+}
+
+
+
+.rowContainer {
+  width: 100%;
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.bottom1 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+  margin-top: theme-margin('lg');
+
+  .leftBottom1{
+    width: 40%;
+  }
+
+  .rightBottom1{
+    width: 40%;
+  }
+}
+
+.bottom2 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+  margin-top: theme-margin('lg');
+
+  .leftBottom2{
+    width: 40%;
+  }
+
+  .rightBottom2{
+    width: 40%;
+  }
+}
+
+.bottom3 {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+  margin-top: theme-margin('lg');
+  margin-bottom: theme-margin('lg');
+
+  .leftBottom3{
+    width: 40%;
+  }
+
+  .rightBottom3{
+    width: 40%;
+  }
+}
+
+.textContent{
+    width: 100%;
+    text-align: center;
+    margin-top: theme-margin('lg');
+    @include flex-row;
+    .leftTextContent{
+        width:60%;
+    }
+
+    .rightTextContent{
+        width:40%;
+    }
+}
+
+.textContent2{
+    width: 100%;
+    margin-top: theme-margin('lg');
+    @include flex-row;
+    .leftTextContent2{
+        width:60%;
+    }
+
+    .rightTextContent2{
+        width:40%;
+    }
+}
+
+.textContent3{
+    width: 100%;
+    div{
+        margin-top: theme-margin('sm');
+    }
+}

@@ -1,0 +1,31 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  .innerContainer {
+    width: 15%;
+  }
+}
+.mainContainerSecond {
+  display: flex;
+  justify-content: space-around;
+
+  .innerContainerSecond {
+    width: 40%;
+  }
+}
+
+.topHeaderContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-direction: row-reverse;
+  margin-top: 5px;
+}
+
+.flex {
+  display: flex;
+  gap: 5px;
+}

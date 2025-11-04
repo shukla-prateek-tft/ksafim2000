@@ -1,0 +1,26 @@
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer{
+ width:70vw;
+
+.rowContainer {
+    @include flex-row;
+    gap: theme-gap('md');
+}
+
+.actionItems {
+    @include flex-row;
+    gap: theme-gap('md');
+    margin-top: theme-margin('huge');;
+}
+
+.footer {
+    margin-top: theme-margin('huge');
+}
+
+.classCodeContainer {
+    @include flex-row;
+    justify-content: center;
+    gap: theme-gap('md');
+}
+}

@@ -1,0 +1,18 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.bottomInputs {
+  @include flex-row;
+  justify-content: flex-end;
+  gap: theme-gap('md');
+  width: 92vw;
+}
+
+.emptyContainer {
+  margin-top: theme-margin('huge', '40px');
+}

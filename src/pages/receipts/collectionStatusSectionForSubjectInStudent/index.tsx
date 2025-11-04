@@ -1,0 +1,2 @@
+import CollectionStatusSectionForSubjectInStudent from './CollectionStatusSectionForSubjectInStudent.controller';
+export { CollectionStatusSectionForSubjectInStudent };

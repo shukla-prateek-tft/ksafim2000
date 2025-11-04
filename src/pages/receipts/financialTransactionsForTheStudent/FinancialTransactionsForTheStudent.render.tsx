@@ -8,7 +8,7 @@ import {
   DiscountColumn,
   DiscountAccountColumn,
   ServiceTypeColumn
-} from './Column';
+} from './components';
 import { Input } from '@/ui/Input';
 import { TextArea } from '@/ui/TextArea';
 import { BottomToolBar } from '@/ui/BottomToolBar';

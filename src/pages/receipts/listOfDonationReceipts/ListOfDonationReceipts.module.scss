@@ -1,0 +1,41 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.topHeaderContainer {
+  display: flex;
+  gap: theme-gap('md');
+  flex-direction: row-reverse;
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    @include flex-row;
+    justify-content: center;
+  }
+}
+
+.bottomContainer {
+  @include flex-row;
+  margin-top: theme-margin('md');
+  gap: theme-radius('lg');
+  justify-content: space-between;
+}
+
+.disabledBox {
+  width: 200px;
+  background-color:$gray-light;
+  @include flex-center;
+  border-radius: theme-gap('sm');
+  height: 30px;
+}
+
+.flex {
+  @include flex-row;
+  align-items: center;
+  gap: theme-gap('sm');
+}

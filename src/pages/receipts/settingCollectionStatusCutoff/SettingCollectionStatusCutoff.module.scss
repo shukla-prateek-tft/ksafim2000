@@ -1,0 +1,31 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.container {
+  .rowDirection {
+    flex-direction: row;
+  }
+  .section {
+    @include flex-row;
+    gap: theme-gap('md');
+    .inputContainer {
+      @include flex-row;
+      justify-content: space-between;
+      .colInputs {
+        @include flex-column;
+        justify-content: space-evenly;
+      }
+    }
+  }
+
+  .section2 {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    gap: theme-gap('sm');
+  }
+
+  .actionItems {
+    @include theme-action-items;
+  }
+}

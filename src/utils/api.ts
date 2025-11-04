@@ -1,20 +1,9 @@
 // src/utils/api.ts
 import { UseApiQueryOptionsType } from '@/services/types';
 import { showToastErrors } from '@/utils/commonHelper';
-import axios from 'axios';
+import Jsona from 'jsona';
 
-const axiosInst = axios.create({
-//   baseURL: import.meta.env.VITE_API_BASE_URL,
-  timeout: 50000,
-  withCredentials: true,
-  headers: {
-    'X-TenantId': 'In_111_M',
-      'Content-Type': 'application/vnd.api+json',
-      Accept: 'application/vnd.api+json',
-  }
-});
-
-const baseUrl = `https://192.168.23.143/api/v1/suppliers`
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchApi = async <T>(
   options: UseApiQueryOptionsType,
@@ -22,47 +11,71 @@ export const fetchApi = async <T>(
   language: string
 ): Promise<T> => {
   try {
-    // const response = await axiosInst({
-    //   ...options,
-    //   headers: {
-    //     ...options.headers,
-    //     Authorization: `Bearer ${token}`,
-    //     'Accept-Language': language
-    //   }
-    // });
-
-    const fetchOptions = {
-      method:options.method,
+    const fetchOptions: RequestInit = {
+      method: options.method || 'GET',
       headers: {
         'X-TenantId': 'In_111_M',
-      Accept: 'application/vnd.api+json',
-      'Content-Type': 'application/vnd.api+json',
-      // 'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-        'Accept-Language': language,
-        ...options?.headers
+        Accept: 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json',
+        Authorization: token ? `Bearer ${token}` : '',
+        'Accept-Language': language || 'en',
+        ...options.headers
       }
-    }
+    };
 
-    if(options.method!=='GET'){
+    if (options.method && options.method !== 'GET' && options.data) {
       fetchOptions.body = JSON.stringify(options.data);
     }
 
-    const response = await fetch(`${baseUrl}${options.url}`,fetchOptions);
-    
-    // Check for HTTP errors
+    const response = await fetch(`${baseUrl}${options.url}`, fetchOptions);
+
+    // ❌ Handle HTTP-level errors
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+      console.error('❌ HTTP Error:', response.status, errorData);
       showToastErrors(errorData);
-      throw new Error(response.statusText || 'Request failed');
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
 
-    // Parse and return JSON data
-    const data = await response.json();
-    // console.log("data = ",data);
-    return data as T;
-  } catch (error) {
+    // 🧩 Try parsing JSON safely
+    let rawData: any;
+    try {
+      rawData = await response.json();
+    } catch (parseError) {
+      console.warn('⚠️ Failed to parse JSON response:', parseError);
+      return {} as T;
+    }
+
+    if (!rawData) {
+      console.warn('⚠️ Empty API response detected.');
+      return {} as T;
+    }
+
+    // 🧠 Detect JSON:API pattern before deserialization
+    const isJsonApi =
+      typeof rawData === 'object' &&
+      rawData !== null &&
+      (('data' in rawData && (Array.isArray(rawData.data) || typeof rawData.data === 'object')) ||
+        'included' in rawData ||
+        'meta' in rawData);
+
+    // 🧩 Deserialize only if JSON:API detected
+    if (isJsonApi) {
+      try {
+        const formatter = new Jsona();
+        const deserialized = formatter.deserialize(rawData);
+        return deserialized as T;
+      } catch (err) {
+        console.warn('⚠️ Jsona failed to deserialize, returning raw JSON:', err);
+        return rawData as T;
+      }
+    }
+
+    // ✅ Otherwise, return plain JSON
+    return rawData as T;
+  } catch (error: any) {
+    console.error('❌ API Request Error:', error);
     showToastErrors(error);
-    throw error;
+    throw new Error(error?.message || 'Unknown API error occurred');
   }
 };
