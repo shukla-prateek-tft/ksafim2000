@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styles from './ConfirmModal.module.scss';
-import { DialogBox } from '../dialogBox';
 import { attachMultipleClasses } from '@/Languages';
+import { DialogBox } from '@/ui/DialogBox';
 
 interface ConfirmationDialogueBoxProps {
   title?: string;

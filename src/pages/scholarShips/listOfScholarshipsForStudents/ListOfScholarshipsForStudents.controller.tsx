@@ -1,7 +1,6 @@
 //MCFW-1331
+import { GlobalLoader } from '@/components/loader';
 import ListOfScholarshipsForStudentsUI from './ListOfScholarshipsForStudents.render';
-import { GlobalLoader } from '@/components';
-
 const ListOfScholarshipsForStudents = () => {
   return (
     <>
