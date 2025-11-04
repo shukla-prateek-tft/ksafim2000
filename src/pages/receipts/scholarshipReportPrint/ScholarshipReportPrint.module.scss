@@ -1,0 +1,36 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: theme-gap('huge');
+  justify-content: flex-end;
+  margin-left: theme-margin('huge');
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.rowContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.middleContainer {
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.tableTotalContainer {
+  @include flex-row;
+  width: 56%;
+  gap: theme-gap('sm');
+  align-items: center
+}
+
+.commonInputContainer {
+  @include flex-row;
+  flex-wrap: wrap;
+  gap: theme-gap('md');
+}

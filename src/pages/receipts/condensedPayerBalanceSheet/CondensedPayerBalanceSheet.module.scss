@@ -1,0 +1,29 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.flexContainer {
+  @include flex-row;
+  margin: theme-margin('xl') 0;
+  padding-right: theme-margin('huge');
+  justify-content: space-between;
+
+  .item {
+    display: flex;
+    gap: theme-gap('md');
+  }
+}
+
+.cell {
+  @include flex-row;
+}

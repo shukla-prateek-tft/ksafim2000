@@ -1,0 +1,2 @@
+import BalanceReportForThePayerInTheSettlement from "./BalanceReportForThePayerInTheSettlement.controller";
+export {  BalanceReportForThePayerInTheSettlement }

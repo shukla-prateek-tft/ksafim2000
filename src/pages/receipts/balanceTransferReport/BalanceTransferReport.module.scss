@@ -1,0 +1,62 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.mainContainer{
+  @include flex-column;
+}
+.headerInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: theme-gap('sm');
+}
+.actionsItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+.bottomContainer {
+  display: flex;
+  margin-top: 10px;
+  margin-inline: 10px;
+  justify-content: space-between;
+}
+.topInputs {
+  @include flex-row;
+  justify-content:flex-end;
+  gap: theme-gap('sm');
+  width: 30%;
+  align-self: flex-end;
+  margin-left: 10px;
+}
+
+.parentInput {
+  @include flex-row;
+  gap: theme-gap('sm');
+  width: 100%;
+  justify-content: space-between;
+}
+.inputItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+.secondItems {
+  @include flex-row;
+  gap: theme-gap('sm');
+  width: 30%;
+  margin-left: 10px;
+}
+.topMainConatiner {
+  @include flex-row;
+  gap: theme-gap('md');
+  width:95%;
+}
+.rowContainer {
+  @include flex-row;
+  .itemContainer {
+    @include flex-column;
+    flex: 1;
+  }
+}
+.buttonContainer {
+  flex: 1;
+  @include flex-row;
+  justify-content: space-around;
+}
