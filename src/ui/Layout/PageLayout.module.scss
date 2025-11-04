@@ -1,0 +1,63 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.section {
+  height: 100vh;
+  @include flex-column;
+  overflow: hidden;
+  background-color: $background;
+  @media print {
+    height: auto !important;
+    ::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+}
+
+.sideBarWrapper {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mainWrapper {
+  @include flex-column;
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.headerWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: $theme-white;
+  z-index: 1000;
+  transition:
+    left 0.3s ease,
+    width 0.3s ease;
+  width: 94vw;
+  @media print {
+    display: none;
+  }
+}
+
+.openSideBar {
+  right: 10vw;
+  width: calc(100% - 10vw);
+}
+
+.mainContent {
+  margin-top: theme-margin('xl', '72px');
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+
+  @media print {
+    height: auto !important;
+  }
+}

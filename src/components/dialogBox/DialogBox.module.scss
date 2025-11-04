@@ -1,0 +1,57 @@
+@use '../../scss/variables' as *;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.dialogBox {
+  background: white;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  z-index: 1001;
+  position: relative;
+}
+.label {
+  font-size: 15px;
+  font-weight: 700;
+  width: 100%;
+  color: white;
+  margin: 0px 5px;
+}
+.titleContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  background: $theme_primary;
+  border-radius: 8px 8px 0px 0px;
+  padding: 5px 0px;
+}
+.redBackground {
+  background: $error !important;
+}
+.closeButton {
+  background: none;
+  border: none;
+  font-size: $font-size-large;
+  cursor: pointer;
+  color: $white;
+  z-index:1001;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialogContent {
+  padding: 10px;
+}

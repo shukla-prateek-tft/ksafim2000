@@ -1,0 +1,137 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+// Reuse same scale/variant structure
+$input-scales: (base, primary, danger, success, warning, disabled, secondary);
+$input-variants: (filled, outlined, standard, borderless);
+
+@mixin textarea-theme-vars($scale, $variant) {
+  @if $variant == 'filled' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --background-color: var(--#{$scale}-inputBackground);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'outlined' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-inputTextColor);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'standard' {
+    --border-color: var(--#{$scale}-inputTextColor);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'borderless' {
+    --background-color: $white;
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  }
+}
+
+.Wrapper {
+  @each $scale in $input-scales {
+    &.scale-#{$scale} {
+      @each $variant in $input-variants {
+        &.variant-#{$variant} {
+          @include textarea-theme-vars($scale, $variant);
+        }
+      }
+    }
+  }
+  @include component-wrapper;
+
+  .InputBlock {
+    @include flex-column;
+    gap: theme-gap('sm');
+    background-color: transparent;
+
+    .InputBox {
+      border-radius: theme-radius('sm');
+      padding: theme-padding('lg');
+      display: flex;
+      height: 100%;
+      border: 1px solid var(--border-color);
+      background-color: var(--background-color);
+      color: var(--text-color, inherit);
+      transition:
+        border-color 150ms ease,
+        background-color 150ms ease;
+
+      &:focus-within {
+        border-width: 2px;
+        border-color: var(--hover-border-color);
+        background-color: var(--hover-background-color);
+      }
+
+      &.error {
+        border-color: $error;
+      }
+
+      &.disabled {
+        background-color: $disabled;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 60px;
+        border: none;
+        resize: vertical;
+        background-color: transparent;
+        color: var(--text-color, inherit);
+        resize: none;
+        @include theme-font;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .ErrorText {
+    color: $error;
+    font-size: theme-font-size();
+    margin-top: theme-spacing('md');
+  }
+
+  &.size-sm {
+    width: 200px;
+  }
+
+  &.size-md {
+    width: 300px;
+  }
+
+  &.size-lg {
+    width: 400px;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.vertical {
+  @include flex-column;
+}
+
+.horizontal {
+  @include flex-row;
+  align-items: center;
+
+  .label {
+    margin-bottom: 0;
+  }
+
+  .InputBlock {
+    flex: 1;
+  }
+}

@@ -1,0 +1,147 @@
+@use '../../ui/Styles/variables' as *;
+@use '../Styles/theme.scss' as *;
+
+// DatePicker scales and variants
+$scales: (base, primary, danger, success, warning, disabled, secondary);
+$variants: (filled, outlined, standard, borderless);
+
+// Mixin for date-picker theme variables based on scale and variant
+@mixin date-picker-theme($scale, $variant) {
+  @if $variant == 'filled' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --background-color: var(--#{$scale}-inputBackground);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'outlined' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-inputTextColor);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'standard' {
+    --border-color: var(--#{$scale}-inputTextColor);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant== 'borderless' {
+    --background-color: $primary;
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  }
+}
+
+.datePickerWrapper {
+  position: relative;
+  @each $scale in $scales {
+    &.scale-#{$scale} {
+      @each $variant in $variants {
+        &.variant-#{$variant} {
+          @include date-picker-theme($scale, $variant);
+        }
+      }
+    }
+  }
+  @include component-wrapper;
+  min-height: theme-size(2);
+
+  .dateSelector {
+    z-index: 1005;
+  }
+  .datePickerInput {
+    border-radius: theme-radius('sm');
+    padding: theme-padding('lg');
+    display: flex;
+    align-items: center;
+    flex: 3;
+    outline: 1px solid var(--border-color, transparent);
+    background-color: var(--background-color, transparent);
+    color: var(--text-color, inherit);
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease;
+    &:focus-within {
+      border: 0;
+      outline: 1px solid var(--hover-border-color);
+      background-color: var(--hover-background-color);
+    }
+    input{
+      width: 100%;
+    }
+  }
+  .dateInput {
+    border: 0;
+    background-color: transparent;
+    &:focus {
+      outline: 0;
+    }
+  }
+  // Size logic
+  &.size-md {
+    box-shadow: theme-shadow(1);
+    width: 300px;
+  }
+  &.size-sm {
+    box-shadow: theme-shadow(0);
+    width: 200px;
+  }
+  &.size-lg {
+    box-shadow: theme-shadow(2);
+    width: 400px;
+  }
+  // Full width logic
+  &.fullWidth {
+    flex: 1;
+  }
+
+  &.error {
+    border-color: $error;
+  }
+}
+
+// Horizontal layout
+.horizontal {
+  @include flex-row;
+  align-items: center;
+}
+.datePickerInput:disabled {
+  cursor: not-allowed;
+  background-color: $disabled;
+}
+
+:global(.dateSelector) {
+  z-index: 100533;
+}
+
+:global(.react-datepicker__day--outside-month) {
+  color: $black;
+  visibility: hidden;
+  border-radius: theme-radius('md');
+}
+
+:global(.react-datepicker__day--selected) {
+  background-color: $primary !important;
+  color: $theme-white !important;
+}
+
+:global(.react-datepicker__day--selected:hover) {
+  background-color: $secondary !important;
+}
+
+:global(.react-datepicker__header) {
+  background-color: $primary !important;
+  font-weight: bold;
+}
+.commonRangePickerContainer {
+  @include flex-row;
+  justify-content: space-between;
+  gap: theme-gap('huge');
+  // width: fit-content;
+}
+.validation{
+   outline: 1px solid $error !important;
+}

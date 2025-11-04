@@ -1,0 +1,221 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+// Input scales and variants
+$input-scales: (base, primary, danger, success, warning, disabled, secondary);
+$input-variants: (filled, outlined, standard, borderless);
+
+// Mixin for input theme variables based on scale and variant
+@mixin input-theme-vars($scale, $variant) {
+  @if $variant == 'filled' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --background-color: var(--#{$scale}-inputBackground);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'outlined' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-inputTextColor);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'standard' {
+    --border-color: var(--#{$scale}-inputTextColor);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant== 'borderless' {
+    --background-color: $white;
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  }
+}
+
+.Wrapper {
+  @include component-wrapper;
+  min-height: theme-size(2);
+
+  .InputBlock {
+    display: flex;
+    flex-direction: column;
+    gap: theme-gap('sm');
+    background-color: transparent;
+
+    .InputBox {
+      position: relative;
+      border-radius: theme-radius('md');
+      padding: theme-padding('lg');
+      display: flex;
+      align-items: center;
+      height: 100%;
+      outline: 1px solid var(--border-color, transparent);
+      background-color: var(--background-color, transparent);
+      color: var(--text-color, inherit);
+      transition:
+        border-color 150ms ease,
+        background-color 150ms ease;
+
+      .iconRendered {
+        margin: 0 theme-margin('md') 0 theme-margin('huge');
+        @include flex-center;
+      }
+
+  @media print{
+     outline: 1px solid gray;
+  
+      font-family: Narkissim Regular;
+      font-size: 14pt;
+  }
+      input {
+        width: 100%;
+        border: 0;
+        height: 100%;
+        color: var(--text-color, inherit);
+        background-color: transparent;
+        @include theme-font;
+        &:focus {
+          border: 0;
+          outline: 0;
+        }
+      }
+      &:focus-within {
+        border: 0;
+        outline: 1px solid var(--hover-border-color);
+        background-color: var(--hover-background-color);
+      }
+
+      &.error {
+        border-color: $error;
+        background-color: $errorTransparent;
+      }
+
+      &.disabled {
+        background-color:$gray-medium;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      &.checkbox {
+        width: fit-content;
+        padding: 0;
+        border: 0;
+        outline: 0 !important;
+        background-color: transparent;
+        input {
+          height: 20px;
+          width: 20px;
+          @include theme-font;
+        }
+      }
+
+      .EyeIcon {
+        margin-top: 2px;
+        margin-left: 5px;
+        cursor: pointer
+      }
+    }
+  }
+  // Apply scale + variant mixins only if classes exist
+  @each $scale in $input-scales {
+    &.scale-#{$scale} {
+      @each $variant in $input-variants {
+        &.variant-#{$variant} {
+          @include input-theme-vars($scale, $variant);
+        }
+      }
+    }
+  }
+  // Size logic
+  &.size-sm {
+    box-shadow: theme-shadow(0);
+    width: 200px;
+  }
+  &.size-md {
+    box-shadow: theme-shadow(1);
+    width: 300px;
+  }
+  &.size-lg {
+    box-shadow: theme-shadow(2);
+    width: 400px;
+  }
+  &.amount {
+    input {
+      direction: ltr;
+      text-align: end;
+    }
+  }
+  // Full width logic
+  &.size-fullWidth {
+    width: 100%;
+    height: auto;
+  }
+  &.inversed {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+}
+
+// Horizontal layout
+.horizontal {
+  @include flex-row;
+  align-items: center;
+  .label {
+    margin-bottom: 0;
+  }
+
+  .InputBlock {
+    flex: 3;
+
+    .InputBox {
+      width: 100%;
+      box-sizing: border-box;
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+  .checkboxConatiner {
+    flex: 0;
+  }
+}
+.horizontalCheckBox {
+  flex-direction: row;
+  gap: theme-gap('md');
+  padding: 0;
+}
+.inputSelect {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.telephone {
+  border-right: 2px solid $gray !important;
+  margin-right: theme-margin('huge');
+}
+
+.validation{
+  outline: 1px solid $error !important;
+}
+
+.clearIcon{
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(calc(5px), -50%);
+  background-color: $white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.clearIconBox {
+  position: relative;
+  input {
+    padding-left: 10px;
+  }
+}

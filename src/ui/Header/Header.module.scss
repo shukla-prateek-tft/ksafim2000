@@ -1,0 +1,165 @@
+@use '../Styles/theme' as *;
+@use '../Styles/variables' as *;
+
+$header-scales: (
+  primary,
+  secondary
+);
+
+@mixin header-theme-vars($scale) {
+  --header-background-color: var(--#{$scale}-background);
+
+  @if $scale =='primary' {
+    --header-background-color: var(--#{$scale}-buttonBackground);
+  }
+}
+
+.header {
+  margin: 0;
+  background-color: $theme-white;
+  @include flex-row;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+  @include theme-font;
+  border: 1px solid $slateGray;
+  padding: 0px 12px;
+
+  @each $scale in $header-scales {
+    &.scale-#{$scale} {
+      @include header-theme-vars($scale);
+    }
+  }
+
+  @media (max-width: 1440px) {
+    height: 70px;
+  }
+
+  @media print {
+    display: none;
+  }
+
+}
+
+.logoContainer {
+  @include flex-center;
+  flex: 1;
+
+  .headerIcon {
+    height: 40px;
+    width: 40px;
+    border-radius: theme-radius('xl');
+  }
+}
+
+.renderItems {
+  @include flex-center;
+  justify-content: space-around;
+  height: 100%;
+  gap: theme-gap('', 32px);
+
+  .displayItem {
+    @include flex-column;
+
+    .displayItemTitle {
+      color: $midnightBlue;
+      font-weight: theme-font-weight('normal');
+      font-size: theme-font-size(-1px);
+    }
+
+    .displayItemContent {
+      color: $midnightBlue;
+      font-weight: theme-font-weight('semiBold');
+      font-size: theme-font-size(1px);
+      height: 20px;
+      padding-top: 4px;
+      @include flex-center;
+      justify-content: flex-start;
+    }
+  }
+
+  .menuTrigger {
+    color: $black;
+    opacity: 0.54;
+    width: 16px;
+    cursor: pointer;
+  }
+}
+
+.actionItems {
+  @include flex-center;
+  justify-content: space-around;
+  height: 100%;
+  padding: 0px 24px;
+  gap: theme-gap('', 8px);
+
+  .searchInput {
+    width: 300px;
+
+    >div {
+      >div {
+        >div {
+          padding: 7px 5px;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+
+  .profileTrigger {
+    color: $black;
+    background-color: $gray-medium;
+    border-radius: theme-radius('xl');
+    cursor: pointer;
+  }
+}
+
+.greenColor {
+  color: $success !important;
+}
+
+.blueColor {
+  color: $primary !important;
+}
+
+.marginRight {
+  margin-right: theme-margin('huge');
+}
+
+.selectMenu {
+  border: 0 !important;
+}
+
+.userIconContainer {
+  background-color: var(--header-background-color);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  @include flex-row;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  font-size: theme-font-size(11px);
+  font-weight: theme-font-weight('normal');
+  font-family: 'Poppins';
+  cursor: pointer;
+}
+
+.databaseTextContainer {
+  background-color: var(--header-background-color);
+  color: $white !important;
+  border-radius: theme-radius('md');
+  padding: 4px 8px;
+}
+
+.divider {
+  height: 48px;
+  width: 1px;
+  background-color: $slateGray;
+}
+
+.rightSideContainer {
+  @include flex-row;
+  gap: 32px;
+}

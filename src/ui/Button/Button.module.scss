@@ -1,0 +1,131 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+// SCSS maps for scales and variants
+$button-scales: (base, primary, danger, success, warning, disabled,secondary);
+$button-variants: (primary, link, outline);
+
+// mixin for button theme variables
+@mixin button-theme-vars($scale, $variant) {
+  @if $variant == 'primary' {
+    --border-color: var(--#{$scale}-buttonBackground);
+    --text-color: var(--#{$scale}-buttonTextColor);
+    --background-color: var(--#{$scale}-buttonBackground);
+    --hover-background-color: var(--#{$scale}-buttonBackgroundHovered);
+    --hover-border-color: var(--#{$scale}-buttonBackground);
+  } @else if $variant == 'link' {
+    --text-color: var(--#{$scale}-buttonBackground);
+    --hover-text-color: var(--#{$scale}--buttonTextColor);
+  } @else if $variant == 'outline' {
+    --border-color: var(--#{$scale}-buttonBackground);
+    --text-color: var(--#{$scale}-buttonBackground);
+    --hover-background-color: var(--#{$scale}-buttonBackground);
+    --hover-text-color: var(--#{$scale}-buttonTextColor);
+  }
+}
+
+.button {
+  @include theme-font;
+  min-height: theme-size(7);
+  border: none;
+  box-sizing: border-box;
+  outline: 1px solid var(--border-color, transparent);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: fit-content;
+  white-space: nowrap;
+  transition: all 200ms ease;
+  min-width: 2rem;
+  border-radius: theme-radius(md, 6px);
+  padding: theme-padding('lg');
+ margin: theme-spacing(1.25) 0;
+  &:hover {
+    background-color: color-mix(in srgb, var(--hover-background-color), transparent 1%);
+    outline-color: var(--hover-border-color, transparent);
+    color: var(--hover-text-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $black;
+    outline-offset: 3px;
+  }
+
+  // &:focus:not(:focus-visible) {
+  //   outline: none;
+  // }
+
+  // DRY: Use mixin for all scale/variant combos using SCSS maps
+  @each $scale in $button-scales {
+    &.scale-#{$scale} {
+      @each $variant in $button-variants {
+        &.variant-#{$variant} {
+          @include button-theme-vars($scale, $variant);
+        }
+      }
+    }
+  }
+
+  // Size logic
+    &.size-msm {
+    box-shadow: theme-shadow(0);
+    min-width: 70px;
+  }
+  &.size-md {
+    box-shadow: theme-shadow(0);
+    min-width: 100px;
+  }
+  &.size-lg {
+    box-shadow: theme-shadow(1);
+    min-width: 200px;
+  }
+  &.size-xl {
+    box-shadow: theme-shadow(2);
+    min-width: 300px;
+  }
+  &.size-xxl {
+    box-shadow: theme-shadow(0);
+    min-width: 400px;
+  }
+
+  // Full width logic
+  &.size-fullWidth {
+    box-shadow: theme-shadow(2);
+    width: fit-content;
+  }
+
+  // Icon animation
+  i {
+    display: flex;
+    transition: transform 150ms ease;
+  }
+
+  // Disabled state
+  &:disabled {
+    pointer-events: none;
+  }
+  .content {
+    flex: 8;
+    @include flex-row;
+    text-align: center;
+    span{
+      width: 100%;
+    }
+  }
+  .icon {
+    flex: 2;
+    @include flex-center;
+    font-size: theme-font-size(4px);
+    margin-left: theme-margin('lg');
+  }
+}
+.contentWithNoIcon {
+  flex: 1;
+  @include flex-row;
+  justify-content: center;
+  align-items: center;
+}

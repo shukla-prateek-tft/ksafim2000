@@ -1,0 +1,63 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.tooltipContainer {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+  padding: 0 theme-size('xs');
+}
+
+.customTooltip {
+  position: fixed;
+  background: $theme-white;
+  color: $secondary;
+  padding: theme-padding('xl');
+  border-radius: theme-radius('md');
+  z-index: 1005;
+  white-space: normal;
+  max-width: 300px;
+  font-weight: theme-font-weight('semiBold');
+  font-size: theme-font-size(2px);
+  box-shadow:
+    hex-to-rgba($secondary, 0.18) 0px 54px 55px,
+    hex-to-rgba($secondary, 0.09) 0px -12px 30px,
+    hex-to-rgba($secondary, 0.09) 0px 4px 6px,
+    hex-to-rgba($secondary, 0.13) 0px 12px 13px,
+    hex-to-rgba($secondary, 0.07) 0px -3px 5px;
+}
+
+.customTooltipArrow {
+  position: absolute;
+  top: -5px;
+  left: 12px;
+  width: 0;
+  height: 0;
+  border-left: theme-radius("md") solid transparent;
+  border-right: theme-radius("md") solid transparent;
+  border-bottom: theme-radius("md") solid $theme-white;
+}
+@media print {
+  .tooltipContainer {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    word-break: break-all;
+  }
+
+  .customTooltip {
+    position: static !important;
+    box-shadow: none !important;
+    background: none !important;
+    padding: 0 !important;
+    font-size: theme-font-size(2px) !important;
+    color: $black !important;
+    max-width: none !important;
+    white-space: normal !important;
+  }
+
+  .customTooltipArrow {
+    display: none !important;
+  }
+}

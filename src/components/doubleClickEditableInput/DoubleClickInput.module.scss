@@ -1,0 +1,32 @@
+@use '../../scss/variables' as *;
+.td {
+  font-size: $font-size-x-small;
+}
+
+.inputField {
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  box-sizing: border-box;
+  background: none;
+  padding: 5px 5px;
+}
+.editableInput {
+  padding: 5px 5px;
+  width: 100%;
+  background-color: $white;
+  border-radius: 4px;
+}
+.editableInput:focus {
+  width: 100%;
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px 0px $gray !important;
+  outline: 1px solid $gray !important;
+}
+.inputField:focus {
+  outline: 0;
+}

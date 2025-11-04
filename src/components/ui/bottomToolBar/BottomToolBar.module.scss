@@ -1,0 +1,8 @@
+@use '../../../scss/variables' as *;
+.main {
+  display: flex;
+  justify-content: space-between;
+  .actionContainer {
+    display: flex;
+  }
+}

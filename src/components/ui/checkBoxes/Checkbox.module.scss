@@ -1,0 +1,24 @@
+@use '../../../scss/variables' as *;
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.label {
+  font-size: $font-size-x-small;
+  font-weight: normal;
+  cursor: pointer;
+}

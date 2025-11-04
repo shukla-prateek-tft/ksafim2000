@@ -1,0 +1,88 @@
+
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+$dialogBox-scales: (primary, secondary);
+@mixin dialogBox-theme-vars($scale) {
+  --dialogBox-text-color: var(--#{$scale}-buttonBackground);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:rgba(12, 48, 88, 0.6);
+  @include flex-row;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  @include theme-font; 
+   @each $scale in $dialogBox-scales{
+    &.scale-#{$scale} {
+      @include dialogBox-theme-vars($scale);
+    }
+  }
+}
+
+.dialogBox {
+  background: $theme-white;
+  border-radius: theme-radius('lg');
+  min-width: 300px;
+  min-height: 100px;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 1001; // base z-index
+}
+
+.label {
+  width: 100%;
+  margin: 0 theme-margin('md');
+  font-size: theme-font-size(5px);
+  font-weight: bold;
+  color: var(--dialogBox-text-color,'green') !important;
+}
+
+.titleContainer {
+  @include flex-row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: theme-padding('huge');
+  box-sizing: border-box;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: theme-font-size(13px);
+  cursor: pointer;
+  z-index: 1002;
+  font-weight: bold;
+  @include flex-row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialogContent {
+  padding: theme-padding('huge');
+  padding-top: 0;
+  box-sizing: border-box;
+}
+
+.success {
+  color: $secondary !important;
+}
+
+.error {
+  color: $error !important;
+}
+
+// This class applies a very high z-index to overlay and dialogBox
+.important {
+  z-index: 1000005 !important;
+}
+
+// To make sure the dialogBox is above the overlay for important dialogs
+.dialogBox.important {
+  z-index: 1000006 !important;
+}

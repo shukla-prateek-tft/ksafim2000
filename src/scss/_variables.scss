@@ -1,0 +1,51 @@
+// color
+// color
+$primary: rgb(211, 211, 211);
+$primaryLight: #56c4ff;
+$theme-white: white;
+$shadow: rgba(0, 0, 0, 0.289);
+$shadow-grey: #4d4a4a4f;
+$shadow-lightgrey: #0f0f0f3a;
+$black: #000000;
+$secondary: #141e30;
+$error: #F03B6B;
+$gray: #888888;
+$white: #ffffff;
+$red: red;
+$editBtn: #f7bb07;
+$saveBtn: rgb(38, 162, 68);
+$deleteBtn: #c00001;
+$disabled: #d5d5d5;
+$darkCharcoal: #333;
+
+$theme_primary: #4e73df;
+$theme_primary_Light: #b4c4fa71;
+$theme_secondary: #d5e5ff;
+$theme_button: rgb(192, 192, 192);
+$theme_button_secondary: #c7d0de;
+
+$laptop: 'screen and (max-width: 1800px)';
+$m-laptop: 'screen and (max-width: 1500px)';
+$s-laptop: 'screen and (max-width: 1300px)';
+$tablet: 'screen and (max-width: 1124px)';
+$tablet2: 'screen and (max-width: 1024px)';
+$pablet: 'screen and (max-width: 700px)';
+$mobile: 'screen and (max-width: 500px)';
+$m-mobile: 'screen and (max-width: 420px)';
+$s-mobile: 'screen and (max-width: 370px)';
+$xs-mobile: 'screen and (max-width: 340px)';
+
+//font-size
+$font-size-root: 16px !default;
+$font-size-base: 1rem !default; //(16px).
+
+// Scaled font sizes
+$font-size-xx-small: $font-size-base * 0.625 !default; // 10px
+$font-size-x-small: $font-size-base * 0.75 !default; // 12px
+$font-size-small: $font-size-base * 0.875 !default; // 14px
+$font-size-medium: $font-size-base * 1.125 !default; // 18px
+$font-size-large: $font-size-base * 1.25 !default; // 20px
+$font-size-xl: $font-size-base * 1.5 !default; // 24px
+$font-size-xxl: $font-size-base * 2 !default; // 32px
+
+$margin-large: 30px;

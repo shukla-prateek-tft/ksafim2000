@@ -1,0 +1,115 @@
+@use '../../scss/variables' as *;
+.header {
+  margin: 0;
+  background-color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 5px 0px $black;
+  height: 6vh;
+  @media print {
+    display: none;
+  }
+  .headerIcon {
+    hyphens: 30px;
+    width: 30px;
+    border-radius: 15px;
+    margin: 0px 10px;
+  }
+  .select {
+    margin: 0;
+    div {
+      padding: 0;
+      border: 0;
+      select {
+        padding: 5px 0;
+        font-size: 13px;
+        font-weight: 500;
+        font-family: sans-serif;
+        background-color: #d3d3d3;
+        option {
+          font-size: $font-size-x-small;
+        }
+      }
+    }
+  }
+  .headerItemContiner {
+    display: flex;
+    margin: 0;
+    padding: 5px;
+    align-items: center;
+    width: 415px;
+    .headerItem {
+      list-style: none;
+      padding: 0;
+      font-size: 13px;
+      font-family: sans-serif;
+      margin: 0px 10px;
+      color: $secondary;
+      cursor: pointer;
+      transition: all ease-in-out 200ms;
+      font-weight: 500;
+      &:hover {
+        color: $secondary;
+      }
+    }
+    p {
+      white-space: nowrap;
+    }
+  }
+  .headerOtherDetails {
+    margin: 0px 10px;
+    display: inline-block; /* wrap content naturally */
+    position: relative;
+    p {
+      margin: 0;
+      font-size: 14px;
+      margin: 0px 10px;
+      font-weight: 600;
+    }
+    .mainContent {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 10px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .extraContent {
+      display: flex;
+      align-items: flex-end;
+      position: absolute;
+      top: 93%;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+      background-color: #d3d3d3;
+      transition:
+        height 0.4s ease-in-out,
+        opacity 0.4s ease-in-out;
+      box-shadow: 0px 1px 1px 0px $black;
+    }
+
+    &:hover .extraContent {
+      opacity: 1;
+      height: 20px;
+    }
+  }
+}
+.greenColor {
+  // background-color: #4a8b4a !important;
+  color: rgb(2, 94, 2) !important;
+}
+
+.blueColor {
+  // background-color: #00A8CF !important;
+  color: blue !important;
+}
+
+.marginRight {
+  margin-right: 10px;
+}

@@ -1,0 +1,96 @@
+@use '../Styles/theme' as *;
+@use '../Styles/variables' as *;
+
+$sidebar-scales: (primary, secondary);
+@mixin sidebar-theme-vars($scale) {
+  --sidebar-hover-background-color: var(--#{$scale}-buttonBackgroundHovered);
+  --sidebar-selected-text-color: var(--#{$scale}-buttonBackground);
+  --sidebar-background-color: var(--#{$scale}-background);
+  @if $scale == 'primary' {
+    --sidebar-hover-background-color: var(--#{$scale}-buttonBackground);
+    --sidebar-selected-text-color: #{$theme-white};
+  }
+}
+.sideBarContainer {
+  @media print {
+    display: none;
+  }
+
+  width: 6vw;
+  height: 100vh;
+  z-index: 1002;
+  border-radius: 12px 0 0 0;
+  background-color: var(--sidebar-background-color);
+  @include theme-font;
+  @include flex-column;
+  @each $scale in $sidebar-scales {
+    &.scale-#{$scale} {
+      @include sidebar-theme-vars($scale);
+    }
+  }
+}
+
+.menuContainer {
+  @include flex-center;
+  flex: 1;
+  height: 100%;
+  .menuIcon {
+    color: $disabled;
+    font-size: theme-icon('lg');
+    cursor: pointer;
+  }
+}
+
+.renderContainer {
+  @include flex-column;
+  flex: 8;
+  justify-content: space-around;
+  .actionItem {
+    @include flex-column;
+    align-items: center;
+    padding: theme-padding('sm');
+    height: theme-size(10);
+    @include transition;
+    cursor: pointer;
+    .actionItemIcon {
+      color: $disabled;
+      min-height: 20px;
+      padding: 5px;
+    }
+
+    .actionItemTitle {
+      color: $disabled;
+      font-size: theme-font-size();
+      text-align: center;
+    }
+  }
+
+  .openActionItem {
+    @include flex-row;
+
+    .actionItemIcon {
+      color: $theme-white;
+      margin: 0 theme-spacing('xs');
+    }
+
+    .actionItemTitle {
+      color: $theme-white;
+    }
+  }
+}
+.selected {
+  .actionItemIcon {
+    min-height: 20px;
+
+    background-color: var(--sidebar-hover-background-color) !important;
+    padding: 5px;
+    border-radius: 5px;
+    @include theme-shadow();
+  }
+  .actionItemIcon {
+    color: var(--sidebar-selected-text-color) !important;
+  }
+  .actionItemTitle {
+    color: $theme-white !important;
+  }
+}

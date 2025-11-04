@@ -1,0 +1,71 @@
+@use '../Styles/theme.scss' as *;
+@use '../Styles/variables' as *;
+$screenlayout-scales: (primary, secondary);
+@mixin screenlayout-theme-vars($scale) {
+  --screenLayout-text-color: var(--#{$scale}-buttonBackground);
+}
+.container {
+  @include grid-columns(5, 0px);
+  grid-template-rows: 0.2fr repeat(3, 1fr) 0.2fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 100%;
+  background-color: #f7f7f7;
+  @each $scale in $screenlayout-scales{
+    &.scale-#{$scale} {
+      @include screenlayout-theme-vars($scale);
+    }
+  }
+  .headerContainer {
+    grid-area: 1 / 1 / 2 / 6;
+    padding: 5px theme-spacing("md");
+    box-sizing: border-box;
+    @include flex-row;
+    align-items: center;
+    .gridHeader {
+      flex: 1;
+      @include flex-row;
+      align-items: center;
+      .screenActionContainer {
+        @include flex-row;
+        flex: 6;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .screenDetailContainer {
+        @include flex-row;
+        align-items: center;
+        flex: 4;
+        font-size: theme-font-size(10px);
+        .backIcon {
+          font-size: theme-font-size(14px);
+          color: $black;
+          cursor: pointer;
+          font-weight: 700 !important;
+          z-index: 1005;
+        }
+        .screenNumber {
+          margin: 0px theme-margin("md");
+          color: var(--screenLayout-text-color);
+          font-size: theme-font-size(16px);
+        }
+        .screenName {
+          margin: 0px;
+        }
+      }
+    }
+  }
+  .mainContainer {
+    grid-area: 2 / 1 / 5 / 6;
+    padding: 5px theme-spacing("md");
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  .footerContainer {
+    grid-area: 5 / 1 / 6 / 6;
+    padding: 5px theme-spacing("md");
+    box-sizing: border-box;
+    @include flex-column;
+    justify-content: center;
+  }
+}

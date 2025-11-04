@@ -1,0 +1,45 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.confirmationDialogueBox {
+  min-width: 30vw;
+  max-width: 45vw;
+  @include theme-font;
+
+  .buttonContainer {
+    @include theme-action-items;
+    justify-content: end;
+  }
+  .icon {
+    margin-right: 10px;
+    svg {
+      height: 30px;
+      width: 30px;
+      margin: 5px 0px;
+      width: fit-content;
+      box-shadow: 0px 0px 4px 0px $gray-light;
+      padding: 5px;
+      border-radius: theme-radius('round');
+    }
+  }
+}
+
+.heading {
+  margin: 5px 0px 20px 0px;
+  font-weight: theme-font-weight('bold');
+  font-size: theme-font-size(12px) !important;
+  word-break: normal;
+  text-align: right;
+}
+.success {
+  color: $secondary !important;
+}
+.error {
+  color: $error !important;
+}
+.message {
+  font-size: theme-font-size(5px);
+  text-align: right;
+  font-weight:theme-font-weight('semiBold');
+  word-break: normal;
+}

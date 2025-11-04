@@ -1,0 +1,167 @@
+@use 'sass:meta';
+
+/**
+ * SCSS Mixin: theme-viewport
+ * Usage: @include theme-viewport(desktop) { ... }
+ * This will generate a media query using the theme's breakpoint variable.
+ */
+
+// Breakpoint utility (returns px value)
+@function theme-breakpoint($key, $fallback: null) {
+  $var: '--breakpoint-#{$key}';
+  @if $fallback != null {
+    @return var(#{$var}, #{$fallback});
+  }
+  @return var(#{$var});
+}
+
+// Media query mixin for breakpoints
+@mixin theme-media($breakpoint) {
+  @media (min-width: theme-breakpoint($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin theme-viewport($breakpoint) {
+  @media (min-width: theme-breakpoint($breakpoint)) {
+    @content;
+  }
+}
+
+// Example for up-to (max-width) queries
+@mixin theme-viewport-max($breakpoint) {
+  @media (max-width: theme-breakpoint($breakpoint)) {
+    @content;
+  }
+}
+
+// Example for between two breakpoints
+@mixin theme-viewport-between($min, $max) {
+  @media (min-width: theme-breakpoint($min)) and (max-width: theme-breakpoint($max)) {
+    @content;
+  }
+}
+
+// Viewport mixins for each breakpoint, matching getViewport keys
+@mixin fromDesktop {
+  @media (min-width: theme-breakpoint(desktop)) {
+    @content;
+  }
+}
+@mixin fromDesktopLg {
+  @media (min-width: theme-breakpoint(desktopLg)) {
+    @content;
+  }
+}
+@mixin fromDesktopSm {
+  @media (min-width: theme-breakpoint(desktopSm)) {
+    @content;
+  }
+}
+@mixin fromDesktopXl {
+  @media (min-width: theme-breakpoint(desktopXl)) {
+    @content;
+  }
+}
+@mixin fromDesktopXs {
+  @media (min-width: theme-breakpoint(desktopXs)) {
+    @content;
+  }
+}
+@mixin fromMobile {
+  @media (min-width: theme-breakpoint(mobile)) {
+    @content;
+  }
+}
+@mixin fromPhablet {
+  @media (min-width: theme-breakpoint(phablet)) {
+    @content;
+  }
+}
+@mixin fromTablet {
+  @media (min-width: theme-breakpoint(tablet)) {
+    @content;
+  }
+}
+
+// Viewport mixins for each breakpoint and range, matching getViewport keys
+@mixin isDesktop {
+  @media (min-width: theme-breakpoint(desktop)) and (max-width: theme-breakpoint(desktopLg)) {
+    @content;
+  }
+}
+@mixin isDesktopLg {
+  @media (min-width: theme-breakpoint(desktopLg)) and (max-width: theme-breakpoint(desktopXl)) {
+    @content;
+  }
+}
+@mixin isDesktopSm {
+  @media (min-width: theme-breakpoint(desktopSm)) and (max-width: theme-breakpoint(desktop)) {
+    @content;
+  }
+}
+@mixin isDesktopXl {
+  @media (min-width: theme-breakpoint(desktopXl)) {
+    @content;
+  }
+}
+@mixin isDesktopXs {
+  @media (min-width: theme-breakpoint(desktopXs)) and (max-width: theme-breakpoint(desktopSm)) {
+    @content;
+  }
+}
+@mixin isMobile {
+  @media (min-width: theme-breakpoint(mobile)) and (max-width: theme-breakpoint(phablet)) {
+    @content;
+  }
+}
+@mixin isPhablet {
+  @media (min-width: theme-breakpoint(phablet)) and (max-width: theme-breakpoint(tablet)) {
+    @content;
+  }
+}
+@mixin isTablet {
+  @media (min-width: theme-breakpoint(tablet)) and (max-width: theme-breakpoint(desktopXs)) {
+    @content;
+  }
+}
+@mixin upToDesktop {
+  @media (max-width: theme-breakpoint(desktopLg)) {
+    @content;
+  }
+}
+@mixin upToDesktopLg {
+  @media (max-width: theme-breakpoint(desktopXl)) {
+    @content;
+  }
+}
+@mixin upToDesktopSm {
+  @media (max-width: theme-breakpoint(desktop)) {
+    @content;
+  }
+}
+@mixin upToDesktopXl {
+  @media screen {
+    @content;
+  }
+}
+@mixin upToDesktopXs {
+  @media (max-width: theme-breakpoint(desktopSm)) {
+    @content;
+  }
+}
+@mixin upToMobile {
+  @media (max-width: theme-breakpoint(phablet)) {
+    @content;
+  }
+}
+@mixin upToPhablet {
+  @media (max-width: theme-breakpoint(tablet)) {
+    @content;
+  }
+}
+@mixin upToTablet {
+  @media (max-width: theme-breakpoint(desktopXs)) {
+    @content;
+  }
+}

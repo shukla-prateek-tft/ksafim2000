@@ -1,0 +1,19 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.label {
+  @include label;
+}
+
+.removeMargin {
+  margin-bottom: 0;
+}
+
+.noLabel {
+  opacity: 0;
+  @include label;
+}
+.top{
+align-self: start;
+  margin-bottom: theme-margin('lg');
+}

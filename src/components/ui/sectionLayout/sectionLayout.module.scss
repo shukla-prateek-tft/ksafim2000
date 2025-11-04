@@ -1,0 +1,17 @@
+@use '/src/scss/variables' as *;
+
+.sectionContainer {
+  height: fit-content;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  .setionHeader {
+    flex: 1;
+  }
+  .sectionBody {
+    flex: 3;
+  }
+  .sectionFooter {
+    flex: 1;
+  }
+}

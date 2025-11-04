@@ -1,0 +1,100 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+// SCSS maps for scales and variants
+$badge-scales: (base, primary, danger, success, warning, disabled, secondary);
+
+// mixin for badge theme variables
+@mixin badge-theme-vars($variant) {
+  --border-color: var(--#{$variant}-badgeBorder);
+  --text-color: var(--#{$variant}-badgeText);
+  --background-color: var(--#{$variant}-badgeBackground);
+  --hover-background-color: var(--#{$variant}-badgeBackgroundHovered);
+  --hover-text-color: var(--#{$variant}-badgeTextHovered);
+}
+.container {
+  @include component-wrapper;
+  @include theme-font;
+  @include flex-row;
+  width: fit-content;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: all 200ms ease;
+  min-width: 2rem;
+  border-radius: theme-radius('xl');
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  border: 0;
+  color: var(--text-color);
+  padding:theme-padding('md');
+  gap: theme-gap('md');
+  @each $variant in $badge-scales {
+    &.scale-#{$variant} {
+      @include badge-theme-vars($variant);
+    }
+  }
+  &:hover {
+    opacity: 0.8;
+    background-color: var(--hover-background-color);
+    color: var(--hover-text-color);
+  }
+
+  // Size logic
+  &.size-md {
+    box-shadow: theme-shadow(0);
+    min-width: 100px;
+    padding: theme-padding('md');
+    border-radius: theme-radius('md');
+  }
+  &.size-lg {
+    box-shadow: theme-shadow(1);
+    min-width: 200px;
+    padding: theme-padding('lg');
+    border-radius: theme-radius('lg');
+  }
+  &.size-xl {
+    box-shadow: theme-shadow(2);
+    min-width: 300px;
+    padding: theme-padding('xl');
+    border-radius: theme-radius('xl');
+  }
+  &.size-xxl {
+    box-shadow: theme-shadow(0);
+    min-width: 400px;
+    padding: theme-padding('huge');
+    border-radius: theme-radius('xl', 2px);
+  }
+  // Full width logic
+  &.size-fullWidth {
+    box-shadow: theme-shadow(2);
+    width: max-content;
+    padding: theme-padding('huge');
+    border-radius: theme-radius('sm', 2px);
+  }
+  &.link {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  &.outline {
+    outline: 1px solid var(--border-color);
+  }
+  &.transparent {
+    background-color: transparent;
+    border: none;
+  }
+  &.left {
+    justify-content: flex-start;
+  }
+  &.right {
+    justify-content: flex-end;
+  }
+  &.center {
+    justify-content: center;
+  }
+  // Disabled state
+  &:disabled {
+    pointer-events: none;
+  }
+}

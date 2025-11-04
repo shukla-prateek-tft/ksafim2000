@@ -1,0 +1,118 @@
+@use '../Styles/theme.scss' as *;
+@use '../Styles/variables' as *;
+
+$table-scales: (
+  primary,
+  secondary
+);
+
+@mixin table-theme-vars($scale) {
+  --table-background-color: var(--#{$scale}-background);
+  --hover-color: var(--#{$scale}-textColorHovered);
+
+  @if $scale =='primary' {
+    --table-background-color: var(--#{$scale}-buttonBackground);
+    --hover-color: var(--#{$scale}-buttonBackgroundHovered);
+  }
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: transparent;
+  min-width: 30vh;
+  color: $midnightBlue;
+  @media print {
+    height: auto !important;
+  }
+  @each $scale in $table-scales {
+    &.scale-#{$scale} {
+      @include table-theme-vars($scale);
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+.header {
+  th {
+    @include theme-font;
+    background-color: var(--table-background-color);
+    color: $white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: theme-spacing('xs') theme-spacing('xxs');
+    text-align: right;
+    user-select: none;
+    cursor: pointer;
+    font-weight: var(--font-weight-extraBold, 600);
+    width: var(--col-width, auto);
+    min-width: var(--col-width, auto);
+    max-width: var(--col-width, auto);
+    box-sizing: border-box;
+    vertical-align: top;
+    @media print {
+      font-family: Narkissim Regular;
+      background-color: transparent;
+      font-size: 14pt;
+      color: $black;
+      border: 1px solid $black;
+      width: var(--print-width, auto);
+      min-width: var(--print-width, auto);
+      max-width: var(--print-width, auto);
+    }
+  }
+}
+
+    .columnHeader{
+      @include flex-row;
+      justify-content: space-between;
+      align-items: center;
+    }
+.body {
+  td {
+    @include theme-font;
+    text-align: right;
+    width: var(--col-width, auto);
+    min-width: var(--col-width, auto);
+    max-width: var(--col-width, auto);
+    box-sizing: border-box;
+    border-bottom: 1px solid $gray-medium;
+    word-break: break-word;
+    padding: theme-padding('sm');
+    white-space: nowrap;
+    overflow: hidden;
+    @media print {
+      font-family: Narkissim Regular;
+      font-size: 14pt;
+      border: 1px solid $black;
+    }
+  }
+}
+
+.row {
+  transition: background 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}
+
+.selectedRow {
+  background-color: var(--hover-color);
+}
+
+.noDataFoundContainer {
+  td {
+    text-align: center;
+  }
+}

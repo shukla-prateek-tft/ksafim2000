@@ -1,0 +1,30 @@
+@use '../Styles/theme' as *;
+@use '../Styles/variables' as *;
+
+.container {
+  @include card-layout;
+  @include theme-font;
+  padding: theme-spacing(2.5);
+  width: calc(100% - 20px);
+  .cardHeader {
+    @include flex-row;
+    align-items: center;
+    margin-bottom: theme-margin('huge');
+    .cardTitle {
+      font-size: theme-font-size(6px);
+      margin: 0;
+      margin-left: theme-spacing('md');
+    }
+    .cardActionContainer {
+      flex: 1;
+      @include flex-row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}
+.hide{
+  @media print{
+    display: none !important;
+  }
+}

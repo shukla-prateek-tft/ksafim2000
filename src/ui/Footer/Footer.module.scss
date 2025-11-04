@@ -1,0 +1,31 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.container {
+  @include theme-font;
+  @include flex-row;
+  justify-content: space-between;
+  padding: 0 theme-spacing('sm');
+  align-items: center;
+  .actionContainer {
+    @include flex-row;
+    gap: theme-gap('huge');
+    .actionItem {
+      @include flex-center;
+      align-items: center;
+      cursor: pointer;
+      transition: all ease-in-out 200ms;
+      .itemLogo {
+        @include flex-center;
+        align-items: center;
+        height: 25px;
+        width: 25px;
+        font-size: theme-font-size(2px);
+        margin-left: 5px;
+      }
+      .itemTitle {
+        @include theme-font;
+        color: $midnightBlue;
+      }
+    }
+  }
+}

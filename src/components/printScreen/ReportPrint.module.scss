@@ -1,0 +1,123 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+@page {
+  size: 100%;
+  width: 100%;
+}
+
+.container {
+  @include flex-column;
+  font-size: theme-font-size(1px);
+  padding: 20px 40px;
+  position: relative;
+  justify-content: space-between;
+  height: calc(100% - 40px);
+  background-color: white;
+
+  @media print {
+    font-family: Narkissim Regular;
+    font-size: 14pt;
+    direction: rtl;
+    padding: 0;
+    height: auto;
+    padding-bottom: 100px;
+  }
+}
+
+.header {
+  @media print {
+    font-family: Narkissim Regular;
+    font-size: 14pt;
+    direction: rtl;
+  }
+}
+
+.footer {
+  margin: 20px 0px;
+  @media print {
+    font-family: Narkissim Regular;
+    font-size: 14pt;
+  }
+}
+.renderItem {
+  @media print {
+    display: none;
+  }
+}
+// Header
+.headerWrapper {
+  padding: 5px 0px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media print {
+    font-family: Narkissim Regular;
+    font-size: 14pt;
+  }
+
+  .aligner {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      min-width: 15%;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: 5px;
+
+      @media print {
+        font-family: Narkissim Regular;
+        font-size: 14pt;
+      }
+    }
+
+    .right {
+      min-width: 15%;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 5px;
+
+      @media print {
+        font-family: Narkissim Regular;
+        font-size: 14pt;
+      }
+    }
+  }
+
+  .center {
+    background-color: rgb(234, 234, 234);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+    gap: 10px;
+    padding: 5px;
+    @media print {
+      font-family: Narkissim Regular;
+      font-size: 14pt;
+      margin-bottom: 30px;
+    }
+  }
+}
+.reportCell {
+  @include flex-row;
+  width: fit-content;
+  width: 100%;
+  .label {
+    min-width: 45%;
+  }
+  .value {
+    min-width: 50%;
+  }
+}
+.hidePrint{
+  display: none;
+  @media print {
+    display:flex !important;
+  }
+}

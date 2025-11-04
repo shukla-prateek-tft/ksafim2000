@@ -1,0 +1,48 @@
+@use '../../ui/Styles/variables' as *;
+
+.warningWrapper {
+  position: absolute;
+  left: 5px;
+  display: inline-block;
+
+  &:hover .errorMessage {
+    display: block;
+  }
+
+  .icon {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+}
+
+.errorMessage {
+  position: absolute;
+  top: 22px;
+  left: -7px;
+  background-color: $error;
+  color: white;
+  padding: 2px 10px;
+  font-size: theme-font-size();
+  border-radius: 4px;
+  margin-top: 3px;
+  white-space: nowrap;
+  z-index: 1000;
+  display: none;
+  box-shadow: 0px 0px 5px 2px #7b7776;
+
+  &.visible {
+    display: block;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 8px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid  $error ;
+  }
+}

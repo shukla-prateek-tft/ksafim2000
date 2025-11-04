@@ -1,0 +1,69 @@
+@use '../../scss/variables' as *;
+.confirmationDialogueBox {
+  text-align: center;
+}
+
+.modalHeader {
+  display: none !important;
+}
+
+.modalBody {
+  min-width: 350px !important; //commented for future refrence
+  width: fit-content;
+  border-radius: 7px;
+}
+.modalOverLay {
+  z-index: 10001;
+}
+
+.message {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+
+.confirmButton,
+.cancelButton {
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px !important;
+  width: 100px;
+}
+.cancelButton {
+  background-color: $gray;
+}
+
+.confirmButton {
+  background-color: $theme_primary;
+}
+.confirmButtonError {
+  background-color: $error;
+}
+.errorIcon {
+  color: $red !important;
+}
+.icon {
+  svg {
+    height: 50px;
+    width: 50px;
+    color: $theme_primary;
+    margin: 5px 0px;
+  }
+}
+
+h2 {
+  margin: 0;
+  font-weight: 700;
+  color: $theme_primary;
+  font-size: 18px !important;
+}

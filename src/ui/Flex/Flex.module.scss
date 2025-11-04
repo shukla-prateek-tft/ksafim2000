@@ -1,0 +1,32 @@
+.flexContainer {
+  display: flex;
+  box-sizing: border-box;
+}
+
+/* Justify Content */
+.justifyStart   { justify-content: flex-start; }
+.justifyCenter  { justify-content: center; }
+.justifyEnd     { justify-content: flex-end; }
+.justifyBetween { justify-content: space-between; }
+.justifyAround  { justify-content: space-around; }
+
+/* Align Items */
+.alignStretch { align-items: stretch; }
+.alignCenter  { align-items: center; }
+.alignStart   { align-items: flex-start; }
+.alignEnd     { align-items: flex-end; }
+
+/* Flex Direction */
+.row    { flex-direction: row; }
+.column { flex-direction: column; }
+
+/* Flex Wrap */
+.nowrap { flex-wrap: nowrap; }
+.wrap   { flex-wrap: wrap; }
+
+/* Sizes */
+.fullWidth  { width: 100%; }
+.autoWidth  { width: auto; }
+.fullHeight { height: 100%; }
+
+/* Gap / Padding / Margin / Radius will likely need utility classes or inline styles */

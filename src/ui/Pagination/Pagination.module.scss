@@ -1,0 +1,84 @@
+@use '../Styles/theme.scss' as *;
+@use '../Styles/variables' as *;
+
+.paginationContainer {
+  @include flex-center;
+  gap: theme-gap('sm');
+  &[data-rtl='true'] {
+    direction: rtl;
+  }
+  @include theme-font;
+
+  .pageButton {
+    color: $secondary;
+    border: none;
+    background: none;
+    border-radius: theme-radius('md');
+    padding: theme-spacing(1) theme-spacing(1.5);
+    @include flex-center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: $secondary;
+      color: $theme-white;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .currentPage {
+    background-color: $secondary;
+    background-color: $exception-color !important;
+    color: $theme-white;
+    font-weight: var(--font-weight-semiBold);
+    padding: theme-spacing('sm') theme-spacing('sm'); //4px 12px
+    border-radius: theme-radius('md');
+    display: flex;
+    align-items: center;
+    gap: theme-gap('sm');
+  }
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: theme-gap('sm');
+}
+
+.pageNumberBtn {
+  @include flex-center;
+  background: none;
+  height: 25px;
+  border: none;
+  border-radius: theme-radius('md');
+  color: $secondary;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    color 0.3s;
+
+  &:hover:not(:disabled) {
+    background-color: $secondary;
+    color: $theme-white;
+  }
+
+  &.active {
+    background-color: $secondary;
+    color: $theme-white;
+    font-weight: var(--font-weight-bold);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.dots {
+  padding: 0 theme-spacing('sm');
+  color: $gray-dark;
+}

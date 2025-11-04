@@ -1,0 +1,107 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+$group-radio-scales: (base, primary, danger, success, warning, disabled, secondary);
+$group-radio-variants: (filled, outlined, standard, borderless);
+
+@mixin group-radio-theme-vars($scale, $variant) {
+  @if $variant == 'filled' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --background-color: var(--#{$scale}-inputBackground);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'outlined' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-inputTextColor);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'standard' {
+    --border-color: var(--#{$scale}-inputTextColor);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'borderless' {
+    --background-color: $theme-white;
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  }
+}
+
+.Wrapper {
+  @include component-wrapper;
+
+  .GroupRadioBlock {
+    display: flex;
+    flex-direction: column;
+
+    .GroupRadioBox {
+      display: flex;
+      align-items: center;
+      gap: theme-gap('md');
+      padding: theme-padding('lg');
+      border-radius: theme-radius('md');
+      outline: 1px solid var(--border-color);
+      background-color: var(--background-color);
+      color: var(--text-color, inherit);
+      transition:
+        border-color 150ms ease,
+        background-color 150ms ease;
+
+      &.disabled {
+        background-color: $disabled;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      &.checkbox {
+        width: fit-content;
+        padding: 0;
+
+        input {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+  }
+
+  @each $scale in $group-radio-scales {
+    &.scale-#{$scale} {
+      @each $variant in $group-radio-variants {
+        &.variant-#{$variant} {
+          @include group-radio-theme-vars($scale, $variant);
+        }
+      }
+    }
+  }
+
+  &.size-sm {
+    width: 200px;
+  }
+
+  &.size-md {
+    width: 300px;
+  }
+
+  &.size-lg {
+    width: 400px;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.horizontal {
+  flex-direction: row;
+  align-items: center;
+  .label {
+    margin-bottom: 0;
+  }
+}

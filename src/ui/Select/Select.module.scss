@@ -1,0 +1,192 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+// Input scales and variants
+$input-scales: (base, primary, danger, success, warning, disabled, secondary);
+$input-variants: (filled, outlined, standard, borderless);
+
+// Mixin for input theme variables based on scale and variant
+@mixin input-theme-vars($scale, $variant) {
+  @if $variant == 'filled' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: white;
+    --background-color: var(--#{$scale}-background);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'standard' {
+    --border-color: var(--#{$scale}-placeholder);
+    --text-color: var(--#{$scale}-textColor);
+    --hover-border-color: var(--#{$scale}-inputTextColor);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'outlined' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-border);
+    --hover-border-color: var(--#{$scale}-border);
+    --hover-text-color:white;
+    --hover-background-color: var(--#{$scale}-border);
+  } @else if $variant== 'borderless' {
+    --background-color: $white;
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  }
+}
+
+.wrapper {
+  @include component-wrapper;
+  min-height: theme-size(2);
+
+  .placeholder {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  // Apply scale + variant mixins only if classes exist
+  @each $scale in $input-scales {
+    &.scale-#{$scale} {
+      @each $variant in $input-variants {
+        &.variant-#{$variant} {
+          @include input-theme-vars($scale, $variant);
+        }
+      }
+    }
+  }
+  .custom-select {
+    @include theme-font;
+    position: relative;
+    border-radius: theme-radius('sm');
+    padding: theme-padding('lg');
+    outline: 1px solid var(--border-color, transparent);
+    background-color: var(--background-color, transparent);
+    color: var(--text-color, inherit);
+    transition:
+      outline 150ms ease,
+      background-color 150ms ease;
+    &:hover {
+      border: 0;
+      outline: 1px solid var(--hover-border-color);
+      background-color: var(--hover-background-color);
+      color: var(--hover-text-color)
+    }
+    &.disabled {
+      background-color: $gray-medium;
+    }
+  }
+
+  // Size logic
+  &.size-md {
+    box-shadow: theme-shadow(1);
+    width: 300px;
+    .custom-select__menu {
+      min-width: 300px;
+    }
+  }
+  &.size-sm {
+    box-shadow: theme-shadow(0);
+    width: 200px;
+    .custom-select__menu {
+      min-width: 200px;
+    }
+  }
+  &.size-lg {
+    box-shadow: theme-shadow(2);
+    width: 400px;
+    .custom-select__menu {
+      min-width: 400px;
+    }
+  }
+
+  // Full width logic
+  &.size-fullWidth {
+    flex: 1;
+    width: auto;
+    .custom-select__menu {
+      min-width: 200px;
+    }
+  }
+  .custom-select__control {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .custom-select__control.readonly {
+    cursor: default;
+  }
+
+  .custom-select__arrow {
+    margin-right: theme-margin('xl');
+    font-size: theme-font-size();
+  }
+}
+
+.horizontal {
+  @include flex-row;
+  align-items: center;
+  label {
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  .custom-select {
+    width: 100%;
+  }
+}
+
+.custom-select__menu {
+  background: $theme-white;
+  outline: 1px solid $shadow;
+  @include theme-font;
+  color: $black;
+  z-index: 1002 !important;
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: theme-radius('sm');
+  min-width: 150px;
+  width: max-content;
+  margin-top: theme-margin('lg');
+}
+
+.custom-select__option {
+  padding: theme-padding('lg');
+  cursor: pointer;
+  transition:
+    background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+  &:hover {
+    background-color: $secondary;
+    color: $theme-white;
+  }
+}
+
+.custom-select__option.selected {
+  font-weight: bold;
+}
+
+.validation {
+  outline: 1px solid $error !important;
+}
+.municipalityOption {
+  &:hover {
+    background-color: $primary-light;
+  }
+}
+.parentOptions {
+  &:hover {
+    background-color: $secondary;
+  }
+}
+.disabledOption {
+  color: $muted;
+  &:hover {
+    background-color: $light;
+  }
+}

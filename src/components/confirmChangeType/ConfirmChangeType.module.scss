@@ -1,0 +1,41 @@
+@use '../../scss//variables' as *;
+.main {
+  width: 60%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: lightgrey;
+  .textbox {
+    border: 1px dashed black;
+    font-size: $font-size-x-small;
+    padding: 10px;
+  }
+  .alignInputContainer {
+    display: flex;
+    justify-content: space-between;
+    border: 1px dashed black;
+    padding: 10px;
+  }
+  .inputCommon {
+    display: flex;
+    width: 100%;
+    div {
+      width: 100%;
+    }
+    label {
+      font-size: $font-size-x-small;
+      margin: 0px 5px;
+      font-weight: 600;
+    }
+    input {
+      padding: 2px 0px;
+    }
+  }
+  .actionContainer {
+    margin: 15px 0px 0px 0px;
+  }
+  .dialogBox {
+    min-height: 80vh;
+    background-color: rgb(215, 215, 215);
+  }
+}

@@ -1,0 +1,139 @@
+@use '../Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+$input-scales: (base, primary, danger, success, warning, disabled, secondary);
+$input-variants: (filled, outlined, standard, borderless);
+
+@mixin input-theme-vars($scale, $variant) {
+  @if $variant == 'filled' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --background-color: var(--#{$scale}-inputBackground);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'outlined' {
+    --border-color: var(--#{$scale}-border);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-inputTextColor);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'standard' {
+    --border-color: var(--#{$scale}-inputTextColor);
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  } @else if $variant == 'borderless' {
+    --background-color: $white;
+    --text-color: var(--#{$scale}-inputTextColor);
+    --hover-border-color: var(--#{$scale}-borderHovered);
+    --hover-text-color: var(--#{$scale}-border);
+    --hover-background-color: var(--#{$scale}-inputBackgroundActive);
+  }
+}
+
+.Wrapper {
+  @include component-wrapper;
+
+  &.vertical {
+    @include flex-column;
+    align-items: flex-start;
+
+    .block {
+      width: 100%;
+    }
+  }
+
+  &.horizontal {
+    @include flex-row;
+    align-items: center;
+
+    .label {
+      margin-bottom: 0;
+    }
+
+    .block {
+      flex: 3;
+    }
+  }
+
+  .block {
+    @include flex-column;
+    gap: theme-gap('sm');
+
+    .box {
+      @include flex-column;
+      border-radius: theme-radius('sm');
+      border: 1px solid var(--border-color);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      transition:
+        border-color 150ms ease,
+        background-color 150ms ease;
+
+      &:focus-within {
+        border-width: 2px;
+        border-color: var(--hover-border-color);
+        background-color: var(--hover-background-color);
+      }
+
+      select {
+        width: 100%;
+        min-height: 120px;
+        font-size: theme-font-size(2);
+        font-family: inherit;
+        background-color: transparent;
+        border: none;
+        color: var(--text-color);
+        outline: none;
+        padding: theme-size(1.5);
+        direction: rtl;
+
+        option {
+          padding: theme-padding('md');
+          direction: rtl;
+        }
+
+        option:checked {
+          background-color: $secondary;
+          color: $theme-white;
+        }
+      }
+    }
+  }
+
+  // Support for scale and variant combinations
+  @each $scale in $input-scales {
+    &.scale-#{$scale} {
+      @each $variant in $input-variants {
+        &.variant-#{$variant} {
+          @include input-theme-vars($scale, $variant);
+        }
+      }
+    }
+  }
+
+  // Size support
+  &.size-sm {
+    min-height: theme-size(8);
+    box-shadow: theme-shadow(0);
+    width: 200px;
+  }
+
+  &.size-md {
+    min-height: theme-size(10);
+    box-shadow: theme-shadow(1);
+    width: 300px;
+  }
+
+  &.size-lg {
+    min-height: theme-size(12);
+    box-shadow: theme-shadow(2);
+    width: 400px;
+  }
+
+  &.size-fullWidth {
+    width: 100%;
+  }
+}

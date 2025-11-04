@@ -1,0 +1,284 @@
+// Font utility
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:color';
+@use './variables' as *;
+
+@function theme-font-size($offset: 0px) {
+  $min: calc(var(--font-baseSize) + #{$offset});
+  $max: calc(var(--font-baseSize) + 2px + #{$offset});
+  // The middle value must be a single unit like 1.5vw
+  $preferred: clamp(#{$min}, 1.5vw, #{$max});
+
+  @return $preferred;
+}
+
+@mixin theme-font {
+  font-size: theme-font-size();
+  letter-spacing: 0;
+  line-height: 125%;
+  font-weight: var(--font-weight);
+  color: var(--font-textColor);
+}
+@mixin theme-action-items{
+  
+  @include flex-row;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@mixin theme-fieldset {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5px;
+    align-self: center;
+    border: 0.5px solid lightgray;
+    justify-content: space-between;
+    legend{
+      color: $secondary;
+      font-weight: 700;
+      font-size: theme-font-size(5px);
+    }
+}
+
+
+// Shadow utility
+@mixin theme-shadow($index: 0) {
+  box-shadow: var(--shadow-#{$index}, none);
+}
+
+// Radii utility
+@function theme-radius($key, $fallback: null) {
+  $var: '--radii-#{$key}';
+  @if $fallback != null {
+    @return var(#{$var}, #{$fallback});
+  }
+  @return var(#{$var});
+}
+
+// Gap Utility
+@function theme-gap($key, $fallback: null) {
+  $var: '--gap-scaling-#{$key}';
+  @if $fallback != null {
+    @return var(#{$var}, #{$fallback});
+  }
+  @return var(#{$var});
+}
+
+// Icon size utility
+@function theme-icon($key, $fallback: null) {
+  $var: '--icon-#{$key}';
+  @if $fallback != null {
+    @return var(#{$var}, #{$fallback});
+  }
+  @return var(#{$var});
+}
+
+// Breakpoint utility (returns px value)
+@function theme-spacing($key, $fallback: null) {
+  $base: var(--size-base, 4);
+  @if meta.type-of($key) == 'number' {
+    @return calc(#{$base} * #{$key}px);
+  } @else {
+    $scaleVar: '--size-spacing-#{$key}';
+    @if $fallback != null {
+      @return calc(#{$base} * var(#{$scaleVar}, #{$fallback}) * 1px);
+    }
+    @return calc(#{$base} * var(#{$scaleVar}, 1) * 1px);
+  }
+}
+
+// Size utility (supports scaling keys and numbers, using CSS variables)
+// Usage: theme-size(md) or theme-size(2) or theme-size('lg')
+@function theme-size($key, $fallback: null) {
+  $base: var(--size-base, 4);
+  @if meta.type-of($key) == 'number' {
+    @return calc(#{$base} * #{$key}px);
+  } @else {
+    $scaleVar: '--size-scaling-#{$key}';
+    @if $fallback != null {
+      @return calc(#{$base} * var(#{$scaleVar}, #{$fallback}) * 1px);
+    }
+    @return calc(#{$base} * var(#{$scaleVar}, 1) * 1px);
+  }
+}
+
+@function theme-padding($key, $add: null) {
+  $varName: '--padding-scaling-#{$key}';
+  @if $add != null {
+    @return string.unquote('calc(var(#{$varName}) + #{$add})');
+  } @else {
+    @return string.unquote('var(#{$varName})');
+  }
+}
+
+@function theme-margin($key, $add: null) {
+  $varName: '--margin-scaling-#{$key}';
+
+  @if $add != null {
+    @return string.unquote('calc(var(#{$varName}) + #{$add})');
+  } @else {
+    @return string.unquote('var(#{$varName})');
+  }
+}
+
+// mixin for color palette
+@function palette($scale, $step, $fallback: null) {
+  $var: '--#{$scale}-#{$step}';
+  @if $fallback != null {
+    @return var(#{$var}, #{$fallback});
+  }
+  @return var(#{$var});
+}
+
+// Heading font size utility
+@function theme-heading($level, $fallback: null) {
+  $var: '--font-headings-#{$level}';
+  @if $fallback != null {
+    @return var(#{$var}, #{$fallback});
+  }
+  @return var(#{$var});
+}
+
+// font-weight utility
+@function theme-font-weight($key, $fallback: null) {
+  $var: '--font-weight-#{$key}';
+  @if $fallback != null {
+    @return var(#{$var}, #{$fallback});
+  }
+  @return var(#{$var});
+}
+
+@mixin component-wrapper {
+  @include flex-column;
+  background-color: transparent;
+  padding: theme-spacing(1.25) 0;
+  gap: theme-gap('md');
+  @include theme-font;
+}
+
+@mixin label {
+  display: block;
+  min-width: 100px;
+  font-weight: theme-font-weight('medium');
+}
+
+@mixin page-default {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin truncate($lines: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+@mixin shadow-soft {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@mixin hover-lift {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+@mixin gradient($from, $to) {
+  background: linear-gradient(to top, $from, $to);
+}
+@mixin glass($bg: rgba(255, 255, 255, 0.1), $blur: 10px) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+@mixin scale-hover($scale: 1.05) {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale($scale);
+  }
+}
+@mixin custom-scrollbar($thumbColor: #aaa, $trackColor: transparent) {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumbColor;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $trackColor;
+  }
+}
+@mixin grid-columns($columns: 3, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+@mixin transition($property: all, $duration: 0.3s, $ease: ease-in-out) {
+  transition: $property $duration $ease;
+}
+@mixin fade-in($duration: 0.5s, $delay: 0s) {
+  animation: fadeIn $duration ease-in-out $delay forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@mixin neumorphic($color: #e0e0e0) {
+  background: $color;
+  box-shadow:
+    8px 8px 15px darken($color, 10%),
+    -8px -8px 15px lighten($color, 10%);
+}
+@mixin card-layout() {
+  background-color: $theme-white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 1px 0px rgb(196, 196, 196);
+}
+
+@function hex-to-rgba($hex, $alpha: 1) {
+  @return rgba(
+    color.channel($hex, 'red', $space: rgb),
+    color.channel($hex, 'green', $space: rgb),
+    color.channel($hex, 'blue', $space: rgb),
+    $alpha
+  );
+}
