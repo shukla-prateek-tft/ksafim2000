@@ -1,0 +1,26 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.fieldSet {
+  margin-bottom: theme-margin('huge');
+  padding: theme-padding('huge');
+  .legend {
+    color: $danger;
+    font-weight: theme-font-weight('semiBold');
+    font-size: theme-font-size(4px);
+  }
+  .conatiner {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    gap: theme-gap('huge');
+  }
+  .selectWithInput {
+    @include flex-row;
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('huge');
+}

@@ -1,0 +1,26 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.dialog {
+  width: 60vw;
+}
+
+.container {
+  .section {
+    .range {
+      @include flex-row;
+      gap: theme-gap('huge');
+    }
+  }
+  .section2 {
+    @include flex-column;
+
+    .flex {
+      @include flex-row;
+    }
+  }
+  .actionItems {
+    @include flex-row;
+    gap: theme-gap('md');
+  }
+}

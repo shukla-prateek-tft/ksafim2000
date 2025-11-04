@@ -1,0 +1,43 @@
+@use '../../ui/Styles/theme.scss' as *;
+
+.rowContainer {
+    @include flex-row;
+    gap: theme-gap('md');
+    align-items: center
+}
+
+.actionItems {
+    @include flex-row;
+    gap: theme-gap('md');
+    margin-top: theme-margin('huge');;
+}
+
+.footer {
+    margin-top: theme-margin('huge');
+}
+
+.classCodeContainer {
+    @include flex-row;
+    justify-content: center;
+    gap: theme-gap('md');
+}
+
+.bottomInputContainer {
+    @include flex-column;
+    justify-content: center;
+    margin-top: theme-margin('huge')
+}
+
+fieldset {
+    @include theme-fieldset;
+    flex-direction: row;
+}
+
+.columnContainer {
+    @include flex-column;
+}
+
+.inputBox {
+    @include flex-row;
+    width: 355px;
+}

@@ -1,0 +1,39 @@
+@use '../../ui/Styles/theme.scss' as *;
+.Container {
+  overflow: auto;
+
+  .mainContainer {
+    @include flex-column;
+
+    .mainHeader {
+      align-self: flex-end;
+    }
+
+    .inputFields {
+      @include flex-row;
+      gap: theme-gap('md');
+    }
+
+    .textAreas {
+      width: 50%;
+
+      label {
+        width: 255px;
+      }
+    }
+  }
+
+  .checkboxFields {
+    width: 100%;
+    @include flex-row;
+    gap: theme-gap('md');
+  }
+
+  .buttons {
+    width: 100%;
+    @include flex-row;
+    padding: 10px;
+    gap: theme-gap('md');
+    box-sizing: border-box;
+  }
+}

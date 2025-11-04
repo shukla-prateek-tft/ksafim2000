@@ -1,0 +1,32 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: 10px;
+}
+.mainTableContainer {
+  @include flex-column;
+  gap: 20px;
+  .tableContainer {
+    @include flex-row;
+  }
+  .table1 {
+    width: 55%;
+    .headingText {
+      width: 230px;
+    }
+  }
+  .table2 {
+    width: 75%;
+    .headingText {
+      width: 200px;
+    }
+  }
+}

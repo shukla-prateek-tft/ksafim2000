@@ -1,0 +1,35 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: 10px;
+}
+.tableContainer {
+  @include flex-row;
+  gap:20px;
+ .mainTable{
+  width: 75%;
+ }
+ .totalTable{
+  width: 25%;
+ }
+}
+  .common {
+  @include flex-row;
+  gap: 30px ;
+  .inputAlign{
+    
+  @include flex-row;
+  }
+  }
+.footer {
+  @include flex-row;
+  gap: 20px ;
+}
