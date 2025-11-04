@@ -1,0 +1,52 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .inputContainer {
+    @include flex-row;
+    gap:theme-gap('huge');
+
+    .inputContainerAlign {
+      flex: 1;
+      @include flex-column;
+    }
+  }
+
+  .flex {
+    @include flex-row;
+  }
+
+  .tableContainer {
+    height: 30vh; 
+  }
+
+  .totalContainer {
+    .total {
+      @include flex-row;
+      margin-left: 150px;
+      flex-direction: row-reverse;
+    }
+  }
+
+  .remarks {
+    @include flex-row;
+    justify-content: space-between;
+
+    > div {
+     margin-left: 270px;
+    }
+  }
+}
+
+.actionItems {
+  @include theme-action-items; 
+}
+.buttonContainer{
+   @include flex-row;
+   width: 92vw;
+   justify-content: space-between;
+}

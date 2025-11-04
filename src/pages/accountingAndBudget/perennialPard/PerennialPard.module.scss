@@ -1,0 +1,70 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+
+  .mainContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    .innerContainer {
+      width: 20%;
+      .radioCheckBox {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+      }
+    }
+    .innerContainerLast {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 24%;
+    }
+    .rowDirection {
+      flex-direction: row;
+    }
+    .rangeItem {
+      @include flex-row;
+      align-items: center;
+    }
+  }
+
+
+.topHeaderContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-direction: row-reverse;
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .tableHeader {
+    div {
+      text-align: center !important;
+    }
+  }
+  .ListofGefenCell {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+}
+
+.bottomContainer {
+  display: flex;
+  margin-top: 5px;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.flex {
+  display: flex;
+  gap: 5px;
+  justify-content: space-around;
+}

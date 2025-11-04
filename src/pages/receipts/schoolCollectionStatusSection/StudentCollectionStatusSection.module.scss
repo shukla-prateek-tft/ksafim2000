@@ -1,0 +1,23 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.container {
+  .section {
+    @include flex-row;
+    justify-content: space-between;
+    > div {
+      @include flex-column;
+      gap: theme-gap('md');
+      justify-content: space-evenly;
+    }
+  }
+  .section2 {
+    @include flex-row;
+    gap: theme-gap('md');
+  }
+  .actionItems {
+    @include flex-row;
+    gap: theme-gap('md');
+    margin-top: theme-margin('md');
+  }
+}

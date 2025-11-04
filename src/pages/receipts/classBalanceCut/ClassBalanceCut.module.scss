@@ -1,0 +1,38 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.actionItem{
+    @include flex-row;
+    gap: theme-gap("md");
+}
+
+.mainContainer {
+  @include flex-center;
+  flex: 1;
+  position: relative;
+
+  .fieldSet {
+    width: 100%;
+    padding: theme-padding("md");
+    border-radius: 5px;
+    border: 0.5px solid lightgray;
+
+    .legend {
+      color: $theme_primary;
+      font-weight: 700;
+    }
+
+    .container{
+        @include flex-row;
+        justify-content: space-between;
+        align-items: center;
+
+        .innerContainer{
+            @include flex-row;
+            gap: theme-gap("sm");
+            align-items: center;
+        }
+    }
+  }
+}
+
