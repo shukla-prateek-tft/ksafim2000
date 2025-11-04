@@ -6,11 +6,11 @@ import { useDispatch } from 'react-redux';
 import { globalAction } from '@/store/slices/global';
 import { attachMultipleClasses, mapOptions } from '@/utils/commonHelper';
 import classes from './PageLayout.module.scss';
-import { RenderGlobalComponents } from '@/components/ui/mainLayout/components/GlobalComponents';
 import { SideBar } from '@/ui/SideBar';
 import { Header } from '@/ui/Header';
 import { BankTransferFormReport } from '@/pages/bankTransferFormReport';
 import { UserAndPermissionManagement } from '@/pages/userAndPermissionManagement';
+import { RenderGlobalComponents } from '@/components/globals/GlobalComponents';
 
 const PageLayout: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,5 +1,4 @@
 // MCFW-1370
-import { GlobalLoader } from '@/components';
 import {
   BackToPageButton,
   Button,
@@ -30,6 +29,7 @@ import { useSelector } from 'react-redux';
 import classes from './PaymentSupplierList.module.scss';
 import PaymentSuppliersUI from './PaymentSupplierList.render';
 import { SupplierPaymentListTypes } from './type';
+import { GlobalLoader } from '@/components/loader';
 export const defaultPaymentSupplierListFilterValues: MCFW1370Filters = {
   Supp_Num: '',
   Size: 6,

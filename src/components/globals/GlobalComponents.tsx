@@ -1,6 +1,5 @@
-import { ConfirmationDialogueBox } from '@/components/ConfirmationModal';
-import { ConfirmationDialogueBox as Old_ConfirmationDialogueBox } from '@/components/confirmModal';
-import { ConfigChangeDailogBox } from '@/components/header';
+import ConfigChangeDailogBox from '@/components/configChangeDialog/ConfigChangeDailogBox';
+import { ConfirmationDialogueBox } from '@/components/confirmModal';
 import { useAuth } from '@/hooks';
 import { AppRoutes } from '@/Languages';
 import {
