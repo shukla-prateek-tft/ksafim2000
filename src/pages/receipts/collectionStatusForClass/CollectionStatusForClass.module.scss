@@ -1,0 +1,23 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.renderItem {
+  @include flex-column;
+  .firstInputItem {
+    @include grid-columns(2);
+    align-items: center;
+    margin-bottom: theme-margin('md');
+    .input{
+      @include flex-row;
+      gap: theme-gap('md');
+    }
+  }
+  .inputItem {
+    @include grid-columns(3);
+    align-items: center;
+  }
+}
+.column-sixth{
+    @include flex-row;
+    justify-content: space-between;
+}

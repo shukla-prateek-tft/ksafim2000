@@ -1,0 +1,39 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.fieldContainer {
+  @include flex-row;
+  margin-top: theme-margin('md');
+}
+
+.centerContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+.center {
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: 10px;
+}
+.fieldContainer {
+  @include flex-row;
+  width: 80%;
+  margin-top: theme-margin('md');
+  justify-content: space-between;
+  gap:8px;
+}

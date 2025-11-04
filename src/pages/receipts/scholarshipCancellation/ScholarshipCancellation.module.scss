@@ -1,0 +1,35 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.dialogBox {
+  width: fit-content;
+}
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  .mainContainer {
+    min-height: 20vh;
+    box-sizing: border-box;
+    padding: theme-spacing(1.25);
+    .itemsContainer {
+      align-items: center;
+      @include flex-row;
+      justify-content: space-between;
+      gap: theme-gap('lg');
+    }
+  }
+}
+.cell {
+  @include flex-row;
+}
+
+.actionItems {
+  @include flex-row;
+  padding: theme-spacing('md');
+  gap: theme-gap('md');
+}
+
+.totalAmountBox {
+  @include flex-row;
+  justify-content: flex-end;
+}
