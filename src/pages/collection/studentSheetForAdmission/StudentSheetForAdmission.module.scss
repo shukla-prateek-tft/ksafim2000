@@ -1,0 +1,61 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.actionItems {
+  @include flex-row;
+  gap: 10px;
+}
+.greenBtn {
+  background-color: green;
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+}
+.downloadBtn{
+  @include flex-center;
+  background-color: $secondary;
+  padding: 2;
+  color: $white
+}
+.tableCell {
+  @include flex-row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.container {
+  @include flex-column;
+  gap: 5px;
+  .itemsContainer {
+    @include flex-row;
+    align-items: center;
+    gap: 20px;
+  }
+  .topContainer {
+    .selectContainer {
+      width: 100px;
+    }
+  }
+  .bottomContainer {
+    margin-bottom: 20px;
+    span {
+      color: $danger;
+      margin-left: 5px;
+      font-weight: 700;
+    }
+    p {
+      margin: 0;
+      margin-bottom: 4px;
+      font-size: theme-font-size(1px);
+      color: $secondary;
+    }
+  }
+  .totalContainer {
+    @include flex-row;
+    justify-content: space-between;
+  }
+  .inputAlign {
+    @include flex-row;
+    width: 80%;
+    gap: 10px;
+  }
+}
