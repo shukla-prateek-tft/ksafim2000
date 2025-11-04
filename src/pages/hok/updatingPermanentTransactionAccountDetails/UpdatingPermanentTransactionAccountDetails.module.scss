@@ -1,0 +1,41 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.ListofGefenCell {
+  @include flex-row;
+  justify-content: center;
+}
+
+.bottomContainer {
+  @include flex-row;
+  margin-top: theme-margin('md', 1);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flexRow {
+  @include flex-row;
+  gap: theme-gap('sm');
+}
+
+.renderActionItems {
+  @include theme-action-items;
+  flex-direction: row-reverse;
+}
+
+.bottomContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+  width: 80%;
+}
+
+.midContainer {
+  @include flex-row;
+  justify-content: space-between;
+  margin: theme-margin('md') 0;
+}

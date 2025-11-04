@@ -1,0 +1,20 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  .fieldSet {
+    legend {
+      text-align: center;
+      color: $danger;
+    }
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+  margin-top: theme-margin('huge');
+}

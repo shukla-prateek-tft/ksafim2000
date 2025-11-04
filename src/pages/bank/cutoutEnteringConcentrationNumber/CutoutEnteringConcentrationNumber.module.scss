@@ -1,0 +1,17 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.fieldSet {
+  margin-bottom: theme-margin('huge');
+  padding: theme-padding('huge');
+  .legend {
+    color: $danger;
+    font-weight: theme-font-weight('semiBold');
+    font-size: theme-font-size(4px);
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('huge');
+}
