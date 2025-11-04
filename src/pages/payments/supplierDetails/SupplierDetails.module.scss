@@ -1,0 +1,31 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 8px;
+
+    .subContainer {
+        @include flex-row;
+        gap: 10px;
+    }
+
+    .fieldset {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 100%;
+        margin-bottom: 10px;
+        align-self: center;
+        border: 0.5px solid $border;
+    }
+}
+
+.actionItems {
+    @include flex-row;
+    gap: 10px;
+    margin-top: 10px;
+}

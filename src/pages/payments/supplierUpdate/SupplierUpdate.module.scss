@@ -1,0 +1,40 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.dialogBox {
+  width: fit-content;
+}
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  .fieldSet {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    align-self: center;
+    border: 0.5px solid lightgray;
+    .legend {
+      color: $secondary;
+      font-weight: 700;
+      font-size: theme-font-size(4px);
+    }
+  }
+  .mainContainer {
+    min-height: 20vh;
+
+    box-sizing: border-box;
+    padding: 5px;
+  }
+}
+
+.actionItems {
+  @include flex-row;
+  gap: 10px;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}

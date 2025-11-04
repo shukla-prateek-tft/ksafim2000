@@ -1,0 +1,23 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: theme-gap('huge');
+}
+
+.bottomContainer {
+  margin-block: theme-margin('sm');
+  padding: theme-padding('md');
+}
+
+.flex {
+  display: flex;
+  gap: theme-gap('sm');
+}
+.flexBetween {
+  display: flex;
+  gap: theme-gap('sm');
+  justify-content: space-around;
+}

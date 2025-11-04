@@ -1,0 +1,23 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: theme-gap('huge');
+  justify-content: flex-end;
+  margin-left: theme-margin('huge');
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.rowContainer {
+  @include flex-row;
+}
+
+.bottomContainer {
+  @include flex-row;
+  justify-content: flex-end;
+  padding-left: calc(8% + 15px);
+}
