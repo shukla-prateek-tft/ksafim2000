@@ -12,13 +12,16 @@ import { ThemeProvider as OldThemeProvider } from 'styled-components';
 import theme from './utils/theme';
 import { ThemeProvider } from './store/contexts/ThemeContext';
 import GlobalComponentsContextWrapper from './store/contexts/GlobalComponentsContext';
+import { QueryClientProvider,QueryClient } from '@tanstack/react-query';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
       <Provider store={store}>
+        <QueryClientProvider client={queryClient} >
         <BrowserRouter>
           <ThemeProvider>
             <OldThemeProvider theme={theme}>
@@ -29,7 +32,7 @@ root.render(
                 </GlobalComponentsContextWrapper>
             </OldThemeProvider>
           </ThemeProvider>
-        </BrowserRouter>
+        </BrowserRouter></QueryClientProvider>
       </Provider>
     </I18nextProvider>
   </React.StrictMode>

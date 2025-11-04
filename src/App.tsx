@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Pages from './pages';
 import { ToastContainer } from 'react-toastify';
@@ -11,6 +11,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PaymentSuppliersList } from './pages/suppliers';
 import { GlobalLoader } from './components/loader';
+import { useApi } from './hooks/useAPi';
+import { buildQueryParams } from './utils/commonHelper';
 
 const ToastStyles = createGlobalStyle`
   .Toastify__toast {
@@ -65,6 +67,27 @@ function App() {
   const { globalLoading } = useAuth();
   if (globalLoading) return <GlobalLoader loading={true} showOnFullScreen />;
   useAuthBroadcast();
+  const getUserList = (params?: any) => ({
+    url: `/todos`,
+    method: 'POST',
+    params // gets attached as query params
+  });
+
+  const { loading, callService, data, isError, error } = useApi(getUserList, {
+    onSuccess: () => console.log('User created!'),
+  });
+  useEffect(() => {
+
+    //POST
+    callService({
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    });
+    //GET
+     callService({});
+  }, []);
+  console.log(data, isError, error);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -84,9 +107,8 @@ function App() {
           limit={2}
         />
         {/* <Pages /> */}
-        <PaymentSuppliersList/>
       </ErrorBoundary>
-      <ReactQueryDevtools initialIsOpen={false}/>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

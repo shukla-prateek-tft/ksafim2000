@@ -29,7 +29,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "framer-motion": "^12.9.2",
     "i18next": "^24.0.5",
-    "jsona": "^1.12.1",
+    "jsona": "^1.0.3",
     "lodash": "^4.17.21",
     "luxon": "^3.6.0",
     "moment": "^2.30.1",
