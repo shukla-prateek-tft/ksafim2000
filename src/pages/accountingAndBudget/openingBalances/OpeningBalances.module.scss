@@ -1,0 +1,60 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: center;
+}
+
+
+.topHeaderContainer {
+  @include theme-action-items;
+  flex-direction: row-reverse
+}
+
+.addInvoiceTable {
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .ListofGefenCell {
+    @include flex-column;
+    align-items: center;
+  }
+}
+
+.bottomContainer {
+  @include flex-row;
+  margin-top: theme-margin('md');
+  gap: theme-gap('huge');
+  justify-content: end;
+}
+
+.input {
+  width: 90%;
+}
+
+.inputShort {
+  width: 50% !important;
+}
+
+.disabledBox {
+  width: 150px;
+  background-color: #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: theme-radius('sm');
+  height: 30px;
+}
+
+.flex {
+  @include flex-row;
+  gap: theme-gap('sm');
+  align-items: center;
+}
+
+.btnWidth {
+  min-width: 30px !important;
+}
