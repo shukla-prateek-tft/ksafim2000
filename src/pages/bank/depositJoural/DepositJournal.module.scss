@@ -1,0 +1,28 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: 10px;
+}
+
+  .bottomContainer {
+    margin: 10px 0;
+    span {
+      color: $danger;
+      margin-left: 5px;
+      font-weight: 700;
+    }
+    p {
+      margin: 0;
+      margin-bottom: 4px;
+      font-size: theme-font-size(1px);
+      color: $secondary;
+    }
+  }
