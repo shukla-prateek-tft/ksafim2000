@@ -1,0 +1,43 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.buttonContainer {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.mainContainer {
+  @include flex-column;
+  .container {
+    @include flex-row;
+    align-items: center;
+    justify-content: space-between;
+    .innerContainer {
+      @include flex-row;
+      gap: theme-gap('md');
+      align-items: center;
+    }
+  }
+  .innerContainer {
+    @include flex-row;
+    gap: theme-gap('md');
+    align-items: center;
+  }
+  .serviceType {
+    @include flex-row;
+    justify-content: flex-end;
+  }
+  .vAllRadio {
+    @include flex-row;
+    justify-content: flex-start;
+  }
+}
+
+.tableInfo {
+  @include flex-row;
+  .textBox {
+    @include flex-row;
+    flex-direction: column-reverse;
+    padding: theme-padding("md");
+  }
+}

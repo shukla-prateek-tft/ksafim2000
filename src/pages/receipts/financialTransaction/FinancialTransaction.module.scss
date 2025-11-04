@@ -1,0 +1,39 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.fieldSet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-radius: theme-gap('sm');
+  width: 100%;
+  margin-bottom: theme-margin('md');
+  align-self: center;
+  border: 0.5px solid lightgray;
+  .legend {
+    color: $secondary;
+    font-weight: theme-font-weight('bold');
+    font-size: theme-font-size(4px);
+  }
+}
+
+.flex {
+  @include flex-row;
+  gap: theme-gap('lg');
+}
+.flexBetween {
+  @include flex-row;
+  justify-content: space-between;
+  gap: theme-gap('md');
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('sm');
+}

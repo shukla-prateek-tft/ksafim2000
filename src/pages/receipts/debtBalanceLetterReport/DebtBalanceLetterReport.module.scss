@@ -1,0 +1,37 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.bottomInputs {
+  @include flex-row;
+  gap: theme-gap('huge');
+  justify-content: flex-end;
+  margin-left: theme-margin('huge');
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.renderItemContainer {
+  @include flex-row;
+  justify-content: space-between
+}
+
+.rowContainer {
+  @include flex-row;
+}
+
+.columnContainer {
+  @include flex-column;
+}
+
+.topContainer {
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.secondInputContainer {
+  @include flex-column;
+  margin: theme-margin('lg') 0;
+}

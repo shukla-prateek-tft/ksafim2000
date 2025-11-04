@@ -1,0 +1,22 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.fieldContainer {
+   margin-top: theme-margin('md');
+}
+.rowContainer{
+    @include flex-row;
+    align-items: center;
+    justify-content: center;
+}
+.bottomrowContainer{
+    @include flex-row;
+    justify-content: center;
+    align-items: center;
+    padding-right: 17rem;
+}
