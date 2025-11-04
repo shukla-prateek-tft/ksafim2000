@@ -1,0 +1,64 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: theme-gap('huge');
+  justify-content: flex-end;
+  margin-left: theme-margin('huge','40px');
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+.otherHeader {
+  @include flex-row;
+  gap: theme-gap('md');
+  margin: theme-margin('md') 0;
+  .common {
+    text-align: center;
+    padding: theme-padding('md');
+    background-color: $gray-medium;
+  }
+  .one {
+    width: 24%;
+  }
+  .two {
+    width: 38%;
+    text-align: center;
+  }
+  .three {
+    width: 38%;
+    text-align: center;
+  }
+}
+.footer {
+  margin-top: theme-margin('huge');
+}
+
+.container {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+
+  .col1 {
+    width: 30%;
+  }
+  .col2 {
+    width: 30%;
+  }
+
+  .col3 {
+    width: 30%;
+    .buttonsContainer {
+      @include flex-row;
+      justify-content: flex-end;
+      gap: theme-gap('huge');
+    }
+  }
+}
+
+.selectContainer {
+  @include flex-row;
+  gap: theme-gap('huge');
+}

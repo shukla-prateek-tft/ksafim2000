@@ -1,0 +1,32 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+.mainContainer {
+  @include flex-column;
+   height: 60vh;
+}
+.flex {
+  @include flex-row;
+  gap: theme-gap('lg');
+}
+.flexBetween {
+  @include flex-row;
+  width: 70%;
+  justify-content: space-between;
+  gap: theme-gap('md');
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('sm');
+}
+
+.details-container {
+  @include flex-column;
+  gap: theme-gap('sm');
+}

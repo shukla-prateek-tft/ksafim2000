@@ -1,0 +1,52 @@
+@use '../../scss/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.headerButtons {
+  @include theme-action-items;
+}
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  padding: theme-padding('sm');
+  box-sizing: border-box;
+  gap: theme-gap('lg');
+  .topContainer {
+    @include flex-row;
+    justify-content: space-between;
+    gap: theme-gap('md');
+    .formCol {
+      width: 20%;
+      .colItem {
+        width: 100%;
+        @include flex-row;
+      }
+
+      .colItem2 {
+        width: 100%;
+        @include flex-row;
+        margin-top: theme-margin('huge', '30px');
+      }
+      .dateInput {
+        @include flex-row;
+        gap: theme-gap('md');
+        margin-top: theme-margin('lg');
+        margin-bottom: theme-margin('lg');
+      }
+
+      .colIte2 {
+        width: 100%;
+        @include flex-row;
+      }
+    }
+  }
+
+  .parentTableCell {
+    @include flex-row;
+    justify-content: space-around;
+  }
+
+  .learningCenterTableCell {
+    @include flex-row;
+    justify-content: space-around;
+  }
+}

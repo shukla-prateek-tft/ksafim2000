@@ -1,0 +1,19 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.fieldSet {
+  @include theme-fieldset;
+  .section {
+    @include flex-column;
+    gap: theme-gap('lg');
+    padding: theme-padding('md');
+    .container{
+      @include flex-row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+.actionItems {
+  @include theme-action-items;
+}
