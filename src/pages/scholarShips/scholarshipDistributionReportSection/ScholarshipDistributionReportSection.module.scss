@@ -1,0 +1,23 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .selectorAlign {
+    @include flex-row;
+    gap: theme-gap('huge');
+
+    .selector1 {
+      @include flex-row;
+      gap: theme-gap('sm');
+      width: 200px;
+    }
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}

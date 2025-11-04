@@ -1,0 +1,88 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+  gap: theme-gap('lg');
+  .innerContainer {
+    width: 35%;
+    @include flex-row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .innerContainerSecond {
+    width: 60%;
+    .innerBox {
+      @include flex-row;
+      justify-content: space-between;
+      align-items: center;
+      gap: theme-gap('sm');
+    }
+  }
+
+  .titleContainer {
+    @include flex-row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: theme-margin('lg');
+  }
+}
+
+.outerContainer {
+  @include flex-row;
+  justify-content: flex-end;
+}
+
+.topHeaderContainer {
+  @include flex-row;
+  flex-wrap: wrap;
+  gap: theme-gap('lg');
+  flex-direction: row-reverse;
+  margin-top: theme-margin('lg');
+}
+
+.addInvoiceTable {
+  @include flex-row;
+  gap: theme-gap('md');
+  .addInvoiceCell {
+    @include flex-row;
+    align-items: center;
+  }
+
+  .tableHeader {
+    div {
+      text-align: center !important;
+    }
+  }
+  .ListofGefenCell {
+    @include flex-row;
+    justify-content: center;
+    gap: theme-gap('sm');
+  }
+}
+
+.bottomContainer {
+  margin-top: theme-margin('lg');
+}
+
+.innerBottomContainer {
+  @include flex-row;
+  justify-content: space-between;
+  align-items: center;
+
+  .innerFirstInputs {
+    @include flex-row;
+
+    .amountInput {
+      margin-top: 26px;
+    }
+  }
+}
+.innerBottomBox {
+  @include flex-row;
+  width: 45%;
+  justify-content: space-between;
+  align-items: center;
+  gap: theme-gap('sm');
+}
