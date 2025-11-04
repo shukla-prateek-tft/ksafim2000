@@ -1,0 +1,77 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.actionItem {
+  @include theme-action-items;
+}
+
+.bottomInputs {
+  @include flex-row;
+  gap: 40px;
+  justify-content: flex-end;
+  margin-left: 50px;
+}
+
+.renderItem {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+
+.middleContainer {
+  @include flex-column;
+  gap: theme-gap('huge');
+  margin: theme-margin('huge') 0;
+  padding-right: 40%;
+}
+
+.rowContainer {
+  @include flex-row;
+  gap: theme-gap('huge');
+}
+
+.columnContainer {
+  @include flex-column;
+  gap: theme-gap('huge');
+}
+
+.centerContainer {
+  margin-left: 25%;
+}
+
+.container {
+  width: 100%;
+  @include flex-row;
+  justify-content: space-between;
+
+  .col1 {
+    width: 30%;
+
+    .supplierData {
+      @include flex-row;
+      gap: theme-gap('huge');
+    }
+  }
+  .col2 {
+    width: 30%;
+    .col2InputMargin {
+      margin-right: theme-margin('huge', '90px');
+    }
+  }
+
+  .col3 {
+    width: 30%;
+
+    .buttonsContainer {
+      @include flex-row;
+      gap: theme-gap('huge');
+    }
+  }
+}
+
+.emptyData {
+  margin-top: theme-margin('huge', '30px');
+}
+
+.emptyData2 {
+  margin-top: theme-margin('huge', '65px');
+}

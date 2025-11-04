@@ -1,0 +1,12 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.bottomContainer {
+  @include flex-row;
+  justify-content: flex-start;
+  margin-top: theme-margin('huge', '10px');
+}
+
+.flex {
+  @include flex-row;
+}

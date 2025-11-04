@@ -1,0 +1,40 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  width: 70vw;
+  .colFlow {
+    @include flex-row;
+    gap: theme-gap('md');
+    .col {
+      @include flex-column;
+      width: 25%;
+    }
+  }
+
+  .emptySpace {
+    height: 25px;
+  }
+
+  .emptySpace1 {
+    height: 40px;
+  }
+
+  .buttonSearch {
+    @include flex-row;
+    justify-content: center;
+  }
+
+  .textContent {
+    @include flex-row;
+    align-items: center;
+    gap: theme-gap('md');
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: 10px;
+}

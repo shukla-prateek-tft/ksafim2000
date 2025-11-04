@@ -1,0 +1,54 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.dialogBox {
+  width: fit-content;
+}
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+  .fieldSet {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: theme-radius('md');
+    width: 100%;
+    margin-bottom: 10px;
+    align-self: center;
+    border: 0.5px solid lightgray;
+    .legend {
+      color: $secondary;
+      font-weight: 700;
+      font-size: theme-font-size(4px);
+    }
+  }
+  .mainContainer {
+    min-height: 20vh;
+
+    box-sizing: border-box;
+    padding: theme-spacing(1.25);
+    .itemsContainer {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.innerContainer {
+  p {
+    margin: 0;
+    color: $theme_primary;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+.actionItems {
+  @include flex-row;
+  gap: theme-gap('md');
+}
+.flex {
+  @include flex-row;
+  align-items: center;
+  gap: theme-gap('sm');
+}

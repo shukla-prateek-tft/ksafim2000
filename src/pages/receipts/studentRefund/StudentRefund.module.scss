@@ -1,0 +1,79 @@
+@use '../../ui/Styles/theme.scss' as *;
+@use '../../ui/Styles/variables' as *;
+
+.header1 {
+  width: 100%;
+  margin-top: theme-spacing(5); 
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.header2 {
+  width: 100%;
+  margin-top: theme-spacing(5);
+  @include flex-row;
+  .leftHeader2 {
+    width: 50%;
+    @include flex-row;
+  }
+  .rightHeader2 {
+    width: 50%;
+    gap: theme-gap('md');
+    @include flex-row;
+    justify-content: flex-end;
+  }
+}
+
+.header3 {
+  width: 100%;
+  margin-top: theme-spacing(5);
+  @include flex-row;
+  .part1Header3 {
+    width: 20%;
+  }
+  .part2Header3 {
+    width: 40%;
+  }
+  .part3Header3 {
+    width: 20%;
+  }
+  .part4Header3 {
+    width: 20%;
+  }
+}
+
+.header4 {
+  width: 100%;
+  margin-top: theme-spacing(5);
+}
+
+.l_total {
+  width: 30%;
+  margin-top: theme-spacing(5);
+}
+
+.setNumber {
+  width: 100%;
+  margin-top: theme-spacing(5);
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.textContent {
+  width: 100%;
+  margin-top: theme-spacing(7.5);
+  @include flex-row;
+  justify-content: space-between;
+  .leftText,
+  .centerText,
+  .rightText {
+    width: 33%;
+    text-align: center;
+  }
+}
+
+.rowContainer {
+  width: 100%;
+  @include flex-row;
+  gap: theme-gap('md');
+}

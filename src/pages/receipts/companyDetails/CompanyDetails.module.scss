@@ -1,0 +1,18 @@
+@use '../../ui/Styles/variables' as *;
+@use '../../ui/Styles/theme.scss' as *;
+.mainContainer {
+  @include flex-column;
+  flex: 1;
+  box-sizing: border-box;
+
+  .cardConatiner {
+    text-align: center;
+    margin-top: theme-margin('huge');
+    margin-bottom: theme-margin('huge', '10px');
+  }
+
+  .actionItems {
+    @include flex-row;
+    gap: theme-gap('md');
+  }
+}
