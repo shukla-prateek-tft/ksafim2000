@@ -1,6 +1,6 @@
 import { ReportCells, ReportFooter, ReportHeader, ReportPrint } from '@/components/printScreen';
 import { Table } from '@/ui/Table';
-import { PrintableReportCardColumn } from './Components';
+import { PrintableReportCardColumn } from './components';
 import { useTranslation } from 'react-i18next';
 import { getFormatedDate } from '@/utils/commonHelper';
 import classes from './PrintableReportCard.module.scss';
