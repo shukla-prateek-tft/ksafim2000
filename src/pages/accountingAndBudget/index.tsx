@@ -15,6 +15,7 @@ import { CutoutInsertingDoseNumber } from './cutoutInsertingDoseNumber';
 import { GoneForAYear } from './goneForAYear';
 import { IncomeExpenseRportSection } from './incomeExpenseReportSection';
 import { LogCommand } from './logCommandSection';
+import Print_Preview_Suppliers_Invoices from './printPreviewInvoices/Print-Preview-Invoices';
 
 export {
   CutCard,
@@ -33,5 +34,6 @@ export {
   CutoutInsertingDoseNumber,
   GoneForAYear,
   IncomeExpenseRportSection,
-  LogCommand
+  LogCommand,
+  Print_Preview_Suppliers_Invoices
 };
