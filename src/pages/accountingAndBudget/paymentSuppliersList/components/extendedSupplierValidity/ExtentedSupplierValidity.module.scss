@@ -1,0 +1,14 @@
+@use '../../../../../ui/Styles/theme.scss' as *;
+@use '../../../../../ui/Styles/variables' as *;
+
+.container {
+  @include theme-fieldset;
+}
+
+.actionItems {
+  @include theme-action-items;
+}
+
+.mainContainer {
+  width: 600px;
+}
