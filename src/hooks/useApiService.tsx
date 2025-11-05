@@ -1,136 +1,120 @@
-import { useState, useCallback } from 'react';
-import { useQuery, useMutation, QueryKey } from '@tanstack/react-query';
-import { fetchApi } from '@/utils/api';
-import { UseApiQueryOptionsType } from '@/services/types';
+import { useCallback, useReducer } from 'react';
+import axios from 'axios';
+import get from 'lodash/get';
+import makeAdminRequest from './api';
 import { useAuth } from './useAuth';
+import { useTranslation } from 'react-i18next';
 import { useLanguage } from './useLanguage';
+import { ApiState, ServiceFn } from '@/pages/type';
 
-type ServiceFunction<P = any> = (params?: P) => UseApiQueryOptionsType;
+const initialState: ApiState = {
+  loading: false,
+  isSuccess: undefined,
+  data: undefined,
+  isError: undefined,
+  error: undefined
+};
 
-/**
- * Hook for GET operations using React Query
- */
-export function useApiQuery<TData = unknown, TParams = any>(
-  service: ServiceFunction<TParams>,
-  options?: {
-    queryKey?: string | QueryKey;
-    initialParams?: TParams;
-    enabled?: boolean;
-    refetchOnWindowFocus?: boolean;
-    onSuccess?: (data: TData) => void;
-    onError?: (error: unknown) => void;
-    keepPreviousData?: boolean;
+const ACTIONS = {
+  LOADING: 'loading',
+  SUCCESS: 'success',
+  FAILED: 'failed',
+  RESET: 'reset'
+} as const;
+
+type ActionType =
+  | { type: typeof ACTIONS.LOADING; payload: { loading: boolean } }
+  | { type: typeof ACTIONS.SUCCESS; payload: { data: unknown } }
+  | { type: typeof ACTIONS.FAILED; error: { data?: unknown } }
+  | { type: typeof ACTIONS.RESET };
+
+function reducer<T>(state: ApiState<T>, action: ActionType): ApiState<T> {
+  switch (action.type) {
+    case ACTIONS.LOADING:
+      return { ...state, loading: action.payload.loading };
+    case ACTIONS.SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isSuccess: true,
+        data: get(action, 'payload.data', null)
+      };
+    case ACTIONS.FAILED:
+      return {
+        ...state,
+        isSuccess: undefined,
+        data: undefined,
+        loading: false,
+        isError: true,
+        error: action?.error?.data
+      };
+    case ACTIONS.RESET:
+      return { ...initialState };
+    default:
+      return state;
   }
-) {
-  const { user } = useAuth();
-  const { currentLanguage } = useLanguage();
-  const [params, setParams] = useState<TParams | undefined>(options?.initialParams);
-
-  const queryKey = Array.isArray(options?.queryKey)
-    ? [...options.queryKey, params]
-    : [options?.queryKey || service.name, params];
-
-  const query = useQuery<TData>({
-    queryKey,
-    queryFn: async () => {
-      try {
-        const serviceOptions = service(params || options?.initialParams);
-        const res = await fetchApi<TData>(serviceOptions, user?.token ?? '', currentLanguage);
-        
-        // Call onSuccess immediately after successful fetch
-        if (options?.onSuccess) {
-          options.onSuccess(res);
-        }
-        
-        return res;
-      } catch (error) {
-        // Call onError immediately when error occurs
-        if (options?.onError) {
-          options.onError(error);
-        }
-        
-        throw error; // Re-throw to let React Query handle it
-      }
-    },
-    // enabled: options?.enabled !== false,
-    enabled: !!params,
-    refetchOnWindowFocus: options?.refetchOnWindowFocus,
-    keepPreviousData: options?.keepPreviousData
-  });
-
-  // Add the ability to call with new params
-  const callService = useCallback(
-  (newParams?: TParams) => {
-    // if (JSON.stringify(newParams) === JSON.stringify(params)) {
-    //   // Params are the same, force a refetch
-    //   query.refetch();
-    // } else {
-    //   // Params are different, update and let React Query refetch automatically
-    //   setParams(newParams);
-    // }
-    // console.log("new params = ",newParams)
-    setParams(newParams);
-    // query.refetch();
-  },
-  [ query]
-);
-
-  // Reset the service state
-  const resetServiceState = useCallback(() => {
-    return query.remove();
-  }, [query]);
-
-  return {
-    ...query, // Spread all properties from React Query
-    loading:query.isLoading,
-    callService,
-    resetServiceState
-  };
 }
 
-/**
- * Hook for POST/PUT/DELETE operations using React Query
- */
-export function useApiMutation<TData = unknown, TParams = any>(
-  service: ServiceFunction<TParams>,
-  options?: {
-    mutationKey?: string | QueryKey;
-    onSuccess?: (data: TData, variables: TParams) => void;
-    onError?: (error: unknown, variables: TParams) => void;
-    onMutate?: (variables: TParams) => unknown;
-    onSettled?: (data: TData | undefined, error: unknown | null, variables: TParams) => void;
-    invalidateQueries?: QueryKey[];
-  }
-) {
-  const { user } = useAuth();
-  const { currentLanguage } = useLanguage();
+interface UseApiQueryOptions {
+  throwErrorOnFailure?: boolean;
+}
 
-  const mutation = useMutation<TData, unknown, TParams>({
-    mutationKey: options?.mutationKey
-      ? Array.isArray(options.mutationKey)
-        ? options.mutationKey
-        : [options.mutationKey]
-      : [service.name],
-    mutationFn: async (mutationParams: TParams) => {
-      const serviceOptions = service(mutationParams);
-      return fetchApi<TData>(serviceOptions, user?.token ?? '', currentLanguage);
-    },
-    onSuccess: options?.onSuccess,
-    onError: options?.onError,
-    onMutate: options?.onMutate,
-    onSettled: options?.onSettled
-  });
+function useApiQuery<T = undefined, R = undefined>(
+  service: ServiceFn<R>,
+  options: UseApiQueryOptions = {}
+) {
+  const [state, dispatch] = useReducer(reducer<T>, initialState as ApiState<T>);
+  const { user, refreshUserDetails, handleLogout } = useAuth();
+  const { t } = useTranslation('validations');
+  const { currentLanguage } = useLanguage();
+  const cancelTokenSource = axios.CancelToken.source();
+  const { throwErrorOnFailure = false } = options;
+
+  const onSuccess = useCallback((response: unknown) => {
+    dispatch({ type: ACTIONS.SUCCESS, payload: response });
+  }, []);
+
+  const onError = useCallback((error: { data?: unknown }) => {
+    dispatch({ type: ACTIONS.FAILED, error });
+  }, []);
+
+  const resetServiceState = useCallback(() => {
+    dispatch({ type: ACTIONS.RESET });
+  }, []);
 
   const callService = useCallback(
-    (params: TParams) => {
-      return mutation.mutate(params);
+    (inputs?: unknown, extraInputs?: unknown) => {
+      const reqParams = service(inputs, extraInputs);
+      dispatch({ type: ACTIONS.LOADING, payload: { loading: true } });
+      return makeAdminRequest<T>(
+        {
+          ...reqParams,
+          cancelToken: cancelTokenSource.token,
+          language: currentLanguage
+        },
+        {
+          onSuccess,
+          onError,
+          throwErrorOnFailure,
+          handleLogout,
+          token: user?.token,
+          translation: t
+        }
+      );
     },
-    [mutation]
+    [service, onSuccess, onError, throwErrorOnFailure]
   );
 
+  const cancelService = () => {
+    if (cancelTokenSource.cancel) cancelTokenSource.cancel();
+  };
+
   return {
-    ...mutation, // Spread all properties from React Query
-    loading:mutation.isPending,
-    callService
+    state,
+    callService,
+    resetServiceState,
+    cancelService
   };
 }
+
+export default useApiQuery;

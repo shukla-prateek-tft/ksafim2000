@@ -6,8 +6,7 @@ import {
   PrintButton,
   SaveButton
 } from '@/components/commonButtons';
-import { useAuth } from '@/hooks';
-import { useApiQuery } from '@/hooks/useApiService';
+import { useApi, useAuth } from '@/hooks';
 import { ServiceFn, SortDirection } from '@/pages/type';
 import { UseApiQueryOptionsType } from '@/services/types';
 import type {
@@ -96,7 +95,7 @@ const PaymentSuppliersList = ({ headerTitle }: SupplierPaymentListTypes) => {
     loading: getPaymentSupplierLoading2,
     data: paymentSupplierResponse2,
     callService: getPaymentSupplierListService2
-  }: any = useApiQuery<any, Partial<MCFW1370Filters> | null>(getPaymentSuppilerList2 as ServiceFn, {
+  }: any = useApi<any, Partial<MCFW1370Filters> | null>(getPaymentSuppilerList2 as ServiceFn, {
     queryKey: 'getPaymentSupplierList',
     initialParams: null,
     enabled: false,

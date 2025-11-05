@@ -1,0 +1,65 @@
+@use '../../../../../ui/Styles/theme.scss' as *;
+@use '../../../../../ui/Styles/variables' as *;
+.mainContainer {
+  width: 30vw;
+  @include flex-column;
+  font-size: theme-font-size(2px);
+  font-weight: theme-font-weight('medium');
+  align-items: center;
+  .titleBox {
+    @include flex-center;
+    @include theme-shadow(2);
+    margin: theme-margin('xl');
+    margin-bottom: theme-margin('huge', 10px);
+    padding: theme-padding('lg');
+    background-color: $gray-medium;
+    border-radius: theme-radius('md');
+    width: fit-content;
+    align-self: center;
+  }
+  .greenColor {
+    color: $green !important;
+  }
+  .redColor {
+    color: $red !important;
+  }
+
+  .blueColor {
+    color: $blue !important;
+  }
+  .inputContainers {
+    @include flex-column;
+    gap: theme-gap('md');
+  }
+  .contentContainer {
+    @include flex-column;
+    align-items: center;
+    gap: theme-gap('md');
+    margin-top: theme-margin('lg', 20px);
+    .textImportant {
+      background-color: $yellow;
+      border-radius: theme-radius('md');
+      padding: theme-padding('md');
+      width: fit-content;
+    }
+    p {
+      color: $secondary;
+      margin: 2px 0;
+    }
+    .informationText{
+      
+  font-size: theme-font-size();
+    }
+  }
+}
+
+.otpContainer {
+  @include flex-column;
+  align-items: center;
+  gap: theme-gap('md');
+  margin: theme-margin('xl');
+}
+
+.actionItems {
+  @include theme-action-items;
+}

@@ -19,9 +19,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
-    <I18nextProvider i18n={i18n}>
       <Provider store={store}>
         <QueryClientProvider client={queryClient} >
+    <I18nextProvider i18n={i18n}>
         <BrowserRouter>
           <ThemeProvider>
             <OldThemeProvider theme={theme}>
@@ -32,8 +32,8 @@ root.render(
                 </GlobalComponentsContextWrapper>
             </OldThemeProvider>
           </ThemeProvider>
-        </BrowserRouter></QueryClientProvider>
+        </BrowserRouter>
+    </I18nextProvider></QueryClientProvider>
       </Provider>
-    </I18nextProvider>
   </React.StrictMode>
 );

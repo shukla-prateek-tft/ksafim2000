@@ -1,13 +1,12 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { ConfirmChangeType, MainLayout } from '@/components';
-import { AppRoutes } from '@/Languages';
-import { Login } from './login';
 
+import { AppRoutes } from '@/Languages';
 import {
   PaymentSuppliersList,
 } from './suppliers';
 import { PageLayout } from '@/ui/Layout';
+import { Login } from './systemManagement/login';
 
 
 const ProtectedRoute = ({ token, component }) => {
@@ -21,13 +20,13 @@ const AuthenticatedRoutes = [
   },
   {
     path: AppRoutes.PAYMENT_SUPPILER_LIST,
-    element: <PaymentSuppliersList />
+    element: <>Prateek</>
   },
 ];
 const UnauthenticatedRoutes = [
   {
     path: '/login',
-    element: <Login type="adminInterface" />,
+    element: <Login type='adminInterface'/>,
     index: true
   }
 ];

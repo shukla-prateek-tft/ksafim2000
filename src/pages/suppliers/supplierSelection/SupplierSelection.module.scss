@@ -1,0 +1,23 @@
+@use '../../../ui/Styles/theme.scss' as *;
+
+.container {
+  width: 60vw;
+  fieldset {
+    @include theme-fieldset;
+    .legendOther {
+      margin: theme-margin('lg') 0;
+    }
+    .aligner {
+      @include flex-row;
+      justify-content: space-between;
+      width: 85%;
+      .inputAligner {
+        @include flex-row;
+        gap: theme-gap('lg');
+      }
+    }
+  }
+}
+.actionItems{
+    @include theme-action-items;
+}

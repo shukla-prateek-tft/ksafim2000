@@ -13,6 +13,7 @@ import { PaymentSuppliersList } from './pages/suppliers';
 import { GlobalLoader } from './components/loader';
 import { useApi } from './hooks/useAPi';
 import { buildQueryParams } from './utils/commonHelper';
+import { buildJsonApiUrl } from './utils/jsonApiUrlBuilder';
 
 const ToastStyles = createGlobalStyle`
   .Toastify__toast {
@@ -65,11 +66,23 @@ const queryClient = new QueryClient();
 
 function App() {
   const { globalLoading } = useAuth();
-  if (globalLoading) return <GlobalLoader loading={true} showOnFullScreen />;
   useAuthBroadcast();
+  if (globalLoading) return <GlobalLoader loading={true} showOnFullScreen />;
+   // here we are making the url of api with filters and include
+      const url = buildJsonApiUrl({
+        include: ['accountingCard.balance', 'bank', 'city'],
+        filters: {
+          'accountingCard.balance.year':2025,
+          name:'',
+          id: ''
+        },
+        sort: '',
+        pageSize: 12,
+        pageNumber:1
+      });
   const getUserList = (params?: any) => ({
-    url: `/todos`,
-    method: 'POST',
+    url:url,
+    method: 'GET',
     params // gets attached as query params
   });
 
@@ -79,11 +92,11 @@ function App() {
   useEffect(() => {
 
     //POST
-    callService({
-      title: 'foo',
-      body: 'bar',
-      userId: 1
-    });
+    // callService({
+    //   title: 'foo',
+    //   body: 'bar',
+    //   userId: 1
+    // });
     //GET
      callService({});
   }, []);
@@ -106,7 +119,7 @@ function App() {
           draggable
           limit={2}
         />
-        {/* <Pages /> */}
+        <Pages />
       </ErrorBoundary>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

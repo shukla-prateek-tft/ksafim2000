@@ -1,0 +1,33 @@
+@use '../../../ui/Styles/theme.scss' as *;
+@use '../../../ui/Styles/variables' as *;
+
+.greenColor {
+  color: rgb(2, 94, 2) !important;
+}
+.redColor {
+  color: red !important;
+}
+
+.blueColor {
+  color: blue !important;
+}
+.container {
+  width: 50vw;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .mainContent {
+    margin-bottom: 20px;
+    .inputContainer {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+  }
+}
+.customRow{
+  padding: theme-padding('sm');
+  font-weight: theme-font-weight('semiBold');
+  font-size: theme-font-size(2px);
+}
