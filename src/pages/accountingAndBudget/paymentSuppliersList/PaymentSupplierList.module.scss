@@ -1,0 +1,83 @@
+@use '../../../ui/Styles/theme.scss' as *;
+@use './../../../ui/Styles/variables' as *;
+
+$payment-supplier-scales: (
+  primary,
+  secondary
+);
+
+@mixin payment-supplier-theme-vars($scale) {
+  --payment-supplier-background-color: var(--#{$scale}-background);
+
+  @if $scale =='primary' {
+    --payment-supplier-background-color: var(--#{$scale}-buttonBackground);
+  }
+}
+
+.globalContainer{
+  @include flex-column;
+  gap: theme-gap('md');
+  @each $scale in $payment-supplier-scales {
+    &.scale-#{$scale} {
+      @include payment-supplier-theme-vars($scale);
+    }
+  }
+}
+.mainContainer {
+  @include flex-row;
+  justify-content: space-between;
+  .inputHeaderContainer {
+    @include flex-row;
+    flex: 4;
+    width: 100%;
+    gap: theme-gap('md')
+}
+  .checkboxContainer {
+    @include flex-row;
+    justify-content: space-around;
+    flex: 2;
+  }
+  .headerButtonContainer {
+    @include flex-row;
+    justify-content: space-around;
+    align-items: center;
+    gap: theme-gap('md')
+  }
+}
+
+.topHeaderContainer {
+  display: flex;
+  gap: 10px;
+  flex-direction: row-reverse;
+}
+.actionButtonContainers {
+  @include flex-row;
+    gap: theme-gap('md')
+}
+.supplierTable {
+  .supplierNumberCell {
+    @include flex-row;
+    gap: theme-gap('sm');
+    align-items: center;
+  }
+
+}
+
+.paymentTableContainer {
+  .paymentTableBody {
+    height: 20vh;
+  }
+  .underLinedCell {
+    text-decoration: underline;
+    cursor: pointer;
+    color: $secondary;
+  }
+  .paymentCell {
+    @include flex-row;
+    align-items: center;
+  }
+}
+
+.icon{
+  color: var(--payment-supplier-background-color);
+}

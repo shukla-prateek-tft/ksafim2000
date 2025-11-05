@@ -1,0 +1,38 @@
+@use '../../../../../ui/Styles/theme.scss' as *;
+@use '../../../../../ui/Styles/variables' as *;
+
+.summary {
+  width: 80%;
+  div {
+    @include flex-row;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin: 0;
+    p {
+      margin: 0;
+      display: flex;
+      text-align: right;
+      div {
+        @include flex-column;
+      }
+      span {
+        min-width: 100px;
+        display: block;
+        margin-right: theme-margin('md');
+        background-color: $gray-light;
+        border-radius: theme-radius('sm');
+        padding: theme-padding('sm');
+        height: 20px;
+        margin-bottom: theme-margin('sm');
+        b {
+          width: 40px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.actionItems {
+  @include theme-action-items;
+}
