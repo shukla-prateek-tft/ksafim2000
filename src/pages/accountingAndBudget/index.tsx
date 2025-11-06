@@ -16,9 +16,12 @@ import { GoneForAYear } from './goneForAYear';
 import { IncomeExpenseRportSection } from './incomeExpenseReportSection';
 import { LogCommand } from './logCommandSection';
 import Print_Preview_Suppliers_Invoices from './printPreviewInvoices/Print-Preview-Invoices';
+import { StudentBalanceTransferSection } from './studentBalanceTransferSection';
+import { ExpenseRevenue } from './expenseRevenue';
 
 export {
   CutCard,
+  ExpenseRevenue,
   DulpicateCancelExistingPortion,
   DepositJournalSection,
   PerennialPard,
@@ -35,5 +38,6 @@ export {
   GoneForAYear,
   IncomeExpenseRportSection,
   LogCommand,
+  StudentBalanceTransferSection,
   Print_Preview_Suppliers_Invoices
 };
