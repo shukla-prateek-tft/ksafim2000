@@ -13,7 +13,6 @@ import { PaymentSuppliersList } from './pages/suppliers';
 import { GlobalLoader } from './components/loader';
 import { useApi } from './hooks/useAPi';
 import { buildQueryParams } from './utils/commonHelper';
-import { buildJsonApiUrl } from './utils/jsonApiUrlBuilder';
 
 const ToastStyles = createGlobalStyle`
   .Toastify__toast {
@@ -66,39 +65,94 @@ const queryClient = new QueryClient();
 
 function App() {
   const { globalLoading } = useAuth();
-  useAuthBroadcast();
   if (globalLoading) return <GlobalLoader loading={true} showOnFullScreen />;
-   // here we are making the url of api with filters and include
-      const url = buildJsonApiUrl({
-        include: ['accountingCard.balance', 'bank', 'city'],
-        filters: {
-          'accountingCard.balance.year':2025,
-          name:'',
-          id: ''
-        },
-        sort: '',
-        pageSize: 12,
-        pageNumber:1
-      });
+  useAuthBroadcast();
+
   const getUserList = (params?: any) => ({
-    url:url,
+    url: `/suppliers`,
     method: 'GET',
-    params // gets attached as query params
+    params
+  });
+  const createInvoice = (params?: any) => ({
+    url: `/invoices`,
+    method: 'POST',
+    data: params
   });
 
-  const { loading, callService, data, isError, error } = useApi(getUserList, {
-    onSuccess: () => console.log('User created!'),
+  const { loading, callService, data, isError, error } = useApi(createInvoice, {
+    onSuccess: () => console.log('User created!'),onError:(error)=>{console.log(error,'Eroor hai bhai');
+    }
   });
   useEffect(() => {
-
-    //POST
-    // callService({
-    //   title: 'foo',
-    //   body: 'bar',
-    //   userId: 1
-    // });
-    //GET
-     callService({});
+    callService({
+      data: {
+        type: 'invoices',
+        id: '10000001',
+        attributes: {
+          actionNumber: '',
+          year: 2025,
+          tot_inv: 100,
+          acc_act_type: 5,
+          student: 12323,
+          t703Dto: {
+            user_Name: 'irena.b        ',
+            pay_Date: '2025-11-06T00:00:00.000+02:00',
+            supp: null,
+            desc_Aut: null,
+            oposit_Card: 9004683462,
+            stamp_Idate: '2025-11-06T00:00:00.000+02:00',
+            date_Aut: '2025-01-08T00:00:00.000+02:00',
+            inv_Desc_Aut: '23123, test',
+            type_No: null
+          },
+          invoiceLinesDto: [
+            {
+              lineNumber: 1,
+              catalogNo: 999999999,
+              description: 'test',
+              amount: 1,
+              price: 100,
+              inv_acc_card: 3110,
+              inv_service_type: 2010,
+              inv_service_subject: 2,
+              vat_type: 1,
+              vat_sum: 15.25,
+              discount: 0,
+              price_with_vat: 100,
+              sug_taktziv: null
+            }
+          ]
+        },
+        relationships: {
+          institution: {
+            data: {
+              type: 'institutions',
+              id: '244111'
+            }
+          },
+          supplier: {
+            data: {
+              type: 'suppliers',
+              id: ''
+            }
+          },
+          t703: {
+            data: {
+              type: 't703s',
+              id: '114348-2024-100123'
+            }
+          },
+          lines: {
+            data: [
+              {
+                type: 'invoice-lines',
+                id: 'line-1'
+              }
+            ]
+          }
+        }
+      }
+    });
   }, []);
   console.log(data, isError, error);
 

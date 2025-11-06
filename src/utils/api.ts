@@ -11,15 +11,17 @@ export const fetchApi = async <T>(
   language: string
 ): Promise<T> => {
   try {
+    console.log('hello bro');
+    
     const fetchOptions: RequestInit = {
       method: options.method || 'GET',
       headers: {
-        'X-TenantId': 'In_111_M',
+        ...options.headers,
+        'X-TenantId': 'IN_244111_M_2',
         Accept: 'application/vnd.api+json',
         'Content-Type': 'application/vnd.api+json',
-        Authorization: token ? `Bearer ${token}` : '',
+        // Authorization: token ? `Bearer ${token}` : '',
         'Accept-Language': language || 'en',
-        ...options.headers
       }
     };
 
