@@ -18,7 +18,6 @@ PAYMENT_VOUCHER_PRINT: '/payment-voucher-print',
 SPENDING_VOUCHER_WITH_ITEMS: '/spending-voucher-with-items',
 SPENDING_VOUCHER: '/spending-voucher',
 PAYMENT_INFORMATION_QUERY: '/payment-information-query',
-CUT_OFF_VOUCHER_PAYMENT: '/cut-off-voucher-payment'
   
 };
 

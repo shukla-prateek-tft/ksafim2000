@@ -2,6 +2,7 @@ import ConfigChangeDailogBox from '@/components/configChangeDialog/ConfigChangeD
 import { ConfirmationDialogueBox } from '@/components/confirmModal';
 import { useAuth } from '@/hooks';
 import { AppRoutes } from '@/Languages';
+import { GoToScreen } from '@/pages/systemManagement';
 import {
   getListOfInvoicesParamsType,
   getListOfInvoicesReportsParamsType
@@ -169,7 +170,7 @@ export const RenderGlobalComponents: React.FC = React.memo(() => {
       >
         
       </DialogBox>
-      
+      <GoToScreen isOpen={flags?.goToScreen} onClose={() => toggleFlags('goToScreen', false)} />
       <DialogBox
         title={`${t('titleName')}*${user?.instiCode}-${user?.instiName}*${
           user?.hebrewYear

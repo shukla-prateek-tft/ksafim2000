@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { AppRoutes } from '@/Languages';
 import { NavigateState } from './types';
 
-const PaymentVoucherCancellationSection = () => {
+const PaymentVoucherCancellationSection = ({onClose}) => {
   const navigate = useNavigate();
 
   const [bankAccount, setBankAccount] = useState<string>('');
@@ -31,7 +31,7 @@ const PaymentVoucherCancellationSection = () => {
   const renderActionItems = () => {
     return (
       <div className={classes.renderActionItems}>
-        <BackToPageButton tabIndex={7}/>
+        <BackToPageButton tabIndex={7} onClick={onClose}/>
         <DetailButton tabIndex={6} />
         <SaveButton onClick={onSave} tabIndex={5} />
       </div>

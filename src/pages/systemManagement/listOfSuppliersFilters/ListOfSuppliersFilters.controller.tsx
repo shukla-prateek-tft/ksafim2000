@@ -8,7 +8,7 @@ const ListOfSuppliersFilters = ({ isOpen, onClose }: any) => {
   const renderActionItems = () => {
     return (
       <div className={classes.actionItems}>
-        <BackToPageButton />
+        <BackToPageButton onClick={ onClose} />
         <DetailButton />
         <SaveButton />
       </div>
