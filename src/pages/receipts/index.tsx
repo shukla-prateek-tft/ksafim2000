@@ -28,9 +28,17 @@ import { StudentFeeAndDiscount } from './studentFeeAndDiscount';
 import { InvoiceDisplay } from './invoiceDisplay';
 import { FindingCollectionPlan } from './findingCollectionPlan';
 import { PrintSupplier } from './printSupplier';
+import { DetailedSiblingReport } from './detailedSiblingReport';
+import { SiblingReportSection } from './siblingReportSection';
+import { PermanentMovements } from './permanentMovements';
+import { StudentsWithoutPermanentTeaching } from './studentsWithoutPermanentTeaching';
 
 export {
   ReceivingBills,
+   StudentsWithoutPermanentTeaching,
+  PermanentMovements,
+  SiblingReportSection,
+  DetailedSiblingReport,
   ReceivingReceiptsFromPlachard,
   ReturningPartialReciptCashRegister,
   ReturningReceiptFromCashRegisterScreen,
