@@ -1,5 +1,5 @@
-@use '../../scss/variables' as *;
-@use '../../ui/Styles/theme.scss' as *;
+@use '../../../scss/variables' as *;
+@use '../../../ui/Styles/theme.scss' as *;
 
 .flex {
   @include flex-row;

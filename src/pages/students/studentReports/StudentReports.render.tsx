@@ -12,7 +12,8 @@ import {
   PrintExcel,
   Button
 } from '@/components/commonButtons';
-import { Flex } from '@/components';
+
+import { Flex } from '@/ui/Flex/Flex';
 import { Input } from '@/ui/Input';
 import { Card } from '@/ui/Card';
 import { DatePicker } from '@/ui/DatePicker';

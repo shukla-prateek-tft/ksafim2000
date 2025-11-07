@@ -1,5 +1,5 @@
 import classes from './GoneForAYear.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Card } from '@/ui/Card';
 import { Input } from '@/ui/Input';
 import { useTranslation } from 'react-i18next';

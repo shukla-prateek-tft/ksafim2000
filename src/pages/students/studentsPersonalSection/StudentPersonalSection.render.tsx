@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/ui/Input';
 import { Select } from '@/ui/Select';
 import { GroupRadio } from '@/ui/GroupRadio';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { REGEX } from '@/constants/appConstant';
 
 interface StudentPersonalSectionUIProps {

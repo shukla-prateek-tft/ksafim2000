@@ -1,5 +1,5 @@
 import classes from './ReturningReceiptFromCashRegister.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Input } from '@/ui/Input';
 import { getInputPattern } from '@/utils/commonHelper';
 import { useTranslation } from 'react-i18next';

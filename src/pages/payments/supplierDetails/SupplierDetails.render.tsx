@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from '@/ui/Input';
 import classes from './SupplierDetails.module.scss';
 import { useTranslation } from 'react-i18next';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { REGEX } from '@/constants/appConstant';
 import { getInputPattern } from '@/utils/commonHelper';
 

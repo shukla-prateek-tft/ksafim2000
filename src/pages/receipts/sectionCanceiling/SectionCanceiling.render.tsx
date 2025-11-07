@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import classes from './SectionCanceiling.module.scss';
 import { Input } from '@/ui/Input';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 interface SectionCanceilingProps {
   renderActionItems?: () => JSX.Element | null;
 }

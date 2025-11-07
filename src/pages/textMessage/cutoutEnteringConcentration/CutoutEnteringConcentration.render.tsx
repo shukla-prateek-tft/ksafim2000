@@ -19,7 +19,8 @@ import { Card } from '@/ui/Card';
 import { Input } from '@/ui/Input';
 import { Select } from '@/ui/Select';
 import { GroupRadio } from '@/ui/GroupRadio';
-import { Flex } from '@/components';
+
+import { Flex } from '@/ui/Flex/Flex';
 
 const data2 = [
   {

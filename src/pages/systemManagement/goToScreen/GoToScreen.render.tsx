@@ -1,6 +1,6 @@
 import classes from './GoToScreen.module.scss';
 import { useTranslation } from 'react-i18next';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Input } from '@/ui/Input';
 import { getInputPattern } from '@/utils/commonHelper';
 const GoToScreenUI = ({ renderActionItems, screenNumber, setScreenNumber }: any) => {

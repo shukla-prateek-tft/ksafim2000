@@ -1,5 +1,6 @@
 import React from 'react';
-import { Flex } from '@/components';
+
+import { Flex } from '@/ui/Flex/Flex';
 import classes from './userAndPermissionManagement.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/commonButtons';

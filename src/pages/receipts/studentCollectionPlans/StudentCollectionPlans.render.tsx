@@ -3,7 +3,7 @@ import classes from './StudentCollectionPlans.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/ui/Input';
 import { Select } from '@/ui/Select';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { RangeSelector } from '@/ui/DateRangePicker';
 import { REGEX } from '@/constants/appConstant';
 

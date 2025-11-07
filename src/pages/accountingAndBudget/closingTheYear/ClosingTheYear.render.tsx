@@ -1,5 +1,5 @@
 import classes from './ClosingTheYear.module.scss';
-import { BottomToolBar } from '@/components';
+
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/commonButtons';
 import { attachMultipleClasses } from '@/Languages';

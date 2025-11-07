@@ -1,5 +1,5 @@
 import classes from './CentralizedCharge.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Card } from '@/ui/Card';
 import { Input } from '@/ui/Input';
 import { useState } from 'react';

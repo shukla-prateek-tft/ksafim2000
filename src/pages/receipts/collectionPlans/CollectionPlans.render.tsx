@@ -16,7 +16,8 @@ import {
 import { Card } from '@/ui/Card';
 import { Input } from '@/ui/Input';
 import { Select } from '@/ui/Select';
-import { Flex } from '@/components';
+
+import { Flex } from '@/ui/Flex/Flex';
 import { BiSend } from 'react-icons/bi';
 import { REGEX } from '@/constants/appConstant';
 import { DatePicker } from '@/ui/DatePicker';

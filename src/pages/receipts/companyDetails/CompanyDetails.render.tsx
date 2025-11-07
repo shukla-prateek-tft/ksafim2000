@@ -1,5 +1,5 @@
 import classes from './CompanyDetails.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Input } from '@/ui/Input';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/ui/Card';

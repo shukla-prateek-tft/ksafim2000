@@ -1,6 +1,5 @@
-@use '../../ui/Styles/theme.scss' as *;
-@use '../../ui/Styles/variables' as *;
-
+@use '../../../ui/Styles/theme.scss' as *;
+@use '../../../ui/Styles/variables' as *;
 .header1 {
   width: 100%;
   margin-top: theme-margin('lg');

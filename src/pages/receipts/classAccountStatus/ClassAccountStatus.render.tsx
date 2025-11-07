@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './ClassAccountStatus.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Input, SelectWithInput } from '@/ui/Input';
 import { useTranslation } from 'react-i18next';
 import { RangeSelector } from '@/ui/DateRangePicker';

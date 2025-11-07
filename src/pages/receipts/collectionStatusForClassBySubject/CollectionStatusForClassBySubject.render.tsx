@@ -12,8 +12,7 @@ import {
   SearchButton,
   PrintExcel
 } from '@/components/commonButtons';
-import { Flex } from '@/components';
-
+import { Flex } from '@/ui/Flex/Flex';
 interface ListScholarshipForStudentsReportProps {
   data: Array<Record<string, string>>;
 }

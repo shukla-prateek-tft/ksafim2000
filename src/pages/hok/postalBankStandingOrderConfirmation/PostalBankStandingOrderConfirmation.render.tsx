@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import { Flex } from '@/components';
+
+import { Flex } from '@/ui/Flex/Flex';
 import { Input } from '@/ui/Input';
 import { getInputPattern } from '@/utils/commonHelper';
 import classes from './PostalBankStandingOrderConfirmation.module.scss';

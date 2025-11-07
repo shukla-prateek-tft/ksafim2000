@@ -1,5 +1,5 @@
 import classes from './ClassRoomsInTheInstitution.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { useTranslation } from 'react-i18next';
 import { Table } from '@/ui/Table';
 import { ClassRoomsInTheInstitutionColumn } from './components';

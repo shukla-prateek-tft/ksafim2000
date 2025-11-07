@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './BankAdjustment.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Table } from '@/ui/Table';
 import { useTranslation } from 'react-i18next';
 import { BankAdjustmentColumns } from './components';

@@ -14,7 +14,8 @@ import {
 } from '@/components/commonButtons';
 import { Card } from '@/ui/Card';
 import { Input } from '@/ui/Input';
-import { Flex } from '@/components';
+
+import { Flex } from '@/ui/Flex/Flex';
 import { BottomToolBar } from '@/ui/BottomToolBar';
 import {
   ClosingInvoiceProps

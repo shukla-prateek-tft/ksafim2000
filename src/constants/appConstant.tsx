@@ -2,7 +2,24 @@ export const STORAGE_KEY = import.meta.env.VITE_SECURE_LOCAL_STORAGE_KEY;
 export const AppRoutes = {
   // Admin Routes
   LOGIN: '/login',
-  PAYMENT_SUPPILER_LIST: '/payment-supplier-list',
+ANALYSIS_UNDERLYING_TABLES: '/analysis-underlying-tables',
+DEPARTMENT_OF_EDUCATION: '/department-of-education',
+LIST_OF_SUPPLIERS: '/list-of-suppliers',
+USER_MANAGEMENT_AND_PERMISSIONS: '/system-management/user-management-and-permissions',
+PAYMENT_METHODS: '/system-management/payment-methods',
+SMALL_CAP_EXPENSES: '/petty-cash/small-cap-expenses',
+PUTTING_CHIC_INTO_SMALL_CASH_REGISTER: '/petty-cash/putting-chic-into-small-cash-register',
+SMALL_BOX_OFFICE_MOVEMENTS_REPORT: '/petty-cash/small-box-office-movements-report',
+ACCEPTING_MONEY_FROM_SMALL_FUND: '/petty-cash/accepting-money-from-small-fund',
+SUMMARY_SMALL_BOX_OFFICE: '/summary-small-box-office',
+SMALL_BOX_OFFICE_CLOSURE: '/small-box-office-closure',
+PAYMENT_VOUCHER: '/payment-voucher',
+PAYMENT_VOUCHER_PRINT: '/payment-voucher-print',
+SPENDING_VOUCHER_WITH_ITEMS: '/spending-voucher-with-items',
+SPENDING_VOUCHER: '/spending-voucher',
+PAYMENT_INFORMATION_QUERY: '/payment-information-query',
+CUT_OFF_VOUCHER_PAYMENT: '/cut-off-voucher-payment'
+  
 };
 
 export const API_ROUTES = {

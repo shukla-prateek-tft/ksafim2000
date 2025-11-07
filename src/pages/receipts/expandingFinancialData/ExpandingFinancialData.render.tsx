@@ -1,6 +1,6 @@
 import DatePickerComponent from '@/ui/DatePicker/DatePicker';
 import classes from './ExpandingFinancialData.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Input } from '@/ui/Input';
 import { Select } from '@/ui/Select';
 import { useTranslation } from 'react-i18next';

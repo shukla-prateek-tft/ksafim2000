@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useApiQuery, useAuth } from '@/hooks';
 import { adminServices } from '@/services';
-import styles from './Print_Preview_Entered_Invoice.module.scss';
+import styles from './PrintPreviewEnteredInvoice.module.scss';
 import { BackToPageButton, PrintButton } from '@/components/commonButtons';
 import { ReportFooter, ReportPrint } from '@/components/printScreen';
 import { Table } from '@/ui/Table';

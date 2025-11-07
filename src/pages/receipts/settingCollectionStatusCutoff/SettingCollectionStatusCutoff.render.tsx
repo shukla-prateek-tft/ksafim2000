@@ -3,7 +3,7 @@ import classes from './SettingCollectionStatusCutoff.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/ui/Input';
 import { Select } from '@/ui/Select';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { ListBox } from '@/ui/ListBox';
 import { GroupRadio } from '@/ui/GroupRadio';
 import Badge from '@/ui/Badge/Badge';

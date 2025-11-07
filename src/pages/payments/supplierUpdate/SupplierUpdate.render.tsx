@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './SupplierUpdate.module.scss';
-import { BottomToolBar } from '@/components';
+import { BottomToolBar } from '@/ui/BottomToolBar';
 import { Input } from '@/ui/Input';
 import { useTranslation } from 'react-i18next';
 import { GroupRadio } from '@/ui/GroupRadio';

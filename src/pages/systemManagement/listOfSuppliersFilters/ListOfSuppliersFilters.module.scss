@@ -1,5 +1,5 @@
-@use '../../ui/Styles/theme.scss' as *;
-@use '../../ui/Styles/variables' as *;
+@use '../../../ui/Styles/theme.scss' as *;
+@use '../../../ui/Styles/variables' as *;
 .container {
   @include flex-column;
   width: 40vw;
