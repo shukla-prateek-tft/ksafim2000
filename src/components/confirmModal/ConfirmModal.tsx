@@ -46,6 +46,7 @@ const ConfirmationDialogueBox: React.FC<ConfirmationDialogueBoxProps> = ({
       isOpen={show}
       onClose={onClose ? onClose : onCancel}
       type={type}
+      important={true}
     >
       <div className={styles.confirmationDialogueBox}>
         {otherContent ? (
