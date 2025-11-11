@@ -8,10 +8,9 @@ import { Payload } from './types';
 import { useAuth } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 import { useFocusFirstInvalidField } from '@/hooks/useFocusFirstInvalidField';
-
 const PaymentVoucherCancellationSection = ({ onClose }: any) => {
-  const {t}=useTranslation('')
-  const {toggleFlags}=useAuth()
+  const { t } = useTranslation('');
+  const { toggleFlags } = useAuth();
   const [payload, setPayload] = useState<Payload>({
     bank_Card: '',
     expense: '',
@@ -19,33 +18,25 @@ const PaymentVoucherCancellationSection = ({ onClose }: any) => {
     suppNum: '',
     isExpenseCash: false
   });
-const {focusFirstInvalidField}=useFocusFirstInvalidField()
+  const { focusFirstInvalidField } = useFocusFirstInvalidField();
   const onSave = () => {
-    console.log('hello');
-    
-    if(payload?.bank_Card===''){
+    const showError = (inputId: string) => {
       toggleFlags({
         showValidationError: true,
         errorData: {
           message: t('L_NO_SUPP'),
           dialogTitle: t('errorTitle'),
           confirmText: t('confirmText'),
-          confirmCallback: () => focusFirstInvalidField('')
+          confirmCallback: () => focusFirstInvalidField(inputId)
         }
       });
-        return
-    }
-      if(payload?.expense===''){
-      toggleFlags({
-        showValidationError: true,
-        errorData: {
-          message: t('L_NO_SUPP'),
-          dialogTitle: t('errorTitle'),
-          confirmText: t('confirmText'),
-          confirmCallback: () => focusFirstInvalidField('')
-        }
-      });
-        return
+      return;
+    };
+
+    if (payload?.bank_Card === '') {
+      showError('bank_Card');
+    } else if (payload?.expense === '' && payload?.suppNum === '') {
+      showError('suppNum');
     }
     //Navigate to next screen with payload
   };

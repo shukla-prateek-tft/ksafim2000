@@ -11,7 +11,7 @@
  * @param {string} formName - Original form name to process
  * @returns {Object} Object containing converted form_name and form_number
  */
-function convertFormNameGp(formName: string) {
+function gp_trg_fgf(formName: string) {
   let convertedFormName = '';
   let formNumber = '';
 
@@ -41,4 +41,5 @@ function convertFormNameGp(formName: string) {
     original_name: formName
   };
 }
-export { convertFormNameGp};
+
+export { gp_trg_fgf};
