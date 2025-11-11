@@ -12,28 +12,28 @@ import { ThemeProvider as OldThemeProvider } from 'styled-components';
 import theme from './utils/theme';
 import { ThemeProvider } from './store/contexts/ThemeContext';
 import GlobalComponentsContextWrapper from './store/contexts/GlobalComponentsContext';
-import { QueryClientProvider,QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient} >
-    <I18nextProvider i18n={i18n}>
-        <BrowserRouter>
-          <ThemeProvider>
-            <OldThemeProvider theme={theme}>
-              <GlobalComponentsContextWrapper>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient} >
+        <I18nextProvider i18n={i18n}>
+          <BrowserRouter>
+            <ThemeProvider>
+              <OldThemeProvider theme={theme}>
                 <AuthContextWrapper>
+                  <GlobalComponentsContextWrapper>
                     <App />
+                  </GlobalComponentsContextWrapper>
                 </AuthContextWrapper>
-                </GlobalComponentsContextWrapper>
-            </OldThemeProvider>
-          </ThemeProvider>
-        </BrowserRouter>
-    </I18nextProvider></QueryClientProvider>
-      </Provider>
+              </OldThemeProvider>
+            </ThemeProvider>
+          </BrowserRouter>
+        </I18nextProvider></QueryClientProvider>
+    </Provider>
   </React.StrictMode>
 );
