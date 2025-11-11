@@ -42,6 +42,9 @@ const SummaryPettyCash = () => {
 
   useEffect(() => {
     getSmallCashRegisterSummaryService({ ...params });
+    console.log("data reterive");
+    
+    reteriveData();
   }, []);
 
   useEffect(() => {
@@ -67,7 +70,7 @@ const SummaryPettyCash = () => {
   // let $$s1 = 'asdsadn'; // frpm $$acc_no find key "$bank_card$"
   // let query_params_header = `${t('L_BANK_ACC')}: ${$$s1}`;
   // let $total$ = 0;
-  // let title_dummy_summery = t('L_MCFR0695_H1');
+  // let title = t('L_MCFR0695_H1');
 
   const reteriveData = async () => {
     const $$form_id = 'mcfs0695';
@@ -84,73 +87,73 @@ const SummaryPettyCash = () => {
     const summaryItems = [];
 
     // --- 1st occurrence ---
-    let title_dummy_summery = t('L_MCFR0695_H1');
+    let title = t('L_MCFR0695_H1');
 
     // TODO: replace the following with an API call that returns a number
     // Example:
-    // const credit_sum_dummy_summery = await api.getCreditSum({ bankCard: $bank_card$, ... });
-    const credit_sum_dummy_summery = 0; // placeholder for selectdb (sum(credit)) from "t711" ...
-    const debit_sum_dummy_summery = 0; // placeholder if needed in this block
+    // const credit_sum = await api.getCreditSum({ bankCard: $bank_card$, ... });
+    const credit_sum = 0; // placeholder for selectdb (sum(credit)) from "t711" ...
+    const debit_sum = 0; // placeholder if needed in this block
 
-    totCredit += credit_sum_dummy_summery;
-    total = total + credit_sum_dummy_summery - debit_sum_dummy_summery;
+    totCredit += credit_sum;
+    total = total + credit_sum - debit_sum;
 
     summaryItems.push({
-      title_dummy_summery,
-      credit_sum_dummy_summery,
-      debit_sum_dummy_summery,
-      total_sum_dummy_summery: total
+      title,
+      credit_sum,
+      debit_sum,
+      total_sum: total
     });
 
     // --- 2nd occurrence ---
-    title_dummy_summery = t('L_MCFR0695_H2');
+    title = t('L_MCFR0695_H2');
 
     // TODO: replace with actual API call
-    const debit_sum_dummy_summery_2 = 0; // selectdb (sum(debit)) ... (is_temp = 1 | 2)
-    const credit_sum_dummy_summery_2 = 0; // maybe zero here as in original
+    const debit_sum_2 = 0; // selectdb (sum(debit)) ... (is_temp = 1 | 2)
+    const credit_sum_2 = 0; // maybe zero here as in original
 
-    totDebit += debit_sum_dummy_summery_2;
-    total = total + credit_sum_dummy_summery_2 - debit_sum_dummy_summery_2;
+    totDebit += debit_sum_2;
+    total = total + credit_sum_2 - debit_sum_2;
 
     summaryItems.push({
-      title_dummy_summery,
-      credit_sum_dummy_summery: credit_sum_dummy_summery_2,
-      debit_sum_dummy_summery: debit_sum_dummy_summery_2,
-      total_sum_dummy_summery: total
+      title,
+      credit_sum: credit_sum_2,
+      debit_sum: debit_sum_2,
+      total_sum: total
     });
 
     // --- 3rd occurrence ---
-    title_dummy_summery = t('L_MCFR0695_H3');
+    title = t('L_MCFR0695_H3');
 
     // TODO: replace with actual API call
-    const debit_sum_dummy_summery_3 = 0; // selectdb (sum(debit)) ... (is_temp = 0)
-    const credit_sum_dummy_summery_3 = 0;
+    const debit_sum_3 = 0; // selectdb (sum(debit)) ... (is_temp = 0)
+    const credit_sum_3 = 0;
 
-    totDebit += debit_sum_dummy_summery_3;
-    total = total + credit_sum_dummy_summery_3 - debit_sum_dummy_summery_3;
+    totDebit += debit_sum_3;
+    total = total + credit_sum_3 - debit_sum_3;
 
     summaryItems.push({
-      title_dummy_summery,
-      credit_sum_dummy_summery: credit_sum_dummy_summery_3,
-      debit_sum_dummy_summery: debit_sum_dummy_summery_3,
-      total_sum_dummy_summery: total
+      title,
+      credit_sum: credit_sum_3,
+      debit_sum: debit_sum_3,
+      total_sum: total
     });
 
     // --- 4th occurrence: Totals ---
-    title_dummy_summery = t('L_TOTAL');
+    title = t('L_TOTAL');
 
     // use totals computed above
-    const credit_sum_dummy_summery_total = totCredit;
-    const debit_sum_dummy_summery_total = totDebit;
+    const credit_sum_total = totCredit;
+    const debit_sum_total = totDebit;
 
     // update the final running total (if required)
-    total = total + credit_sum_dummy_summery_total - debit_sum_dummy_summery_total;
+    total = total + credit_sum_total - debit_sum_total;
 
     summaryItems.push({
-      title_dummy_summery,
-      credit_sum_dummy_summery: credit_sum_dummy_summery_total,
-      debit_sum_dummy_summery: debit_sum_dummy_summery_total,
-      total_sum_dummy_summery: total
+      title,
+      credit_sum: credit_sum_total,
+      debit_sum: debit_sum_total,
+      total_sum: total
     });
 
     // finally, push to state once (avoids repeated setState calls)
@@ -171,7 +174,7 @@ const SummaryPettyCash = () => {
 
   return (
     <SummaryPettyCashUI
-      data={smallCashRegisterSummaryResponse?.data || {}}
+      data={summaryData || []}
       renderActionItems={renderActionItems}
       handleApiSorting={handleApiSorting}
     />
