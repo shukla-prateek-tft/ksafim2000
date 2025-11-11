@@ -3,6 +3,8 @@
 @use 'sass:string';
 @use 'sass:color';
 @use './variables' as *;
+@forward './font';
+
 
 @function theme-font-size($offset: 0px) {
   $min: calc(var(--font-baseSize) + #{$offset});
@@ -163,6 +165,10 @@
   display: block;
   min-width: 100px;
   font-weight: theme-font-weight('medium');
+  @media print{
+      font-family: Narkissim Regular;
+      font-size: 14pt;
+  }
 }
 
 @mixin page-default {

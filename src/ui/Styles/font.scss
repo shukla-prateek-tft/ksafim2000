@@ -1,0 +1,63 @@
+// ==========================================
+// 📦 Google Font Imports
+// ==========================================
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;700&family=Varela+Round&family=Heebo:wght@400;700&display=swap');
+
+// ==========================================
+// 🗺️ Font Map
+// ==========================================
+$fonts: (
+  logo: ('Tahoma', 14px, 400, none),
+  bold: ('Arial', 15px, bold, none),
+  underline: ('Arial', 15px, bold, underline),
+  TitleFont: ('Frank Ruhl Libre', 43px, 400, none),
+  accTitleFont: ('Rubik', 19px, bold, none),
+  accsubTitleFont: ('Rubik', 18px, bold, none),
+  acc_number_font: ('Rubik', 20px, bold, none),
+  must: ('Arial', 15px, bold, none),
+  SubTitleFont: ('Frank Ruhl Libre', 17px, 400, none),
+  HebrewEdit: ('Arial', 15px, 400, none),
+  ArabicEdit: ('Arial', 15px, 400, none),
+  ReportHeader: ('Arial', 16px, 400, none),
+  ReportHeaderLarge: ('Arial', 25px, 400, none),
+  ReportBody: ('Arial', 15px, 400, none),
+  ReportBodyLarge: ('Arial', 16px, 400, none),
+  acc_reportbody: ('Rubik', 14px, bold, none),
+  ReportLabel: ('Arial', 15px, 400, none),
+  ReportLabelLarge: ('Arial', 17px, 400, none),
+  ReportHuge: ('Arial', 15px, 400, none),
+  MenuFont: ('Assistant', 21px, 400, none),
+  ReportInfo: ('Assistant', 14px, 400, none),
+  ReportTitle: ('Arial', 15px, 400, none),
+  ReportSlogen: ('Heebo', 14px, 400, none),
+  FormLabel: ('Assistant', 17px, 400, none),
+  FormSubTitle: ('Varela Round', 17px, 400, none),
+  FormTitle: ('Rubik', 21px, 400, none),
+  BtnLabel: ('Rubik', 19px, 400, none),
+  SpinFont: ('Arial', 14px, 400, none),
+  Cheque: ('Courier New', 17px, 400, none),
+  CMCFont: ('Courier New', 17px, bold, none)
+);
+
+// Mixin
+@mixin font-style($key, $size-override: null) {
+  $font: map-get($fonts, $key);
+
+  @if $font == null {
+    @warn "⚠️ Font '#{$key}' not found in $fonts map.";
+  } @else {
+    $family: nth($font, 1);
+    $size: if($size-override != null, $size-override, nth($font, 2));
+    $weight: nth($font, 3);
+    $decoration: nth($font, 4);
+
+    font-family: $family, sans-serif;
+    font-size: $size !important;
+    font-weight: $weight;
+
+    @if $decoration != none {
+      text-decoration: $decoration;
+    }
+  }
+}
