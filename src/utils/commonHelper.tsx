@@ -405,6 +405,12 @@ const convertCommaToNumber = (value: number | null | undefined): number | null =
   const num = parseFloat(numericString);
   return isNaN(num) ? null : num;
 };
+
+const padWithZeros = (value: string | number | null | undefined, totalLength = 10): string => {
+  if (value === null || value === undefined || value === '') return '';
+  const digitsOnly = String(value).replace(/\D/g, '');
+  return digitsOnly.padStart(totalLength, '0');
+};
 function calculateOutcome(taxDeduct: number = 0, totalSum: number): number {
   if (!taxDeduct) {
     return parseFloat(totalSum.toFixed(2));
@@ -575,5 +581,6 @@ export {
   isFutureDateAllowYesterday,
   isValidAmount,
   getKalendarYearDateRange,
-  getPrevYearSeptemberFirst
+  getPrevYearSeptemberFirst,
+  padWithZeros
 };

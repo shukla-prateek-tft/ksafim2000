@@ -3,9 +3,6 @@
 .container {
   @include flex-column;
   width: 40vw;
-  .fieldSet {
-    @include theme-fieldset;
-  }
   .description {
     @include flex-row;
     text-align: center;
