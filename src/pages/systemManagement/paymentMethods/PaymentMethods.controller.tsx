@@ -22,6 +22,7 @@ import {
   ValidateCheqCardValueChangeResponse
 } from './types';
 import { showToastErrors } from '@/utils/commonHelper';
+import { toast } from 'react-toastify';
 
 const PaymentMethods = () => {
   const { t } = useTranslation('common');
@@ -117,6 +118,7 @@ const PaymentMethods = () => {
     setRowData(rows);
   }, [rows]);
 
+
   const pagination = GetPaymentMethodsResponse?.metaInfo;
   const hideCheqCard = Boolean(GetPaymentMethodsResponse?.summaryData?.cheq_Card_Hid);
 
@@ -134,12 +136,13 @@ const PaymentMethods = () => {
   };
 
   const handleToggleCheqCard = (row: PaymentMethodItem, nextChecked: boolean, index: number) => {
-    validateCheqCardChange({
-      Pay_Way: row.pay_Way || null,
-      SystemYear: user?.instiYear,
-      InstitutionCode: user?.instiCode
-    });
-
+      if(row.pay_Way= 16){
+        validateCheqCardChange({
+          Pay_Way: row.pay_Way || null,
+          SystemYear: user?.instiYear,
+          InstitutionCode: user?.instiCode
+        });
+      }
     setRowIndex(index);
     setNewCheqCard(nextChecked);
   };
@@ -154,11 +157,73 @@ const PaymentMethods = () => {
         <SearchButton />
         <AddButton />
         <CancelButton />
-        <Button title={t('L_MCFW_1181_BUTTON_TITLE')} />
+        <Button title={t('L_MCFH0051')} onClick={handleCTRButtonClick}/> 
       </>
     );
   };
+  /////////////////////////////////////////////////////////////////////////////////////
+  function runLocalValidations(rows) {
+  for (const row of rows) {
+    if (!row.acc_card) {
+      return "Account Card is required.";
+    }
 
+    if (row.pay_way === 16) {
+      if (row.cheq_card === true && !row.acc_card2) {
+        return "Credit Account is required for cheque payments.";
+      }
+
+      if (row.cheq_card === false && row.acc_card2) {
+        return "Credit Account must be empty when Cheque Card is unchecked.";
+      }
+    }
+  }
+  return null; // No error
+}
+
+  const handleCTRButtonClick = async () => {
+    try {
+  
+      const validationError = runLocalValidations(t243Rows);
+      if (validationError) {
+        showMessage("error", validationError);
+        return;
+      }
+
+      // STEP 2: Save data (GP_TRG_STORE)
+      const response = await saveTransaction({ rows: t243Rows, systemParams });
+
+      if (!response.ok) {
+        // simulate GP_TRG_STORE $status < 0
+        showMessage("error", response.message || "Error while saving data");
+        return;
+      }
+
+      //  STEP 3: Success message + commit equivalent
+      if (response.statusCode === 1805) {
+        showMessage("success", "Data saved successfully");
+      }
+
+      // STEP 4: Open next form (GP_RUN_FORM equivalent)
+      navigate("/form/mcfh0051"); // or open modal, depending on UX
+    } catch (error) {
+      showMessage("error", "Unexpected error during save");
+    } finally {
+      setLoading(false);
+    }
+  };
+    
+ const [grpData, setGrpData] = useState(null);
+  useEffect(()=>{
+    // 1 call the gp_trg_execute function to get the title of the screen, use title state for this
+    // 2 Call gp_getparam("new_work_cheq_post",$new_work_cheq_post$)
+    // const paramRes = await gp_getparam("new_work_cheq_post");
+    // if (!paramRes) {
+    //   toast.error("נא לבדוק פרמטר new_work_cheq_post");
+    //   return;
+    // }
+    // 3: Api call to get Table data   retrieve/e "t243"
+  })
   return (
     <PaymentMethodsUI
       renderActionItems={renderActionItems}

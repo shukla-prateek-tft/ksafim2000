@@ -22,17 +22,92 @@ const PaymentMethods = ({
   hideCheqCard,
   onToggleCheqCard
 }: PaymentMethodsProps) => {
-  const { t } = useTranslation('common');
+   
+    const { t } = useTranslation('common');
+  
+   const handleCheqCardChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    const payWay = Number(row?.L_pay_way ?? 0);
 
+    if (isChecked && payWay === 16) {
+      const hasPending = await checkPendingCheques();
+
+      if (hasPending) {
+        toast.error("יש שיקים שטרם הופקדו בבנק — לא ניתן להמשיך");
+   
+        return;
+      }
+    }
+    updateRow({ CheqCard: isChecked });
+    onToggleCheqCard?.(row, isChecked, index);
+  };
+
+
+   const handleLovClick = async () => {
+      // setActiveIndex(index);
+      // // const list = await gp_lov(); // Call Uniface gp_lov
+      // if (list.length === 0) {
+      //   toast.info("No accounts found (is_debit=1)");
+      //   return;
+      // }
+      // setLovData(list);
+      // setLovOpen(true);
+      // open modal
+    };
+  
+   
+  const handlePayWayBlur = () => {
+    if (payWay === 115 && (!desc || desc.trim() === "")) {
+      updateRow({ pay_way_desc: "העברה עירייה" });
+    }
+  };
+  const handleBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+      const typedValue = e.target.value?.trim();
+      if (!typedValue) return; // no input
+      // const result = await gp_get_val(typedValue);
+      // if (!result.valid) {
+      //   toast.error("Invalid account value");
+      //   updateRow(index, { acc_card: "", acc_card_name: "" });
+      // } else {
+      //   updateRow(index, {
+      //     acc_card: result.id,
+      //     acc_card_name: result.name,
+      //   });
+      }
+  
   const customRowRender = (key: PaymentMethodsColumnKey, row: PaymentMethodItem, index: number) => {
     switch (key) {
       case PaymentMethodsColumnEnum.PayWay:
+          return (
+          <div className={classes.rowContainer}>
+            <Input value={String(row?.[key] ?? '')} type="number" readOnly onBlur={handlePayWayBlur}/>
+          </div>
+        );
       case PaymentMethodsColumnEnum.PayWayDesc:
+         return (
+          <div className={classes.rowContainer}>
+            <Input value={String(row?.[key] ?? '')} readOnly />
+          </div>
+        );
       case PaymentMethodsColumnEnum.AccCardName:
+          return (
+          <div className={classes.rowContainer}>
+            <Input
+              type="text"
+              value={String(row?.acc_card_name ?? "")}
+              onClick={handleLovClick} // DTLF trigger
+              onBlur={handleBlur} // LFLD trigger
+              placeholder="Select or type account"
+              readOnly={false}
+              style={{ cursor: "pointer" }}
+            />
+          </div>
+        );
+        
       case PaymentMethodsColumnEnum.AccCard2Name:
         return (
           <div className={classes.rowContainer}>
-            <Input value={String(row?.[key] ?? '')} readOnly />
+        {/* similar to ACC card Name */}
           </div>
         );
       case PaymentMethodsColumnEnum.CheqCard:
@@ -45,8 +120,9 @@ const PaymentMethods = ({
         );
       case PaymentMethodsColumnEnum.CreditCard:
       case PaymentMethodsColumnEnum.BankReq:
+          return <Input type="checkbox" checked={Boolean(row?.[key])}  onChange={()=>{}} />;
       case PaymentMethodsColumnEnum.ChequeReq:
-        return <Input type="checkbox" checked={Boolean(row?.[key])} />;
+        return <Input type="checkbox" checked={Boolean(row?.[key])}  onChange={handleCheqCardChange} />;
       default:
         return (
           <div className={classes.rowContainer}>
