@@ -4,26 +4,22 @@ export const SummaryPettyCashColumn = () => {
   return [
     {
       key: 'title',
-      width: '40%',
-      sortable: true
+      width: '40%'
     },
     {
-      key: 'debit_Sum',
+      key: 'debit_sum',
       label: t('L_DEBIT'),
-      width: '20%',
-      sortable: true
+      width: '20%'
     },
     {
-      key: 'credit_Sum',
+      key: 'credit_sum',
       label: t('L_CREDIT'),
-      width: '20%',
-      sortable: true
+      width: '20%'
     },
     {
-      key: 'total_Sum',
+      key: 'total_sum',
       label: t('L_TOTAL'),
-      width: '20%',
-      sortable: true
+      width: '20%'
     }
   ];
 };

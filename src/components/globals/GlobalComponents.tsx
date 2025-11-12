@@ -158,18 +158,14 @@ export const RenderGlobalComponents: React.FC = React.memo(() => {
         } ${user?.instiYear}`}
         onClose={handleCloseInvoiceFilter}
         isOpen={flags?.showListOfInvoiceFilter}
-      >
-      
-      </DialogBox>
+      ></DialogBox>
       <DialogBox
         title={`${t('titleNameReport')}*${user?.instiCode}-${user?.instiName}*${
           user?.hebrewYear
         } ${user?.instiYear}`}
         onClose={handleCloseReportFilter}
         isOpen={flags?.showReportFilter}
-      >
-        
-      </DialogBox>
+      ></DialogBox>
       <GoToScreen isOpen={flags?.goToScreen} onClose={() => toggleFlags('goToScreen', false)} />
       <DialogBox
         title={`${t('titleName')}*${user?.instiCode}-${user?.instiName}*${
@@ -177,30 +173,7 @@ export const RenderGlobalComponents: React.FC = React.memo(() => {
         } ${user?.instiYear}`}
         onClose={handleCloseExpenseVouchersFilter}
         isOpen={flags?.showExpenseVoucherFilters}
-      >
-        
-      </DialogBox>
-        <ConfirmationDialogueBox
-          dialogTitle={flags?.errorData?.dialogTitle}
-          icon={
-            typeof flags?.errorData?.icon === 'function' ? (
-              flags.errorData.icon()
-            ) : flags?.errorData?.type === 'error' ? (
-              <TiWarning  size={15} />
-            ) : (
-              <FaQuestionCircle size={15} />
-            )
-          }
-          show={flags?.showValidationError}
-          title={flags?.errorData?.title}
-          onCancel={() => closeErrorDialog(false)}
-          message={flags?.errorData?.message}
-          onConfirm={() => closeErrorDialog(true)}
-          confirmText={flags?.errorData?.confirmText}
-          cancelText={flags?.errorData?.cancelText}
-          showCancelButton={flags?.errorData?.cancelText?.length > 0}
-          type={flags?.errorData?.type || 'error'}
-        />
+      ></DialogBox>
     </>
   );
 });

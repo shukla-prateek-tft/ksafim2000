@@ -13,13 +13,15 @@ const ClosePettyCashUI = ({
   paywayData,
   handleChangeFilters,
   handleDateChange,
-  filters
+  filters,
+  title
 }: ClosePettyCashUIProps) => {
   const { t } = useTranslation('common');
   return (
+
     <div className={classes.container}>
       <fieldset>
-        <legend>{`${t('T_MCFT0619')}`}</legend>
+        <legend>{t('T_MCFW0619')}</legend>
         <div className={classes.formGroup}>
           <div className={classes.section}>
             <Input
@@ -36,7 +38,7 @@ const ClosePettyCashUI = ({
               tabIndex={2}
               label={t('L_PAY_DATE')}
               onChange={date => handleDateChange(date, 'Pay_Date')}
-              selectedDate={filters?.Pay_Date ? new Date(filters.Pay_Date) : null}
+              selectedDate={filters?.Pay_Date ? new Date(filters.Pay_Date) : new Date()}
               orientation="horizontal"
               size="md"
               id="Pay_Date"

@@ -16,7 +16,7 @@ const SummaryPettyCashUI = ({ data, renderActionItems, handleApiSorting }: any) 
           left={
             <>
               <ReportCells label={t('L_DATE')} value={getFormatedDate()} />
-              <ReportCells label={t('L_ON')} value={'1'} />
+              <ReportCells label={t('')} value={''} />
               <ReportCells label={t('L_PAGE')} value={'1'} />
             </>
           }
@@ -41,7 +41,7 @@ const SummaryPettyCashUI = ({ data, renderActionItems, handleApiSorting }: any) 
       }
     >
       <Table
-        data={data?.report695QueryDto || []}
+        data={data || []}
         columns={SummaryPettyCashColumn()}
         height="50vh"
         onSort={handleApiSorting}

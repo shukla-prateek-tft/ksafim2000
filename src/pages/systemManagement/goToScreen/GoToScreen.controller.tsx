@@ -8,9 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks';
 import { GoTOScreenData } from '@/constants/routeConstants';
 import { DialogCommonPropsType } from '../type';
-import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
-import { getFormatedDate } from '@/utils/commonHelper';
 
 interface GoToScreenProps {
   isOpen: boolean;
@@ -30,28 +27,13 @@ const SCREEN_MAP = new Map(GoTOScreenData.map(screen => [screen.screenId, screen
 
 const GoToScreen = ({ isOpen, onClose }: GoToScreenProps) => {
   const [screenNumber, setScreenNumber] = useState<string | null>(null);
-  const { t } = useTranslation('common');
-
   const navigate = useNavigate();
-  const { renderComponent, closeComponent, toggleFlags } = useAuth();
+  const { renderComponent, closeComponent } = useAuth();
 
   const onSave = useCallback(() => {
     if (!screenNumber) return;
 
-    const screen = SCREEN_MAP.get(screenNumber);
-
-    if (!screen) {
-      toast.warn('No Screen Found');
-      toggleFlags({
-        showValidationError: true,
-        errorData: {
-          type: 'error',
-          message: `${t('E_024')}   -   ${getFormatedDate(new Date(), 'DD.MM.YYYY-HH:MM_SS')}`,
-          confirmText: t('V_ACCEPT')
-        }
-      });
-      return;
-    }
+    const screen: any = SCREEN_MAP.get(screenNumber);
 
     if (screen.isModal) {
       renderComponent(screen.screen, {
