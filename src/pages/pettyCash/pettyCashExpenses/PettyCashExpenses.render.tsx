@@ -28,7 +28,10 @@ const PettyCashExpensesUI = ({
   handleSave,
   handleDateChange,
   transactionDetails,
-  handleValidation
+  handleValidation,
+  handleAddCard,
+  handleDeleteCard,
+  handleInputChange
 }: PettyCashExpensesUIProps) => {
   const { t } = useTranslation('common');
 
@@ -41,8 +44,11 @@ const PettyCashExpensesUI = ({
           <OtherDetailButton />
           <SaveButton onClick={handleSave} />
           <PrintButton />
-          <AddButton />
-          <CancelButton />
+          <AddButton onClick={handleAddCard} />
+          {/* <CancelButton
+            onClick={() => handleDeleteCard(index)}
+            disabled={transactionDetails.length === 1}
+          /> */}
         </div>
       </>
     );
@@ -83,6 +89,7 @@ const PettyCashExpensesUI = ({
               size="md"
               tabIndex={1}
               onClick={handleValidation}
+              id="bank"
             />
             <Select
               orientation="horizontal"
@@ -94,132 +101,137 @@ const PettyCashExpensesUI = ({
               size="md"
               tabIndex={2}
               onClick={handleValidation}
+              id="back_card_name"
             />
           </div>
         </Card>
-        <Card>
-          <div className={classes.mainContainer}>
-            <div className={classes.innerContainerLeft}>
-              <DatePickerComponent
-                selectedDate={transactionDetails?.date_Aut ?? null}
-                onChange={date => handleDateChange(date, 'date_Aut')}
-                placeholder=" "
-                id="date_Aut"
-                size="fullWidth"
-                orientation="horizontal"
-                label={t('L_DATE')}
-                tabIndex={3}
-              />
 
-              <Select
-                orientation="horizontal"
-                label={t('L_PROJECT')}
-                options={projectNoListOptions}
-                size="fullWidth"
-                tabIndex={6}
-                onClick={handleValidation}
-              />
-              <Input
-                orientation="horizontal"
-                label={t('L_DESC')}
-                size="fullWidth"
-                pattern={REGEX.allCharacter}
-                maxLength={30}
-                tabIndex={9}
-                onClick={handleValidation}
-              />
-              <Input
-                orientation="horizontal"
-                label={t('L_SPECIAL_ACT')}
-                size="fullWidth"
-                type="number"
-                pattern={getInputPattern(3)}
-                tabIndex={12}
-                onClick={handleValidation}
-              />
-            </div>
-            <div className={classes.innerContainer}>
-              <Input
-                orientation="horizontal"
-                label={t('L_SUPP_NUMBER')}
-                size="fullWidth"
-                type="number"
-                pattern={getInputPattern(10)}
-                tabIndex={4}
-                onClick={handleValidation}
-              />
-              <Select
-                orientation="horizontal"
-                label={t('L_SERVICE_TYPE')}
-                options={
-                  serviceTypeOptions && serviceTypeOptions?.length > 0 ? serviceTypeOptions : []
-                }
-                size="fullWidth"
-                tabIndex={10}
-                onClick={handleValidation}
-              />
-              <Input
-                orientation="horizontal"
-                label={t('L_DEBIT')}
-                size="fullWidth"
-                type="amount"
-                min={0}
-                maxLength={11}
-                onChange={() => {}}
-                onBlur={() => {}}
-                tabIndex={13}
-                onClick={handleValidation}
-              />
-              <Input
-                orientation="horizontal"
-                label={t('V_NAME')}
-                size="fullWidth"
-                pattern={REGEX.allCharacter}
-                maxLength={30}
-                tabIndex={14}
-                onClick={handleValidation}
-              />
-            </div>
-            <div className={classes.innerContainer}>
-              <Input
-                orientation="horizontal"
-                label={t('L_INVOICE')}
-                size="fullWidth"
-                type="number"
-                pattern={getInputPattern(6)}
-                tabIndex={5}
-                onClick={handleValidation}
-              />
-              <Select
-                orientation="horizontal"
-                label={t('L_ACC_NO')}
-                // value={getCutPettyCashExpensesData?.data?.data[0]?.acc_Card_Name ?? ''}
-                options={acc_CardOptions}
-                size="fullWidth"
-                tabIndex={8}
-                onClick={handleValidation}
-              />
-              <Input
-                orientation="horizontal"
-                label={t('L_SUM_LEFT')}
-                size="fullWidth"
-                // value={getCutPettyCashExpensesData?.data?.data[0]?.balance ?? ''}
-                disabled
-                type="amount"
-                min={0}
-                maxLength={11}
-                onChange={() => {}}
-                onBlur={() => {}}
-                tabIndex={11}
-                onClick={handleValidation}
-              />
-            </div>
-          </div>
-        </Card>
+        {transactionDetails.map((item, index) => {
+          return (
+            <>
+              {transactionDetails.map((item, index) => (
+                <Card key={index}>
+                  <div className={classes.mainContainer}>
+                    {/* LEFT COLUMN */}
+                    <div className={classes.innerContainerLeft}>
+                      <DatePickerComponent
+                        selectedDate={item.date_Aut ?? null}
+                        onChange={date => handleDateChange(index, date, 'date_Aut')}
+                        placeholder=" "
+                        id={`date_Aut_${index}`}
+                        size="fullWidth"
+                        orientation="horizontal"
+                        label={t('L_DATE')}
+                      />
 
-        <Card>
-          <></>
-        </Card>
+                      <Select
+                        orientation="horizontal"
+                        label={t('L_PROJECT')}
+                        options={projectNoListOptions}
+                        size="fullWidth"
+                        value={item.project_no ?? ''}
+                        onChange={val => handleInputChange(index, 'project_no', val)}
+                      />
+
+                      <Input
+                        orientation="horizontal"
+                        label={t('L_DESC')}
+                        size="fullWidth"
+                        id={`desc_aut_${index}`}
+                        value={item.desc_aut}
+                        onChange={e => handleInputChange(index, 'desc_aut', e.target.value)}
+                      />
+
+                      <Input
+                        orientation="horizontal"
+                        label={t('L_SPECIAL_ACT')}
+                        size="fullWidth"
+                        type="number"
+                        id={`run_number_${index}`}
+                        value={item.run_number ?? ''}
+                        onChange={e => handleInputChange(index, 'run_number', e.target.value)}
+                      />
+                    </div>
+
+                    {/* MIDDLE COLUMN */}
+                    <div className={classes.innerContainer}>
+                      <Input
+                        orientation="horizontal"
+                        label={t('L_SUPP_NUMBER')}
+                        size="fullWidth"
+                        type="number"
+                        id={`supp_number_${index}`}
+                        value={item.supp_number ?? ''}
+                        onChange={e => handleInputChange(index, 'supp_number', e.target.value)}
+                      />
+
+                      <Select
+                        orientation="horizontal"
+                        label={t('L_SERVICE_TYPE')}
+                        options={serviceTypeOptions}
+                        size="fullWidth"
+                        value={item.service_type ?? ''}
+                        onChange={val => handleInputChange(index, 'service_type', val)}
+                      />
+
+                      <Input
+                        orientation="horizontal"
+                        label={t('L_DEBIT')}
+                        size="fullWidth"
+                        type="amount"
+                        id={`debit_${index}`}
+                        value={item.debit}
+                        onChange={e => handleInputChange(index, 'debit', e.target.value)}
+                      />
+
+                      <Input
+                        orientation="horizontal"
+                        label={t('V_NAME')}
+                        size="fullWidth"
+                        id={`name_${index}`}
+                        value={item.name}
+                        onChange={e => handleInputChange(index, 'name', e.target.value)}
+                      />
+                    </div>
+
+                    {/* RIGHT COLUMN */}
+                    <div className={classes.innerContainer}>
+                      <Input
+                        orientation="horizontal"
+                        label={t('L_INVOICE')}
+                        size="fullWidth"
+                        type="number"
+                        id={`invoice_number_${index}`}
+                        value={item.invoice_number ?? ''}
+                        onChange={e => handleInputChange(index, 'invoice_number', e.target.value)}
+                      />
+
+                      <Select
+                        orientation="horizontal"
+                        label={t('L_ACC_NO')}
+                        options={acc_CardOptions}
+                        size="fullWidth"
+                        value={item.acc_card_name ?? ''}
+                        onChange={val => handleInputChange(index, 'acc_card_name', val)}
+                      />
+
+                      <Input
+                        orientation="horizontal"
+                        label={t('L_SUM_LEFT')}
+                        size="fullWidth"
+                        disabled
+                        type="amount"
+                        id={`balance_${index}`}
+                        value={item.balance}
+                        onChange={e => handleInputChange(index, 'balance', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </>
+          );
+        })}
       </ScreenLayout>
     </>
   );

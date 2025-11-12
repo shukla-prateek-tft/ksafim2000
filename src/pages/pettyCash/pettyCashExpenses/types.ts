@@ -39,9 +39,12 @@ export interface PettyCashExpensesUIProps {
   acc_CardOptions: Array<{ label: string | number; value: number | string }>;
   getCutPettyCashExpensesData?: GetCutPettyCashExpensesAPIResponse;
   handleSave: () => void;
-  handleDateChange?: (date: Date | null, fieldName: string) => void;
+  handleDateChange?: (index: number, date: Date | null, fieldName: string) => void;
   transactionDetails?: TransactionDetailsType;
   handleValidation?: () => void;
+  handleAddCard?: () => void;
+  handleDeleteCard?: (index: number) => void;
+  handleInputChange?: (index: number, fieldName: string, value: string | number | null) => void;
 }
 
 export interface CutPettyCashExpenseItem {
@@ -98,6 +101,14 @@ export interface GetAccCardByServiceTypeApiResponse {
 export interface TransactionDetailsType {
   date_Aut?: string | Date;
   supp?: number | null | null;
+  desc_aut: string;
+  run_number: number | null;
+  supp_number: number | null;
+  debit: string | number;
+  name: string;
+  invoice_number: number | null;
+  acc_card_name: string;
+  balance: string | number | null;
 }
 export interface GetServiceTypeByAccCardApiResponse {
   success: boolean;
@@ -108,5 +119,3 @@ export interface GetServiceTypeByAccCardApiResponse {
     accCardName: string;
   };
 }
-
-
