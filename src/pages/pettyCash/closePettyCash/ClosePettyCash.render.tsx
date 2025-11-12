@@ -21,7 +21,7 @@ const ClosePettyCashUI = ({
 
     <div className={classes.container}>
       <fieldset>
-        <legend>{title}</legend>
+        <legend>{t('T_MCFW0619')}</legend>
         <div className={classes.formGroup}>
           <div className={classes.section}>
             <Input

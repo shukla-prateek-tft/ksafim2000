@@ -45,6 +45,7 @@ const ClosePettyCash = ({ isOpen, onClose }: ClosePettyCashProps) => {
   }); 
   const { gpTrgExecute } = useGpTrgExecute();
   const { validateFinanceDate } = useGpFinanceYear();
+  const hoz_kupa_card = true; // this we will get from gp_getparam gp_getparam("hoz_kupa_ktana_card", v_hoz_kupa_card) on execute
 
   //Get Closing Cash
   const {
@@ -163,7 +164,7 @@ const ClosePettyCash = ({ isOpen, onClose }: ClosePettyCashProps) => {
       <div className={classes.actionItems}>
         <BackToPageButton onClick={() => {}} tabIndex={9} />
         <DetailButton onClick={() => {}}  tabIndex={10}/>
-        <SaveButton onClick={handleSave} tabIndex={11}/>
+        <SaveButton onClick={onSubmit} tabIndex={11}/>
       </div>
     );
   };
@@ -200,6 +201,10 @@ const ClosePettyCash = ({ isOpen, onClose }: ClosePettyCashProps) => {
   } 
   console.log({ user })
 
+  const lpCheckCardHATV = () => {
+      
+  }
+
   const onSave = () => {
     // lp_t703_store
     if(!validateFinanceDate(filters.Pay_Date)) return;
@@ -210,16 +215,25 @@ const ClosePettyCash = ({ isOpen, onClose }: ClosePettyCashProps) => {
        retrieve/e "t711"
        setocc "t711",1
      */
-
+    const responseT711:any = {};
     // this project_no should be retrieved from API t711
     const projectNo = 0;
+    // docs_number
+    let isSingleDocumentForExpense = false;
 
     if(projectNo === 0) {
       //ask question
-      toggleFlags('showValidationError', true);
-      toggleFlags('errorData', {
-        message: `${commonT('L_DOC_FOR_EXPENS')}, ${commonT('L_SINGLE_DOC')}` 
-      })
+      toggleFlags({
+        showValidationError: true,
+        errorData: {
+          title: commonT('L_EXPENSE_DOC'),
+          // here actually we need to show popup with two options
+          // message: `${commonT('L_DOC_FOR_EXPENS')}, ${commonT('L_SINGLE_DOC')}`,
+          confirmText: commonT('L_DOC_FOR_EXPENS'),
+          cancelText: commonT('L_SINGLE_DOC'),
+          confirmCallback: () => { isSingleDocumentForExpense = false }
+        },
+      });
     }
 
     /**
@@ -276,9 +290,9 @@ const ClosePettyCash = ({ isOpen, onClose }: ClosePettyCashProps) => {
     
     let details = ""
     if(filters.Act_No) {
-      details = `קבלת סגירה ${receiptNo} קופה קטנה`.slice(0, 29);
+      details = `קבלת סגירה ${receiptNo} קופה קטנה`.slice(0, 30);
     } else {
-      details = `ק.סגירת ק.ק ${receiptNo} ${filters.Desc_Aut}`.slice(0, 29);
+      details = `ק.סגירת ק.ק ${receiptNo} ${filters.Desc_Aut}`.slice(0, 30);
     }
 
     const payloadT723 = {
@@ -339,8 +353,54 @@ const ClosePettyCash = ({ isOpen, onClose }: ClosePettyCashProps) => {
 
     // clear/e "t711"
     // retrieve/e "t711"
+    let success = true;
 
-    
+    let doc_loop = 0;
+    let expense_sum = 0;
+    // setocc "t711",1
+    let status
+    while(success) {
+      doc_loop += 1;
+      const t711Payload: any = {};
+      t711Payload.isTemp = true;
+      if(doc_loop === 1 || !isSingleDocumentForExpense) {
+        // creocc "t703",(-1)
+        const { expenseNumber } = lpGetNumber();
+        const t703Payload = {
+          supp_receipt: 1,
+          act_no: `E${expenseNumber}`,
+          pay_date: new Date(),
+          insti: 'pinsti',
+          study_year: 'p_system_year',
+          oposit_card: filters.Oposit_Card, // T703.oposit_card
+          payer_name: commonT('L_PETY_CASH'),
+          project_no: 'project_no.t711',
+          expense_type: 1,
+          set_number: set_number
+        }
+        if(!isSingleDocumentForExpense) {
+          t703Payload.document_no = responseT711.invoice_number,
+          t703Payload.desc_aut = `ע.מ:${responseT711.supp_number} ${responseT711.desc_aut}`.slice(0,30);
+        } else {
+          t703Payload.desc_aut = filters.Desc_Aut.slice(0, 30)
+        }
+
+      }
+
+      if(doc_loop > 1 && isSingleDocumentForExpense) {
+          //	creocc "t705",(-1)
+      }
+      const payloadT705: any = {
+        student: responseT711.invoice_number || 0,
+        service_type: responseT711.service_type,
+        service_subject: responseT711.service_subject
+      };
+
+      if(hoz_kupa_card) {
+
+      }
+    }
+
 
     // const success = true;
     // if(success) return;
@@ -348,6 +408,28 @@ const ClosePettyCash = ({ isOpen, onClose }: ClosePettyCashProps) => {
     // toggleFlags('errorData', {
     //   message: commonT('E_050'),
     // })
+  }
+
+  const lpGetNumber = () => {
+    /**
+     * clear/e "t600"
+     3   nsti_code.t600 /init = $$p_insti
+     4   retrieve/e "t600"
+     */
+    const response: any = {};
+    const { last_outcom_num } = response;
+    if(last_outcom_num){
+      last_outcom_num += 1;
+    }else {
+      last_outcom_num = 1;
+    }
+    // $expense_number$ = last_outcom_num.t600
+
+    // store/e t600
+
+    // if fail return false
+    return { expenseNumber: last_outcom_num }
+
   }
 
   const onSubmit = async () => {
