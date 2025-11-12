@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface Supplier {
   supp_Special: number | null;
@@ -49,4 +49,9 @@ export interface ListOfSuppliersUIProps {
   pagination?: any;
   onPaginationChange?: (page: number) => void;
   handleSort?: (key: string, direction: string) => void;
+}
+
+export interface supplierOptionsType {
+  label: string;
+  value: number;
 }

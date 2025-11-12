@@ -1,4 +1,104 @@
 //MCFW-0597
+
+const supp_special = 1;
+
+function gp_check_id1(p_id: number) {
+  let v_sum = 0;
+  const idStr = String(p_id);
+  const v_length = idStr.length;
+  const v_cn = Number(idStr[v_length - 1]);
+  const v_num = idStr.slice(0, v_length - 1);
+  let i = v_num.length - 1;
+  while (i >= 0) {
+    let x = Number(v_num[i]) * 2;
+    if (x >= 10) {
+      const xStr = String(x);
+      x = Number(xStr[0]) + Number(xStr[1]);
+    }
+    v_sum += x;
+    i--;
+    if (i >= 0) {
+      v_sum += Number(v_num[i]);
+      i--;
+    }
+  }
+  v_sum = v_sum % 10;
+  v_sum = 10 - v_sum;
+  if (v_sum === 10) v_sum = 0;
+  return v_cn === v_sum ? 0 : -1;
+}
+
+function validateSupplier(supp_Num: number, supp_special: number) {
+  const status = gp_check_id1(supp_Num);
+
+  if (supp_special === 1) {
+    if (status < 0) {
+      console.info('Not a registered supplier.'); // message/info
+      return 0;
+    }
+  } else {
+    if (status < 0) {
+      console.error('Not a registered supplier.'); // message/error
+      // if (status === 1) {
+      return -1;
+      // }
+    }
+  }
+
+  return status;
+}
+
+const dummyData = [
+  {
+    code1: 'C001',
+    supp_Num: 'SUP1001',
+    supp_Name: 'ABC Traders Pvt Ltd',
+    supp_Type: 'Local',
+    tax_Deduct: 'Yes',
+    deduct_Type: 'TDS',
+    tax_Date: '2025-01-15',
+    books_Aproved: 'Yes',
+    acc_Card: 'AC-998877',
+    sort_Code: 'S01',
+    supp_Dif: 'No',
+    supp_To_File: 'Yes',
+    supp_To_Order: 'No',
+    supp_Num_Dealer: 'D-44',
+    main_To_Mas: 'Yes',
+    supp_Vat_Num: 'VAT-556677',
+    code17: ''
+  },
+  {
+    code1: 'C002',
+    supp_Num: 'SUP1002',
+    supp_Name: 'Global Supplies Ltd',
+    supp_Type: 'Foreign',
+    tax_Deduct: 'No',
+    deduct_Type: '-',
+    tax_Date: '2025-02-01',
+    books_Aproved: 'No',
+    acc_Card: 'AC-113344',
+    sort_Code: 'S02',
+    supp_Dif: 'Yes',
+    supp_To_File: 'No',
+    supp_To_Order: 'Yes',
+    supp_Num_Dealer: 'D-78',
+    main_To_Mas: 'No',
+    supp_Vat_Num: 'VAT-112233',
+    code17: ''
+  }
+];
+
+const supplierTypeOption = [
+  { label: 'Local', value: 1 },
+  { label: 'Foreign', value: 2 }
+];
+
+const deductTypeOption = [
+  { label: 'TDS', value: 1 },
+  { label: 'CDS', value: 0 }
+];
+
 import { useTranslation } from 'react-i18next';
 import classes from './ListOfSuppliers.module.scss';
 import {
@@ -19,17 +119,21 @@ import { adminServices } from '@/services';
 import { showToastErrors } from '@/utils/commonHelper';
 import { useEffect, useState } from 'react';
 import { BiSend } from 'react-icons/bi';
-import { ServiceFn } from '../type';
-import { AccCardValidationResponse, Supplier } from './types';
+import { AccCardValidationResponse, Supplier, supplierOptionsType } from './types';
 import { REGEX } from '@/constants/appConstant';
 import { Select } from '@/ui/Select';
 import DatePickerComponent from '@/ui/DatePicker/DatePicker';
 import { toast } from 'react-toastify';
+import { ServiceFn } from '@/pages/type';
 
 const ListOfSuppliers = () => {
   const { t } = useTranslation('common');
   const { user } = useAuth();
-  const [suppliersData, setSuppliersData] = useState<Supplier[]>([]);
+  const [suppliersData, setSuppliersData] = useState<Supplier[]>(dummyData);
+  const [supplierType, setSupplierType] = useState<number>(0);
+  const [supplierTypeOptions, setSupplierTypeOptions] = useState<supplierOptionsType[]>([]);
+  const [deductTypeOptions, setDeductTypeOptions] = useState<supplierOptionsType[]>([]);
+
   const [query, setQuery] = useState({
     Page: 1,
     Size: 10,
@@ -37,6 +141,8 @@ const ListOfSuppliers = () => {
     SortType: ''
   });
 
+  console.log(suppliersData, 'supplier data');
+  // list of supplier API
   const {
     state: {
       loading: isListOfSuppliersLoading,
@@ -61,7 +167,11 @@ const ListOfSuppliers = () => {
       newData[index] = { ...newData[index], ...updatedData };
       return newData;
     });
+    validateSupplier(suppliersData[index]?.supp_Num, supp_special);
   };
+
+  const gp_man_field = () => {};
+
   const handleAccCardChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
     rowData: any,
@@ -132,6 +242,7 @@ const ListOfSuppliers = () => {
       toast.error('Validation failed. Please try again.');
     }
   };
+
   const renderOtherActionButtons = () => {
     return (
       <div className={classes.actionItems}>
@@ -183,7 +294,7 @@ const ListOfSuppliers = () => {
           <div className={classes['column-third']}>
             <Input
               size="fullWidth"
-              maxLength={100}
+              maxLength={10}
               type="number"
               orientation="horizontal"
               value={currentRowData.supp_Num || ''}
@@ -211,7 +322,7 @@ const ListOfSuppliers = () => {
             size="fullWidth"
             value={currentRowData.supp_Type ?? null}
             onChange={(_event, option) => updateRowData(index, { supp_Type: Number(option.value) })}
-            options={[]}
+            options={supplierTypeOptions}
           />
         );
       case 'tax_Deduct':
@@ -220,7 +331,7 @@ const ListOfSuppliers = () => {
             size="fullWidth"
             type="amount"
             min={0}
-            max={3}
+            max={7}
             value={currentRowData.tax_Deduct}
             onChange={e => updateRowData(index, { tax_Deduct: Number(e.target.value) || 0 })}
             onBlur={() => {}}
@@ -230,11 +341,11 @@ const ListOfSuppliers = () => {
         return (
           <Select
             size="fullWidth"
-            value={currentRowData.supp_Type ?? null}
+            value={currentRowData.deduct_Type ?? null}
             onChange={(_event, option) =>
               updateRowData(index, { deduct_Type: Number(option.value) })
             }
-            options={[]}
+            options={deductTypeOptions}
           />
         );
       case 'tax_Date':
@@ -254,6 +365,7 @@ const ListOfSuppliers = () => {
             <div>
               <Input
                 size="fullWidth"
+                maxLength={20}
                 value={currentRowData.acc_Card === 0 ? '' : currentRowData.acc_Card.toString()}
                 onChange={e => handleAccCardChange(e, currentRowData, index)}
               />
@@ -285,6 +397,8 @@ const ListOfSuppliers = () => {
         return (
           <Input
             size="fullWidth"
+            type="number"
+            maxLength={10}
             value={currentRowData.supp_Num_Dealer || ''}
             onChange={e => handleSuppNumDealerChange(e, currentRowData, index)}
           />
@@ -330,6 +444,8 @@ const ListOfSuppliers = () => {
       Page: 1
     }));
   };
+
+  // on page load gp_trg
   useEffect(() => {
     getListOfSuppliersService({
       SystemYear: user?.instiYear || '',
@@ -341,11 +457,37 @@ const ListOfSuppliers = () => {
     });
   }, [query]);
 
-  useEffect(() => {
-    if (listOfSuppliersResponse?.data) {
-      setSuppliersData(listOfSuppliersResponse.data);
+  // supp_type dropdown options
+
+  const getSupplierType = async () => {
+    try {
+      setSupplierTypeOptions(supplierTypeOption);
+    } catch (error) {
+      console.error(error, 'error');
     }
-  }, [listOfSuppliersResponse]);
+  };
+
+  useEffect(() => {
+    getSupplierType();
+  }, [supplierType]);
+
+  const getDeductType = async () => {
+    try {
+      setDeductTypeOptions(deductTypeOption);
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  };
+
+  useEffect(() => {
+    getDeductType();
+  }, [deductTypeOptions]);
+
+  // useEffect(() => {
+  //   if (listOfSuppliersResponse?.data) {
+  //     setSuppliersData(listOfSuppliersResponse.data);
+  //   }
+  // }, [listOfSuppliersResponse]);
 
   useEffect(() => {
     if (isListofSuppliersError && listofsuppliersError) {
