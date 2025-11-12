@@ -7,7 +7,6 @@ import { adminServices } from '@/services';
 import { ServiceFn } from '../type';
 import { useEffect } from 'react';
 import {
-  convertPrevYearAug31,
   getDateOnly,
   getInstiYearAug31,
   getKalendarYearDateRange,
@@ -31,7 +30,6 @@ import {
 import { GetAccCardsApiResponse } from '../invoice/enterInvoices/types';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { RxCrossCircled } from 'react-icons/rx';
 import { useFocusFirstInvalidField } from '@/hooks/useFocusFirstInvalidField';
 
 export const defaultFilterValues: Partial<GetServiceTypeListFilterType> = {
@@ -50,10 +48,20 @@ const PettyCashExpenses = () => {
   let serviceTypeOptions: Array<{ label: string; value: number }> = [];
   let projectNoListOptions: Array<{ label: string | number; value: number | string }> = [];
   let acc_CardOptions: Array<{ label: string | number; value: number | string }> = [];
-  const [transactionDetails, setTransactionDetails] = useState<TransactionDetailsType>({
-    supp: null,
-    date_Aut: new Date()
-  });
+  const [transactionDetails, setTransactionDetails] = useState([
+    {
+      supp: null,
+      date_Aut: new Date(),
+      desc_aut: '',
+      run_number: null,
+      supp_number: null,
+      debit: '',
+      name: '',
+      invoice_number: null,
+      acc_card_name: '',
+      balance: ''
+    }
+  ]);
   const [dateAutFlag, setDateAutFlag] = useState(false);
   // GetServiceTypeByAccCard
   const {
@@ -256,14 +264,29 @@ const PettyCashExpenses = () => {
       value: item.accCard
     })) ?? [];
 
-  const handleDateChange = (date: Date | string | null, fieldName: string) => {
-    setDateAutFlag(true);
-    setTransactionDetails(prev => ({
-      ...prev,
-      [fieldName]: date ? date : null
-    }));
-  };
 
+  const handleDateChange = (index: number, date: Date | string | null, fieldName: string) => {
+    setDateAutFlag(true);
+  setTransactionDetails(prev => {
+    const updated = [...prev];
+    updated[index] = { ...updated[index], [fieldName]: date };
+    return updated;
+  });
+};
+
+const handleInputChange = (
+  index: number,
+  fieldName: string,
+  value: string | number | null
+) => {
+  setTransactionDetails(prev => {
+    const updated = [...prev];
+    updated[index] = { ...updated[index], [fieldName]: value };
+    return updated;
+  });
+};
+
+  //messages need to update
   const validateTransactionDate = (transactionDate: string | Date) => {
     const normalizeSelectDate = getDateOnly(new Date(transactionDate));
     //dummy api data
@@ -425,6 +448,7 @@ const PettyCashExpenses = () => {
     }
     return false; // Validation passed
   };
+
   useEffect(() => {
     if (dateAutFlag) {
       if (transactionDetails?.date_Aut && validateTransactionDate(transactionDetails?.date_Aut)) {
@@ -438,6 +462,31 @@ const PettyCashExpenses = () => {
       return;
     }
   };
+
+  const handleAddCard = () => {
+  setTransactionDetails(prev => [
+    ...prev,
+    {
+      supp: null,
+      date_Aut: new Date(),
+      desc_aut: '',
+      run_number: null,
+      supp_number: null,
+      debit: '',
+      name: '',
+      invoice_number: null,
+      acc_card_name: '',
+      balance: ''
+    }
+  ]);
+};
+
+const handleDeleteCard = (index: number) => {
+  setTransactionDetails(prev => {
+    if (prev.length === 1) return prev; // prevent delete if only 1 card
+    return prev.filter((_, i) => i !== index);
+  });
+};
   return (
     <>
       <GlobalLoader
@@ -462,6 +511,9 @@ const PettyCashExpenses = () => {
         transactionDetails={transactionDetails}
         handleDateChange={handleDateChange}
         handleValidation={handleValidation}
+        handleAddCard={handleAddCard}
+        handleDeleteCard={handleDeleteCard}
+        handleInputChange={handleInputChange}
       />
     </>
   );
