@@ -89,8 +89,7 @@ const PageLayout: React.FC = () => {
           </div>
 
           <div className={classes.mainContent}>
-            {/* <Outlet /> */}
-            <ConfirmationOfReceiptOfMoneyFromPettyCash/>
+            <Outlet />
           </div>
         </main>
       </div>
