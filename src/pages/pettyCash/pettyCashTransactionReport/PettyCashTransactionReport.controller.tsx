@@ -21,7 +21,7 @@ export const defaultFilterValues: Partial<GetReport607DetailsFilterType> = {
   T_Date: '',
   Is_Select_Act: false,
   AccCard: 0,
-  Temp_1: false,
+  Temp_1: true,
   Temp_0: false,
   Page: 1,
   Size: 10,
@@ -49,6 +49,129 @@ const PettyCashTransactionReport = () => {
     },
     callService: getReport607DetailsService
   } = useApiQuery<Report607APIResponse>(adminServices.payments.getReport607Details as ServiceFn);
+
+  useEffect(()=>{
+    // call trg_execute
+    // if it succeed do the following 
+    // api call for $$acc_no and $$bank_acc
+    // initialize the Bank card select to $$acc_no
+    // select $$bank_acc in the bank card dropdown
+    // call lp_retrieve
+    // call gp_header 
+  },[])
+
+  function retrieve({ temp1, temp0, fDate, tDate, selectAct, bankCard }) {
+  try {
+    // 1️⃣ Build filter conditions (like $$select_items)
+    let isTemp = 0;
+    if (temp1) isTemp = temp0 ? 2 : 1;
+
+    const filters = {
+      is_temp: isTemp,
+      f_date: fDate || null,
+      t_date: tDate || null,
+      select_act: selectAct || 0,
+      bank_card: bankCard,
+    };
+
+    // 2️⃣ Fetch records (equivalent to retrieve/e "t711")
+    // api call
+    // const records = await getBankTransactions(filters);
+    // if (!records) throw new Error("No records found");
+
+    // 3️⃣ Compute balance (lp_calc_balance)
+    // const balance = await calcBalance(records);
+
+    // 4️⃣ Return data and status
+    // const data = records.map((r, i) => ({ ...r, index: i + 1, balance }));
+    // return { data, status: 1 };
+
+  } catch (err) {
+    toast.error(err);
+    return { data: [], status: -1 };
+  }
+}
+
+function calcBalance(records, { fromDate, isTemp, bankCard, insti, year }) {
+  if (!records || records.length === 0) {
+    return { records: [], totals: {} };
+  }
+
+  // ---- INITIAL VARIABLES ----
+  let balance = 0;
+  let total = 0;
+  let totalTemp = 0;
+  let totalSum = 0;
+  let totalTempSum = 0;
+
+  // ---- 1️⃣ Determine opening balance ----
+  if (isTemp === 0 || fromDate) {
+      const beforeFrom = fromDate ? new Date(r.date_aut) < new Date(fromDate) : false;
+
+      let filter = {}
+
+      if (isTemp === 0 && !fromDate) {
+        filter = {
+          isTemp:1,
+          insti,
+          study_year:year,
+          bankCard
+        }
+      }
+      if (fromDate && isTemp === 0) {
+        filter = {
+          date_aut: new Date(),
+          fromDate,
+          isTemp:1,
+          insti,
+          study_year:year,
+          bankCard
+        }
+      }
+      if (fromDate && isTemp !== 0) {
+        filter = {
+          date_aut: new Date(),
+          fromDate,
+          isTemp:1,
+          insti,
+          study_year:year,
+          bankCard
+        }
+      }
+
+    // make api call based on above filter to get balance
+    // balance = await apiCall;
+    let balance = 0
+  }
+
+  // ---- 2️⃣ Iterate over current records (simulate while $status>=0) ----
+  const updatedRecords = records.map((r, idx) => {
+    balance += (r.credit || 0) - (r.debit || 0);
+    const updated = { ...r, balance };
+
+    if (r.is_temp === 0) {
+      totalTemp++;
+      totalTempSum += r.debit || 0;
+    } else {
+      total++;
+      totalSum += r.debit || 0;
+    }
+
+    return updated;
+  });
+
+  // ---- 3️⃣ Return results ----
+  return {
+    records: updatedRecords,
+    totals: {
+      total,
+      totalTemp,
+      totalSum,
+      totalTempSum,
+    },
+    // openingBalance: balance - (records.reduce((sum, r) => sum + (r.credit - r.debit), 0)),
+  };
+}
 
   useEffect(() => {
     if (isReport607DetailsError && report607DetailsError) {
@@ -147,6 +270,7 @@ const PettyCashTransactionReport = () => {
 
   const handleCleanFilters = () => {
     setFilters(defaultFilterValues);
+    // call retrieve function 
     setCurrentPage(1);
   };
 
