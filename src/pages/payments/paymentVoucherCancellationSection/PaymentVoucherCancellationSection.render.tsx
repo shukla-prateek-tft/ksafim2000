@@ -4,88 +4,80 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/ui/Input';
 import { BottomToolBar } from '@/ui/BottomToolBar';
 import React from 'react';
-
+import { Payload } from './types';
 
 interface PaymentVoucherCancellationSectionProps {
   renderActionItems: () => JSX.Element;
-  bankAccount: string;
-  setBankAccount: React.Dispatch<React.SetStateAction<string>>;
-  supplierName: string;
-  setSupplierName: React.Dispatch<React.SetStateAction<string>>;
-  supplierNameDisabled: string;
-  setSupplierNameDisabled: React.Dispatch<React.SetStateAction<string>>;
-  payment: string;
-  setPayment: React.Dispatch<React.SetStateAction<string>>;
-  currentYear: string;
-  setCurrentYear: React.Dispatch<React.SetStateAction<string>>;
+  payload: Payload;
+  handleChange: any;
 }
 
 const PaymentVoucherCancellationSectionUI: React.FC<PaymentVoucherCancellationSectionProps> = ({
   renderActionItems,
-  bankAccount,
-  setBankAccount,
-  supplierName,
-  setSupplierName,
-  supplierNameDisabled,
-  setSupplierNameDisabled,
-  payment,
-  setPayment,
-  currentYear,
-  setCurrentYear
+  payload,
+  handleChange
 }) => {
   const { t } = useTranslation('common');
-  const hidden = false; // replace with actual logic later
-
-  console.log(bankAccount, supplierName, payment, currentYear, 'selectedFilter');
+  const hidden = true; // replace with actual logic later
 
   return (
     <div className={classes.mainContainer}>
       <fieldset className={classes.fieldSet}>
         <legend className={classes.legend}>{t('T_MCFW0641')}</legend>
-        <Select
+        <Select  id='bank_Card'
           label={t('L_BANK_ACC')}
           options={[{ label: 'Label1', value: 'Value1' }]}
           orientation="horizontal"
           size="fullWidth"
-          value={bankAccount}
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setBankAccount(e.target.value)}
+          value={payload?.bank_Card}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            handleChange(e.target.value, 'bank_Card')
+          }
           tabIndex={1}
         />
 
         <div className={classes.otherDetailContainer}>
           <Input
-            value={supplierName}
+            size="lg"
+            value={payload?.suppNum}
             label={t('L_SUPP')}
             orientation="horizontal"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSupplierName(e.target.value)}
-           tabIndex={2}
-
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e.target.value, 'suppNum')
+            }
+            tabIndex={2}
           />
           <Input
+            size="fullWidth"
             disabled
             orientation="horizontal"
-            value={supplierNameDisabled}
+            value={payload?.suppName}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setSupplierNameDisabled(e.target.value)
+              handleChange(e.target.value, 'suppName')
             }
-          tabIndex={3}
+            tabIndex={3}
           />
         </div>
 
         <Input
+          size="lg"
           name="l_payment"
-          value={payment}
+          value={payload?.expense}
           className={classes.input}
           label={t('L_PAYMENT')}
           orientation="horizontal"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPayment(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleChange(e.target.value, 'expense')
+          }
           tabIndex={4}
         />
 
         {hidden && (
           <Input
-            value={currentYear}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCurrentYear(e.target.value)}
+            value={payload?.isExpenseCash}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e.target.value, 'isExpenseCash')
+            }
             type="checkbox"
             label={t('L_CURRENT_YEAR')}
             orientation="horizontal"

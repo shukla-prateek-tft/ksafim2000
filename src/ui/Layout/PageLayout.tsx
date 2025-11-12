@@ -11,6 +11,8 @@ import { Header } from '@/ui/Header';
 import { BankTransferFormReport } from '@/pages/bankTransferFormReport';
 import { UserAndPermissionManagement } from '@/pages/userAndPermissionManagement';
 import { RenderGlobalComponents } from '@/components/globals/GlobalComponents';
+import { GlobalComponentsContextWrapper } from '@/store/contexts';
+import { ConfirmationOfReceiptOfMoneyFromPettyCash } from '@/pages/pettyCash';
 
 const PageLayout: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,7 +78,6 @@ const PageLayout: React.FC = () => {
   return (
     <section className={classes.section}>
       <RenderGlobalComponents />
-
       <div className={classes.sideBarWrapper}>
         <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
 
@@ -88,7 +89,8 @@ const PageLayout: React.FC = () => {
           </div>
 
           <div className={classes.mainContent}>
-            <Outlet />
+            {/* <Outlet /> */}
+            <ConfirmationOfReceiptOfMoneyFromPettyCash/>
           </div>
         </main>
       </div>

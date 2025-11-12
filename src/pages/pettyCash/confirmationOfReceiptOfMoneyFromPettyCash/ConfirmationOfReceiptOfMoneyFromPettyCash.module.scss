@@ -1,25 +1,38 @@
 @use '../../../ui/Styles/theme.scss' as *;
 @use '../../../ui/Styles/variables' as *;
 .container {
-  .titleContainer{
+  padding: 2px;
+  .titleContainer {
     @include flex-center;
-    padding:theme-padding('lg');
-    font-weight: theme-font-weight('bold');
+    outline: 1px solid black;
+    padding: theme-padding('lg');
+    margin-bottom: 10px;
+    @include font-style(ReportHeaderLarge);
   }
   .horizontalInputContainer {
     @include flex-row;
-    gap: 15px;
   }
   .bottomContainer {
     @include flex-row;
-    gap: 15px;
+    outline: 1px solid #000000;
+    margin-top: 30px;
+    margin-bottom: 10px;
     .bottomInnerLeftContainer {
       @include flex-column;
       flex: 1;
-    justify-content:  flex-end;
+      justify-content: flex-end;
+      text-align: center;
+      padding: theme-padding('md');
+      outline: 1px solid black;
     }
     .bottomInnerRightContainer {
       flex: 1;
+      .spaceAligner {
+        padding: theme-padding('md');
+      }
+      > div:first-child {
+        border-bottom: 1px solid black;
+      }
     }
   }
 }

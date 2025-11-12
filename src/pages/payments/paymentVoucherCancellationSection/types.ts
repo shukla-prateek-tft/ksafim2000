@@ -1,7 +1,7 @@
-export interface NavigateState {
-  bankAccount: string;
-  supplierName: string;
-  supplierNameDisabled: string;
-  payment: string;
-  currentYear: string;
-}
+export type Payload = {
+  bank_Card: string;
+  expense: string;
+  suppName: string;
+  suppNum: string;
+  isExpenseCash:boolean;
+};

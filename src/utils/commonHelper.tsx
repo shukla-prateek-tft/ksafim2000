@@ -149,11 +149,6 @@ function getFormatedNumber(input: number | string | null | undefined) {
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return parts.join('.');
 }
-function getReferenceDate(instiYearStr: string) {
-  const instiYear = parseInt(instiYearStr, 10);
-  const previousYear = instiYear - 1;
-  return new Date(`${previousYear}-09-01`);
-}
 function getDateChecker(instiYearStr: string) {
   const instiYear = parseInt(instiYearStr, 10);
   return new Date(`${instiYear}-01-01`);
@@ -167,33 +162,13 @@ function getOneJanuaryDateChecker(instiYearStr: string) {
   const previousYear = instiYear - 1;
   return new Date(`${previousYear}-12-31`);
 }
-function getAugCheckerDate(instiYearStr: string) {
-  const instiYear = parseInt(instiYearStr, 10);
-  const previousYear = instiYear - 1;
-  return new Date(`${previousYear}-08-31`);
-}
+
 const formatDateForInput = (dateString: string) => {
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
-};
-
-function getDateOnly(date?: Date | null): Date | null {
-  if (!date) return null;
-  // your logic (e.g., strip time part)
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
-const isFutureDate = (date: string | Date): boolean => {
-  const givenDate = new Date(date);
-  const today = new Date();
-
-  // Reset today's time to 00:00:00 for accurate comparison
-  today.setHours(0, 0, 0, 0);
-  givenDate.setHours(0, 0, 0, 0);
-
-  return givenDate >= today;
 };
 
 // Allow today OR yesterday OR any future date added becuase of date chnage issue
@@ -368,12 +343,7 @@ const createValidDate = (day: string, month: string, year: string): Date | null 
 const isValidDateFormat = (dateString: string): boolean => {
   return REGEX.dateFormat.test(dateString);
 };
-function GP_CHECK_DATE() {
-  return {
-    d2: new Date(new Date().getFullYear(), 0, 1),
-    d1: new Date(new Date().setDate(new Date().getDate() + 180))
-  };
-}
+
 const mapOptions = (data: CaseOption[] | undefined | null) => {
   return Array.isArray(data)
     ? data.map(elem => ({
@@ -435,6 +405,12 @@ const convertCommaToNumber = (value: number | null | undefined): number | null =
   const num = parseFloat(numericString);
   return isNaN(num) ? null : num;
 };
+
+const padWithZeros = (value: string | number | null | undefined, totalLength = 10): string => {
+  if (value === null || value === undefined || value === '') return '';
+  const digitsOnly = String(value).replace(/\D/g, '');
+  return digitsOnly.padStart(totalLength, '0');
+};
 function calculateOutcome(taxDeduct: number = 0, totalSum: number): number {
   if (!taxDeduct) {
     return parseFloat(totalSum.toFixed(2));
@@ -485,6 +461,76 @@ function isValidAmount (amount: string | number)  {
   return !isNaN(Number(amount?.toString()?.replace('-', '')))
 }
 
+//Date validations common functions
+function convertPrevYearAug31(instiYearStr: string): Date {
+  const instiYear = parseInt(instiYearStr, 10);
+  const previousYear = instiYear - 1;
+  // Use year, monthIndex (7 = August), day
+  return getDateOnly(new Date(previousYear, 7, 31))!;
+}
+function getInstiYearAug31(instiYearStr: string): Date {
+  const instiYear = parseInt(instiYearStr, 10);
+  return getDateOnly(new Date(instiYear, 7, 31))!;
+}
+function getDateOnly(date?: Date | null): Date | null {
+  if (!date) return null;
+  // your logic (e.g., strip time part)
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+// Function to check and return d1 and d2 dates
+function gp_check_date (accountYearTo?: string | null) {
+  const currentYear = new Date().getFullYear();
+
+  const d2 = new Date(currentYear, 0, 1); // 01 Jan current year
+
+  let d1: Date;
+
+  if (accountYearTo) {
+    const parsed = new Date(accountYearTo);
+    d1 = new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+  } else {
+    const future = new Date();
+    future.setDate(future.getDate() + 180);
+    d1 = new Date(future.getFullYear(), future.getMonth(), future.getDate());
+  }
+
+  return { d1, d2 };
+}
+
+function getKalendarYearDateRange(kalendarYear: string | number) {
+  const year = Number(kalendarYear);
+
+  const startDate = new Date(year, 0, 1);  // 01 Jan YYYY
+  const endDate = new Date(year, 11, 31);  // 31 Dec YYYY
+
+  return {
+    kalendarYearStartDate: startDate,
+    kalendarYearEndDate: endDate,
+  };
+}
+
+function getPrevYearSeptemberFirst(instiYear: string | number): Date {
+  const year = Number(instiYear) - 1;
+  return new Date(year, 8, 1); // 8 = September (0-indexed) 01/09/PrevYear
+}
+
+export function getPrevYearAugust15(instiYear: string | number): Date {
+  const year = Number(instiYear) - 1;
+  return new Date(year, 7, 15); // Month index 7 = August
+}
+
+const isFutureDate = (date: string | Date): boolean => {
+  const givenDate = new Date(date);
+  const today = new Date();
+
+  // Reset today's time to 00:00:00 for accurate comparison
+  today.setHours(0, 0, 0, 0);
+  givenDate.setHours(0, 0, 0, 0);
+
+  return givenDate > today;
+};
+
 export {
   attachMultipleClasses,
   truncateText,
@@ -502,11 +548,11 @@ export {
   viewDocumentByFileName,
   safeDateISO,
   isFutureDate,
-  getReferenceDate,
-  getAugCheckerDate,
+  convertPrevYearAug31,
+  getInstiYearAug31,
   formatToIndianNumbering,
   formatToInternationalNumbering,
-  GP_CHECK_DATE,
+  gp_check_date,
   formatIntegerPart,
   isValidDateFormat,
   mapOptions,
@@ -533,5 +579,8 @@ export {
   isValidData,
   canUseNewUI,
   isFutureDateAllowYesterday,
-  isValidAmount
+  isValidAmount,
+  getKalendarYearDateRange,
+  getPrevYearSeptemberFirst,
+  padWithZeros
 };

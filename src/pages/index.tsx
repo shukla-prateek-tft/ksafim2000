@@ -29,7 +29,7 @@ const Pages = React.memo(() => {
 
   return (
     <div dir={'rtl'}>
-      {!token && (
+      {token && (
         <ChooseDatabase
           showClose={token ? true : false}
           onClose={handleCloseDataBase}
@@ -38,7 +38,7 @@ const Pages = React.memo(() => {
         />
       )}
       <Suspense fallback={<GlobalLoader loading={true} showOnFullScreen />}>
-        {routes(token, user)}
+        {routes('radjdj', user)}
       </Suspense>
     </div>
   );

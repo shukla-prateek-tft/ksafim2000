@@ -68,7 +68,6 @@ const DialogBox: React.FC<DialogBoxProps> = ({
       className={attachMultipleClasses(styles.overlay, important && styles.important,styles[`scale-${uiScale}`])}
       onClick={handleOverlayClick}
       // Set z-index inline just in case you want to override in future by prop
-      style={{ zIndex: important ? 1000005 : undefined }}
       aria-modal="true"
       role="dialog"
       aria-labelledby={title ? 'dialog-title' : undefined}
@@ -76,7 +75,7 @@ const DialogBox: React.FC<DialogBoxProps> = ({
       <div
         className={attachMultipleClasses(styles.dialogBox, important && styles.important)}
         ref={dialogRef}
-        style={{ zIndex: important ? 1000006 : undefined }}
+        style={{ zIndex:  type==='error'? 1000009 :important ? 1000006 : undefined }}
       >
         {title && (
           <div

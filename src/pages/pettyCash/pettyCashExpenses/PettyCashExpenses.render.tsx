@@ -25,7 +25,10 @@ const PettyCashExpensesUI = ({
   projectNoListOptions,
   getCutPettyCashExpensesData,
   acc_CardOptions,
-  handleSave
+  handleSave,
+  handleDateChange,
+  transactionDetails,
+  handleValidation
 }: PettyCashExpensesUIProps) => {
   const { t } = useTranslation('common');
 
@@ -79,6 +82,7 @@ const PettyCashExpensesUI = ({
               ]}
               size="md"
               tabIndex={1}
+              onClick={handleValidation}
             />
             <Select
               orientation="horizontal"
@@ -89,6 +93,7 @@ const PettyCashExpensesUI = ({
               ]}
               size="md"
               tabIndex={2}
+              onClick={handleValidation}
             />
           </div>
         </Card>
@@ -96,10 +101,10 @@ const PettyCashExpensesUI = ({
           <div className={classes.mainContainer}>
             <div className={classes.innerContainerLeft}>
               <DatePickerComponent
-                selectedDate={new Date()}
-                onChange={() => {}}
+                selectedDate={transactionDetails?.date_Aut ?? null}
+                onChange={date => handleDateChange(date, 'date_Aut')}
                 placeholder=" "
-                id="L_DATE"
+                id="date_Aut"
                 size="fullWidth"
                 orientation="horizontal"
                 label={t('L_DATE')}
@@ -111,8 +116,8 @@ const PettyCashExpensesUI = ({
                 label={t('L_PROJECT')}
                 options={projectNoListOptions}
                 size="fullWidth"
-              tabIndex={6}
-
+                tabIndex={6}
+                onClick={handleValidation}
               />
               <Input
                 orientation="horizontal"
@@ -121,6 +126,7 @@ const PettyCashExpensesUI = ({
                 pattern={REGEX.allCharacter}
                 maxLength={30}
                 tabIndex={9}
+                onClick={handleValidation}
               />
               <Input
                 orientation="horizontal"
@@ -129,6 +135,7 @@ const PettyCashExpensesUI = ({
                 type="number"
                 pattern={getInputPattern(3)}
                 tabIndex={12}
+                onClick={handleValidation}
               />
             </div>
             <div className={classes.innerContainer}>
@@ -139,6 +146,7 @@ const PettyCashExpensesUI = ({
                 type="number"
                 pattern={getInputPattern(10)}
                 tabIndex={4}
+                onClick={handleValidation}
               />
               <Select
                 orientation="horizontal"
@@ -148,6 +156,7 @@ const PettyCashExpensesUI = ({
                 }
                 size="fullWidth"
                 tabIndex={10}
+                onClick={handleValidation}
               />
               <Input
                 orientation="horizontal"
@@ -159,6 +168,7 @@ const PettyCashExpensesUI = ({
                 onChange={() => {}}
                 onBlur={() => {}}
                 tabIndex={13}
+                onClick={handleValidation}
               />
               <Input
                 orientation="horizontal"
@@ -167,6 +177,7 @@ const PettyCashExpensesUI = ({
                 pattern={REGEX.allCharacter}
                 maxLength={30}
                 tabIndex={14}
+                onClick={handleValidation}
               />
             </div>
             <div className={classes.innerContainer}>
@@ -177,6 +188,7 @@ const PettyCashExpensesUI = ({
                 type="number"
                 pattern={getInputPattern(6)}
                 tabIndex={5}
+                onClick={handleValidation}
               />
               <Select
                 orientation="horizontal"
@@ -185,6 +197,7 @@ const PettyCashExpensesUI = ({
                 options={acc_CardOptions}
                 size="fullWidth"
                 tabIndex={8}
+                onClick={handleValidation}
               />
               <Input
                 orientation="horizontal"
@@ -198,6 +211,7 @@ const PettyCashExpensesUI = ({
                 onChange={() => {}}
                 onBlur={() => {}}
                 tabIndex={11}
+                onClick={handleValidation}
               />
             </div>
           </div>

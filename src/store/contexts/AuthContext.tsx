@@ -1,20 +1,26 @@
 import { STORAGE_KEY } from '@/constants/appConstant';
-import {  useLanguage } from '@/hooks';
+import { useLanguage } from '@/hooks';
 import { AppRoutes } from '@/Languages';
-import { adminServices } from '@/services';
 import {
   ExpenseVoucherListFiltersType,
   GetListOfInvoicesParamsType,
   GetListOfInvoicesReportsParamsType
 } from '@/services/Invoices/types';
 import { triggerAuthChange } from '@/utils/commonHelper';
-import { createContext, useState } from 'react';
+import { createContext,useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 import { loginAction, paymentSupplierAction } from '@/store/slices';
-import { AuthContextWrapperProps, DefaultFlagsType, RemoveDataBaseResponseType, UserDetailType } from './types';
+import {
+  AuthContextWrapperProps,
+  DefaultFlagsType,
+  UserDetailType
+} from './types';
 import { SortDirection } from '@/pages/type';
+import { ConfirmationDialogueBox } from '@/components';
+import { TiWarning } from 'react-icons/ti';
+import { FaQuestionCircle } from 'react-icons/fa';
 export const defaultListOfInvoicesFilterValues: GetListOfInvoicesParamsType = {
   FromDate: '',
   ToDate: '',
@@ -39,7 +45,7 @@ export const defaultListOfInvoicesFilterValues: GetListOfInvoicesParamsType = {
   Institution: '',
   Page: 1,
   Size: 11,
-  NotZero: false,
+  NotZero: false
 };
 export const defaultExpenseVouchersFiltersValues: ExpenseVoucherListFiltersType = {
   FromDate: '',
@@ -64,7 +70,7 @@ export const defaultExpenseVouchersFiltersValues: ExpenseVoucherListFiltersType 
   Institution: '',
   Page: 1,
   Size: 1000,
-  AccDescAut: '',
+  AccDescAut: ''
 };
 
 export const defaultReportFilterValues: GetListOfInvoicesReportsParamsType = {
@@ -101,8 +107,8 @@ const userDefaultValue: UserDetailType = {
   schoolType: '',
   schoolPhoneNumber: '',
   schoolEmail: '',
-  accountYearTo:'',
-  accountYear:''
+  accountYearTo: '',
+  accountYear: ''
 };
 const defaultFlags: DefaultFlagsType = {
   showChooseDataBase: false,
@@ -116,7 +122,7 @@ const defaultFlags: DefaultFlagsType = {
   reportListFilters: defaultReportFilterValues,
   expenseVoucherFilters: defaultExpenseVouchersFiltersValues,
   showExpenseVoucherFilters: false,
-  goToScreen:false,
+  goToScreen: false,
   SuppNum: '',
   errorData: {
     message: '',
@@ -144,8 +150,11 @@ export const AuthContext = createContext({
   handleLogout: (shouldResetContext?: boolean) => {},
   flags: defaultFlags,
   setDataBase: (databaseName: string) => {},
-  toggleFlags: <T extends keyof DefaultFlagsType>(keyOrObject: T | Partial<DefaultFlagsType>, flag?: DefaultFlagsType[T]) => {},
-  closeAllModals: () => {},
+  toggleFlags: <T extends keyof DefaultFlagsType>(
+    keyOrObject: T | Partial<DefaultFlagsType>,
+    flag?: DefaultFlagsType[T]
+  ) => {},
+  closeAllModals: () => {}
 
   // Single update
   // handleToggleFlags('key1', true);
@@ -234,7 +243,10 @@ function AuthContextWrapper({ children }: AuthContextWrapperProps) {
     navigate(AppRoutes.LOGIN, { replace: true });
     triggerAuthChange({});
   };
-  const handleToggleFlags = <T extends keyof DefaultFlagsType>(keyOrObject: T | Partial<DefaultFlagsType>, flag?: DefaultFlagsType[T]) => {
+  const handleToggleFlags = <T extends keyof DefaultFlagsType>(
+    keyOrObject: T | Partial<DefaultFlagsType>,
+    flag?: DefaultFlagsType[T]
+  ) => {
     setFlags((prevFlags: DefaultFlagsType) => {
       if (typeof keyOrObject === 'object') {
         return { ...prevFlags, ...keyOrObject };
@@ -258,7 +270,51 @@ function AuthContextWrapper({ children }: AuthContextWrapperProps) {
     closeAllModals
   };
 
-  return <AuthContext.Provider value={updatedCtxData}>{children}</AuthContext.Provider>;
+  const closeErrorDialog = (isConfirm: boolean) => {
+    const { closeCallback, confirmCallback } = flags?.errorData || {};
+    isConfirm ? confirmCallback?.() : closeCallback?.();
+    setFlags((prevFlags: DefaultFlagsType) => {
+      return {
+        ...prevFlags,
+        showValidationError: false,
+        errorData: {
+          message: '',
+          dialogTitle: '',
+          cancelText: '',
+          confirmText: '',
+          closeCallback: () => {},
+          confirmCallback: () => {}
+        }
+      };
+    });
+
+  };
+    return (
+      <AuthContext.Provider value={updatedCtxData}>
+        <ConfirmationDialogueBox
+          dialogTitle={flags?.errorData?.dialogTitle}
+          icon={
+            typeof flags?.errorData?.icon === 'function' ? (
+              flags.errorData.icon()
+            ) : flags?.errorData?.type === 'error' ? (
+              <TiWarning size={15} />
+            ) : (
+              <FaQuestionCircle size={15} />
+            )
+          }
+          show={flags?.showValidationError}
+          title={flags?.errorData?.title}
+          onCancel={() => closeErrorDialog(false)}
+          message={flags?.errorData?.message}
+          onConfirm={() => closeErrorDialog(true)}
+          confirmText={flags?.errorData?.confirmText}
+          cancelText={flags?.errorData?.cancelText}
+          showCancelButton={flags?.errorData?.cancelText?.length > 0}
+          type={flags?.errorData?.type || 'error'}
+        />
+        {children}
+      </AuthContext.Provider>
+    );
 }
 
 export default AuthContextWrapper;
