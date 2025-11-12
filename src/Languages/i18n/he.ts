@@ -8660,5 +8660,7 @@ export const translation_he = {
     L_WHAT_WOULD_YOU_LIKE_TO_DO: 'מה תרצו לעשות?',
     L_STUDENT_RECEIPTS_AND_REFUNDS: 'תקבולים והחזרים לתלמיד',
     L_BANK_RECONCILIATIONS: 'התאמות בנק',
+    L_CLOSING_SMALL_CASH_REGISTER_LOCKS_AND_RECOMMENDED_AT_YEAR_END: 'סגירת קופה קטנה נועלת את הקופה ומומלץ לבצע זאת רק בסוף שנה',
+    L_SHOULD_I_CONTINUE: 'האם להמשיך?',
   }
 };
