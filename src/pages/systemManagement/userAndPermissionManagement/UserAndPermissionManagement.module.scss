@@ -1,14 +1,14 @@
 @use '../../../ui/Styles/theme.scss' as *;
 @use '../../../ui/Styles/variables' as *;
-.dialogBox {
-  max-width: fit-content;
-  max-height: fit-content;
-  .dialogContent {
-    display: flex;
-    flex: 1;
-  }
-  @include theme-font;
-}
+// .dialogBox {
+//   max-width: fit-content;
+//   max-height: fit-content;
+//   .dialogContent {
+//     display: flex;
+//     flex: 1;
+//   }
+//   @include theme-font;
+// }
 .actionItems {
   @include flex-row;
   gap: 10px;
@@ -40,64 +40,137 @@
       margin-bottom: 5px;
       justify-content: space-between;
       width: 100%;
+       
       .buttonAlignerBox {
         @include flex-row;
         width: 100%;
         justify-content: space-between;
+        gap:theme-gap('huge')
       }
       .topInnerLeftContainer {
         height: 100%;
         // width: 50%;
         @include flex-column;
         justify-content: space-between;
+       
       }
       .topInnerRightContainer {
         height: 100%;
-        width: 40%;
+        width: 35%;
         @include flex-column;
         justify-content: space-between;
+        
       }
     }
     .alignerContainer {
+      justify-content: space-between;
       @include flex-row;
       width: 75%;
       gap: 5px;
     }
-    .mainBottomContainer {
-      @include flex-column;
-      .legend {
-        margin: 10px 80px 10px 0px;
+    // .mainBottomContainer {
+    //   @include flex-column;
+    //   border-top: 1px solid lightgray;
+      
+    //   .legend {
+    //     margin: 10px 80px 10px 0px;
+    //     margin-right: 280px;
+    //   }
+    //   .tableItem {
+    //     width: 50%;
+    //     height: 100%;
+    //     .headerItem {
+    //       @include flex-row;
+    //       background-color: rgb(203, 202, 202);
+    //       gap: 2px;
+          
+    //       .cells {
+    //         box-shadow: 0px 0px 4px 0px rgb(72, 70, 70);
+    //         @include flex-row;
+    //         justify-content: center;
+    //         align-items: center;
+    //         flex: 1;
+           
+    //       }
+    //     }
+    //     .bodyItem {
+    //       @include flex-row;
+    //       gap: 2px;
+    //       .cells {
+    //         @include flex-row;
+    //         justify-content: space-between;
+          
+    //         flex: 1;
+           
+    //         padding: 5px 0px;
+          
+    //       }
+          
+    //     }
+    //   }
+    // }
+   .mainBottomContainer {
+  @include flex-column;
+  border-top: 1px solid lightgray;
+  
+  .legend {
+    margin: 10px 80px 10px 0px;
+    margin-right: 280px;
+  }
+  .tableItem {
+    width: 50%;
+    height: 100%;
+    .headerItem {
+      @include flex-row;
+      background-color: rgb(203, 202, 202);
+      gap: 2px;
+      
+      .cells {
+        box-shadow: 0px 0px 4px 0px rgb(72, 70, 70);
+        @include flex-row;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
       }
-      .tableItem {
-        width: 50%;
-        height: 100%;
-        .headerItem {
-          @include flex-row;
-          background-color: rgb(203, 202, 202);
-          gap: 2px;
-          .cells {
-            box-shadow: 0px 0px 4px 0px rgb(72, 70, 70);
-            @include flex-row;
-            justify-content: center;
-            flex: 1;
-          }
-        }
-        .bodyItem {
-          @include flex-row;
-          gap: 2px;
-          .cells {
-            @include flex-row;
-            justify-content: space-around;
-            align-items: center;
-            flex: 1;
-            padding: 5px 0px;
+    }
+    .bodyItem {
+      @include flex-row;
+      gap: 2px;
+      .cells {
+        @include flex-row;
+        flex: 1;
+        padding: 5px;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-sizing: border-box;
+        
+        // For the last cell (checkboxes only)
+        &:last-child {
+          gap: 3px;
+          
+          // Make checkboxes fit inside cell
+          & > * {
+            flex: 0 1 auto;
+            min-width: 0;
           }
         }
       }
     }
+  }
+}
     .rtlCheckBox {
       direction: ltr;
       text-align: right;
     }
   }
+  // .checkBoxAligner{
+  //   width:auto !important;
+  // }
+  // .bottomAlignerContainer
+  // {
+  //   justify-content: space-between;
+
+  // }
+  direction: rtl;
 }
